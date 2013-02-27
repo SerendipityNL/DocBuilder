@@ -1,18 +1,32 @@
+// Include the requested files
 var express = require('express'),
 	stylus = require('stylus'),
-	nib = require('nib');
-var weblog = require('./app/controllers/weblog.js');
+	weblog = require('./app/controllers/weblog'),
+	socket = require('./app/controllers/socket');
 
+// Create a new object of the Express framework
 var app = express();
 
 app.set('views', __dirname + '/app/views');
 app.set('view engine', 'jade');
 
+// Make use of the sylus middleware
+app.use(stylus.middleware({
+	src: __dirname + '/app/views',
+	dest: __dirname + '/public',
+	compress: true
+}));
+
+// Set the path to the public directory
 app.use(express.static(__dirname + '/public'));
 
+// Set the weblog routes
 app.get('/', weblog.index);
 app.get('/weblog', weblog.index);
 app.get('/weblog/view/:id', weblog.view);
+
+// Set the socket routes
+app.get('/socket', socket.index);
 
 app.listen(1337);
 console.log('Application accessible at http://localhost:1337');

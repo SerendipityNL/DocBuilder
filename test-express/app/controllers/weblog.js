@@ -1,17 +1,8 @@
 exports.index = function(req, res) {
 	var users = [
-		{
-			name: "Vincent",
-			age: 24
-		},
-		{
-			name: "Douwe",
-			age: 22
-		},
-		{
-			name: "Edwin",
-			age: 22
-		}
+		{name: "Vincent", age: 24},
+		{name: "Douwe", age: 22},
+		{name: "Edwin", age: 22}
 	];
 
 	res.render('weblog/index', {

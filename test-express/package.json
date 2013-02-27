@@ -8,6 +8,6 @@
 		"mongodb": "*",
 		"jade": "*",
 		"stylus": "*",
-		"nib": "*"
+		"socket.io": "*"
 	}
 }
