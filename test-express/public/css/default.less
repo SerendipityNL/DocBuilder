@@ -1,0 +1,38 @@
+.font(@size: 13px, @weight: normal) {
+	font: @weight @size "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #333;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	.font(13px);
+}
+
+h1 {
+	.font(22px, bold);
+	margin: 0 0 10px 0;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th, td {
+	margin: 0;
+	text-align: left;
+	padding: 2px 20px 2px 0;
+}
+
+h1#header {
+	background-color: #404040;
+	color: #FFF;
+	padding: 8px 20px;
+}
+
+div#content {
+	margin: 20px;
+}
