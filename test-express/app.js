@@ -2,6 +2,14 @@ var express = require('express'),
 	stylus = require('stylus'),
 	nib = require('nib');
 var weblog = require('./app/controllers/weblog.js');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/blocknodes');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+	console.log('connection to the database has been made');
+});
 
 var app = express();
 
