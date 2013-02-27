@@ -1,4 +1,6 @@
-var express = require('express');
+var express = require('express'),
+	stylus = require('stylus'),
+	nib = require('nib');
 var weblog = require('./app/controllers/weblog.js');
 
 var app = express();
