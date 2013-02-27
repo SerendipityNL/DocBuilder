@@ -1,6 +1,5 @@
 extend ../layout
 block content
-	p Hallo wereld :)
 	table(class="mytable")
 		thead
 			tr
@@ -11,4 +10,5 @@ block content
 				tr
 					td= user.name
 					td= user.age
-		
+	p
+		a(href="/") Home
