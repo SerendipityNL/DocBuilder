@@ -2,7 +2,16 @@
 var express = require('express'),
 	stylus = require('stylus'),
 	weblog = require('./app/controllers/weblog'),
-	socket = require('./app/controllers/socket');
+	socket = require('./app/controllers/socket'),
+	mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/blocknodes');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+	console.log('connection to the database has been made');
+});
 
 // Create a new object of the Express framework
 var app = express();
@@ -28,5 +37,6 @@ app.get('/weblog/view/:id', weblog.view);
 // Set the socket routes
 app.get('/socket', socket.index);
 
+// Let the app listen on 1337
 app.listen(1337);
 console.log('Application accessible at http://localhost:1337');
