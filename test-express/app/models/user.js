@@ -21,4 +21,4 @@ model_functions.prototype.find_all = function(callback) {
 	});
 };
 
-exports.methods = model_functions;
+exports.model_functions = model_functions;
