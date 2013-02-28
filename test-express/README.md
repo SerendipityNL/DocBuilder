@@ -22,9 +22,11 @@ for a detailed description on how to use the database, visit the [documentation 
 	- In the second, type mongo (this will put you into the console view of mongo) and then the following lines
 		- use blocknodes
 		- db.users
-		- It is easier to copy and paste the following items:
-			- db.users.save({'id': '1', 'name': 'Douwe', 'email': 'douwedehaan@live.nl'})
-			- db.users.save({'id': '2', 'name': 'Vincent', 'email': 'v-bremer89@gmail.com'})
-			- db.users.save({'id': '3', 'name': 'Tjerk', 'email': 'tjerk.dijkstra@gmail.com'})
-			- db.users.save({'id': '4', 'name': 'Edwin', 'email': 'ed.wolde@gmail.com'})
-			
+		
+## Working with models
+To get data in app.js and pass it to the views, use the following syntax:
+
+`var user = new load.model('user');
+user.find_all(function(err, users){
+	console.log(users);
+});`

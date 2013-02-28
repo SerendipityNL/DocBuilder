@@ -3,16 +3,13 @@ var express = require('express'),
 	stylus = require('stylus'),
 	weblog = require('./app/controllers/weblog'),
 	socket = require('./app/controllers/socket'),
-	mongoose = require('mongoose');
+	provider = require('./app/models/provider'),
+	load = new provider.get_model();
 
-mongoose.connect('mongodb://localhost/blocknodes');
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-	console.log('connection to the database has been made');
+var user = new load.model('user');
+user.find_all(function(err, users){
+	console.log(users);
 });
-
 // Create a new object of the Express framework
 var app = express();
 
