@@ -1,0 +1,52 @@
+* {
+	margin:	 			0;
+	padding:			0; 
+}
+
+body, input {
+	font:				0.9em 'Helvetica', Arial, sans-serif;
+}
+
+h1 {
+	font-size: 			2em;
+	font-weight: 		bold;
+}
+
+h1, p, form {
+	margin-bottom: 		10px;
+}
+
+
+input[type="text"] {
+	border:				1px solid #CCC;
+	background-color: 	#FFF;
+	padding: 			3px;
+}
+
+input[type="submit"] {
+	border:				1px solid #CCC;
+	background-color: 	#CCC;
+	padding: 			3px 10px;
+}
+
+div#container {
+	margin:				20px auto;
+	max-width: 			640px;
+}
+
+div#messages {
+	border: 			1px solid #CCC;
+	height: 			300px;
+	margin-bottom: 		10px;
+	overflow: 			auto;
+}
+
+div#messages p {
+	margin:				0;
+	padding: 			3px;
+	color: 				#004A7F;
+}
+
+#message {
+	width:				500px;
+}

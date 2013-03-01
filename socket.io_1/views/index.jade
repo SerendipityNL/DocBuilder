@@ -1,0 +1,11 @@
+extend layout
+block content
+	h1 Websocket IO
+	p Testen met websockets via Socket.io
+	div#messages
+
+	form#msg_form(action='')
+		input#message(type='text', size='40', name='message')
+		input(type='submit', value='Verstuur')
+
+	script(type='text/javascript', src='/js/default.js')
