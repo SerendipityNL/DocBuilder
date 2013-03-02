@@ -1,3 +1,7 @@
+$(document).ready(function() {
+	$('#message input').focus();
+});
+
 var socket = io.connect(document.URL);
 
 socket.on('new_msg', function(data) {
@@ -9,10 +13,10 @@ $('#msg_form').submit(function(evt) {
 	evt.preventDefault();
 
 	// Get the message
-	var message = $('#message').val();
+	var message = $('#message input').val();
 
 	// Clear the message field
-	$('#message').val('');
+	$('#message input').val('');
 
 	// Scroll to the bottom of the messages div
 	$('#messages').scrollTop($('#messages')[0].scrollHeight);

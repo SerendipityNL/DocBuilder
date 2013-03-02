@@ -29,12 +29,16 @@ app.get('/test', function(req, res) {
 	});
 })
 
+var clients = {};
 
 io.sockets.on('connection', function(socket) {
+
+	clients[socket.id] = socket;
+
 	// A user has clicked on the link
 	socket.on('msg', function(data) {
 		// Send back a message
-		io.sockets.emit('new_msg', { msg: data.msg});
+		io.sockets.emit('new_msg', { msg: data.msg });
 	});
 });
 
