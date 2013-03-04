@@ -9,5 +9,6 @@ block content
 		input#msg_send(type='submit', value='Verstuur')
 		div#message
 			input(type='text', name='message', size="53")
-
+	each message in history
+		console.log(message.username)
 	script(type='text/javascript', src='/js/default.js')
