@@ -13,25 +13,23 @@ app.set('views', __dirname + '/views');
 // Set the path to the public directory
 app.use(express.static(__dirname + '/public'));
 
+app.use(express.cookieParser());
+
 app.get('/', function(req, res) {
+
+	if (typeof req.cookies.nickname === 'undefined') {
+		res.cookie('nickname', 'Vincent');
+	}
+	
+	
 	res.render('index', {});
 });
-
-app.get('/test', function(req, res) {
-	var users = [
-		{name: 'Vincent'},
-		{name: 'Tjerk'},
-		{name: 'Douwe'},
-		{name: 'Edwin'}
-	];
-	res.render('test', {
-		users: users
-	});
-})
 
 var clients = {};
 
 io.sockets.on('connection', function(socket) {
+
+
 
 	clients[socket.id] = socket;
 

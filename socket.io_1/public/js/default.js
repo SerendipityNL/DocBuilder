@@ -1,25 +1,35 @@
 $(document).ready(function() {
-	$('#message input').focus();
+	$('#msg_text').focus();
 });
 
 var socket = io.connect(document.URL);
 
 socket.on('new_msg', function(data) {
-	$('#messages').append('<p>' + data.msg + '</p>');
+	// Scroll to the bottom of the messages div
+	$('#messages').scrollTop($('#messages')[0].scrollHeight);
+
+	curdate = new Date();
+	time = curdate.getHours() + ':' + curdate.getMinutes();
+
+	var html = '';
+	html += '<p>';
+	html += '<span class="time">[' + time + ']</span> ';
+	html += '<span class="name">Nickname:</span> ';
+	html += '<span class="msg">' + data.msg + '</span>';
+	html += '</p>';
+
+	$('#messages').append(html);
 });
 
-$('#msg_form').submit(function(evt) {
+$('#message_form').submit(function(evt) {
 	// Prevent sending the form
 	evt.preventDefault();
 
 	// Get the message
-	var message = $('#message input').val();
+	var message = $('#msg_text').val();
 
 	// Clear the message field
-	$('#message input').val('');
-
-	// Scroll to the bottom of the messages div
-	$('#messages').scrollTop($('#messages')[0].scrollHeight);
+	$('#msg_text').val('');
 
 	// Send the message to the server
 	socket.emit('msg', {msg: message});
