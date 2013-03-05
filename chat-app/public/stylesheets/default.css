@@ -12,8 +12,16 @@ div#content{margin:10px 20px}
 div#chat input[type="text"]{border:none;background-color:none}
 div#chat input[type="submit"]{border:1px solid #ccc;border-top:none;background-color:#ccc;padding:8px 10px}
 div#chat div#messages-wrapper{border:1px solid #ccc;background-color:#fff;height:300px;overflow:auto}
-div#chat div#messages{padding:5px}
+div#chat div#messages div{padding:5px;display:none}
+div#chat div#messages div.active-chat-view{display:block}
 div#chat div#messages p{margin:0 0 4px;color:#004a7f}
 div#chat div#message{width:528px;border:1px solid #ccc;background-color:#fff;border-top:none;padding:8px}
+div#message-tabs{height:50px;border-bottom:1px solid #ccc}
+div#message-tabs ul{display:inline-block}
+div#message-tabs ul li{height:30px;margin:8px 0 8px 5px;padding:0 5px;border:1px solid #ccc;line-height:30px;display:inline-block}
+div#message-tabs ul li.active-chat-tab{font-weight:bold}
+div#message-tabs ul li.new-messages a{font-weight:bold;color:#d00}
 div#chat div#message input{outline:none;width:100%}
 div#chat input#msg_send{width:100px;float:right}
+span.channel{color:#f0f;font-weight:bold}
+.strong{font-weight:bold}

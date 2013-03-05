@@ -63,22 +63,46 @@ div#chat div#messages-wrapper
 	overflow: 			auto
 
 
-div#chat div#messages 
+div#chat div#messages div
 	padding:			5px
+	display:			none
 
+div#chat div#messages div.active-chat-view
+	display:			block
 
 div#chat div#messages p 
 	margin:				0 0 4px
 	color: 				#004A7F
 
 
-div#chat div#message 
+div#chat div#message
 	width:				528px
 	border:				1px solid #CCC
 	background-color: 	#FFF
 	border-top: 		none
 	padding: 			8px
 
+div#message-tabs
+	height:				50px
+	border-bottom:		1px solid #CCC
+
+div#message-tabs ul
+	display:			inline-block;
+	
+div#message-tabs ul li
+	height:				30px
+	margin:				8px 0px 8px 5px
+	padding:			0 5px
+	border:				1px solid #CCC
+	line-height:		30px
+	display:			inline-block;
+
+div#message-tabs ul li.active-chat-tab
+	font-weight:		bold
+	
+div#message-tabs ul li.new-messages a
+	font-weight:		bold
+	color:				#D00
 
 div#chat div#message input 
 	outline:			none
@@ -88,3 +112,10 @@ div#chat div#message input
 div#chat input#msg_send 
 	width: 				100px
 	float: 				right
+
+span.channel
+	color:				#F0F
+	font-weight:		bold
+
+.strong
+	font-weight: 		bold

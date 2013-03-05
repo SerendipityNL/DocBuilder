@@ -6,7 +6,8 @@ var Schema = mongoose.Schema
 
 var Chat = new Schema({
 	name	:		String,
-	message	:		String
+	message	:		String,
+	channel :		String
 });
 
 mongoose.model('Chat', Chat);
@@ -21,7 +22,7 @@ model_functions.prototype.find_all = function(callback) {
 };
 
 model_functions.prototype.save = function(params, callback) {
-  var chat = new Chat({name: params['name'], message: params['message']});
+  var chat = new Chat({name: params['name'], message: params['message'], channel: params['channel']});
   chat.save(function (err) {
     callback();
   });
