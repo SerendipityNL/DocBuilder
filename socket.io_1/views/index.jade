@@ -11,6 +11,11 @@ html(lang="nl")
 			h1 Websocket IO
 			p Testen met websockets via Socket.io
 
+			if setcookie
+				span set a nickname
+			else
+				span nickname set
+
 			div#chatbox
 				div#wrapper
 					div#messages

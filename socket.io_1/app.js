@@ -19,10 +19,18 @@ app.get('/', function(req, res) {
 
 	if (typeof req.cookies.nickname === 'undefined') {
 		res.cookie('nickname', 'Vincent');
+		var setcookie = true;
 	}
+	else {
+		var setcookie = false;
+	}
+
+	res.clearCookie('nickname');
 	
 	
-	res.render('index', {});
+	res.render('index', {
+		setcookie: setcookie
+	});
 });
 
 var clients = {};
