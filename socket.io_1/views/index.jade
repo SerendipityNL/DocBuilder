@@ -1,13 +1,51 @@
-extend layout
-block content
-	h1 Websocket IO
-	p Testen met websockets via Socket.io
-	div#messages-wrapper
-		div#messages
+doctype 5
+html(lang="nl")
+	head
+		title Socket.io test
+		link(rel='stylesheet', type='text/css', href='/css/stylesheet.css')
+		script(type='text/javascript', src='/js/jquery.js')
+		script(type='text/javascript', src='/socket.io/socket.io.js')
+	body
+		div#container
+			
+			h1 Websocket IO
+			p Testen met websockets via Socket.io
 
-	form#msg_form(action='', autocomplete='off')
-		input#msg_send(type='submit', value='Verstuur')
-		div#message
-			input(type='text', name='message', size="53")
+			if setcookie
+				span set a nickname
+			else
+				span nickname set
 
-	script(type='text/javascript', src='/js/default.js')
+			div#chatbox
+				div#wrapper
+					div#messages
+						p 
+							span.time [22:02] 
+							span.name John: 
+							span.msg Hello everyone!
+						p 
+							span.time [22:03] 
+							span.name David: 
+							span.msg Hi John!
+						p 
+							span.time [22:05] 
+							span.name John: 
+							span.msg How are you doing my friends?
+						p 
+							span.time [22:07] 
+							span.name Mike: 
+							span.msg Very well, and you?
+						p 
+							span.time [22:09] 
+							span.name John: 
+							span.msg Yeah great, just found out about Node.JS, it's awesome!
+
+				form#message_form(action='', autocomplete='off')
+					div#submit
+						input(type='submit', value='Send &raquo;')
+
+					div#form_msg
+						div#form_msg_inner
+							input#msg_text(type='text', name='message', placeholder='Type your message..', value='')	
+
+			script(type='text/javascript', src='/js/default.js')

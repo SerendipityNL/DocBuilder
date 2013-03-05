@@ -4,11 +4,12 @@
 }
 
 body {
-	background-color: 	#EFEFEF;
+	background-color: 	#404040;
+	color: 				#E5E5E5;
 }
 
 body, input {
-	font:				1em 'Helvetica', Arial, sans-serif;
+	font:				12px 'Consolas', 'Ubuntu mono', monospace;
 }
 
 h1 {
@@ -16,31 +17,22 @@ h1 {
 	font-weight: 		bold;
 }
 
-h1, p, form {
+h1, p {
 	margin-bottom: 		10px;
 }
 
-input[type="text"] {
-	border:		 		none;
-	background-color: 	none;
-}
-
-input[type="submit"] {
-	border:				1px solid #CCC;
-	border-top: 		none;
-	background-color: 	#CCC;
-	padding: 			8px 10px;
-}
-
 div#container {
-	margin:				20px auto;
-	max-width: 			640px;
+	margin:				10px auto;
+	width: 				800px;
 }
 
-div#messages-wrapper {
-	border: 			1px solid #CCC;
-	background-color: 	#FFF;
-	height: 			300px;
+div#chatbox {
+	border: 			1px solid #808080;
+	overflow: 			auto;
+}
+
+div#wrapper {
+	height:		 		400px;
 	overflow: 			auto;
 }
 
@@ -50,23 +42,44 @@ div#messages {
 
 div#messages p {
 	margin:				0 0 4px;
-	color: 				#004A7F;
 }
 
-div#message {
-	width:				528px;
-	border:				1px solid #CCC;
-	background-color: 	#FFF;
-	border-top: 		none;
-	padding: 			8px;
+div#form_msg {
+	background-color: 	#E5E5E5;
+	margin-right: 		100px;
 }
 
-div#message input {
-	outline:			none;
+div#form_msg_inner {
+	padding: 			5px;
+}
+
+input#msg_text {
 	width: 				100%;
+	border: 			none;
+	background-color: 	transparent;
 }
 
-input#msg_send {
-	width: 				100px;
+input#msg_text:focus {
+	outline: 			none;
+}
+
+div#submit {
 	float: 				right;
+	width: 				100px;
+	background-color: 	#92CC00;
+}
+
+div#submit input {
+	background-color: 	transparent;
+	border: 			none;
+	width: 				100%;
+	padding: 			5px 0;
+}
+
+div#messages .time {
+	color: 				#808080;
+}
+
+div#messages .name {
+	color:				#92CC00;
 }
