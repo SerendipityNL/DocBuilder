@@ -6,19 +6,23 @@ var express = require('express'),
 // Let the server listen on port 1337
 server.listen(1337);
 
+// Start working with cookies
+app.use(express.cookieParser());
+
+// Set the view engine and the path to the views
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
-
 
 // Set the path to the public directory
 app.use(express.static(__dirname + '/public'));
 
-app.use(express.cookieParser());
 
 app.get('/', function(req, res) {
 
+	res.cookie('nickname', 'Vincent');
+	//res.clearCookie('nickname');
+
 	if (typeof req.cookies.nickname === 'undefined') {
-		res.cookie('nickname', 'Vincent');
 		var setcookie = true;
 	}
 	else {
