@@ -1,35 +1,48 @@
 var express = require('express'),
 	app = express(),
 	server = require('http').createServer(app),
-	io = require('socket.io').listen(server);
+	io = require('socket.io').listen(server),
+	cons = require('consolidate'),
+	swig = require('swig');
 
 // Let the server listen on port 1337
 server.listen(1337);
 
-app.set('view engine', 'jade');
+// Set the view engine to Swig
+app.engine('.html', cons.swig);
+
+// Let the view engine handle html files
+app.set('view engine', 'html');
+
+// Set the path to the views directory
 app.set('views', __dirname + '/views');
 
+// Configure Swig
+swig.init({
+	root: __dirname + '/views',
+	cache: false,
+	allowErrors: true
+});
 
 // Set the path to the public directory
 app.use(express.static(__dirname + '/public'));
 
+// Enable the cookieParser so we can work with cookies
 app.use(express.cookieParser());
 
 app.get('/', function(req, res) {
-
 	if (typeof req.cookies.nickname === 'undefined') {
-		res.cookie('nickname', 'Vincent');
-		var setcookie = true;
+		var nickname = false;
 	}
 	else {
-		var setcookie = false;
+		var nickname = req.cookies.nickname;
 	}
 
-	res.clearCookie('nickname');
-	
+	res.cookie('nickname', 'Vincent');
+	//res.clearCookie('nickname');
 	
 	res.render('index', {
-		setcookie: setcookie
+		nickname: nickname
 	});
 });
 

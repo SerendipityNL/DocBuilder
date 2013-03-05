@@ -3,9 +3,10 @@
   "description": "",
   "version": "0.0.0",
   "dependencies": {
-    "express": "*",
+    "express": "3.x",
     "socket.io": "*",
-    "jade": "*"
+    "consolidate": "*",
+    "swig": "*"
   },
   "private": true
 }
