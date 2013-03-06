@@ -8,31 +8,11 @@ var express = require('express'),
 // Let the server listen on port 1337
 server.listen(1337);
 
-<<<<<<< HEAD
-// Start working with cookies
-app.use(express.cookieParser());
-
-// Set the view engine and the path to the views
-app.set('view engine', 'jade');
-app.set('views', __dirname + '/views');
-
-// Set the path to the public directory
-app.use(express.static(__dirname + '/public'));
-
-
-app.get('/', function(req, res) {
-
-	res.cookie('nickname', 'Vincent');
-	//res.clearCookie('nickname');
-
-	if (typeof req.cookies.nickname === 'undefined') {
-		var setcookie = true;
-=======
 // Set the view engine to Swig
-app.engine('.html', cons.swig);
+app.engine('.tpl', cons.swig);
 
-// Let the view engine handle html files
-app.set('view engine', 'html');
+// Let the view engine handle tpl files
+app.set('view engine', 'tpl');
 
 // Set the path to the views directory
 app.set('views', __dirname + '/views');
@@ -53,7 +33,6 @@ app.use(express.cookieParser());
 app.get('/', function(req, res) {
 	if (typeof req.cookies.nickname === 'undefined') {
 		var nickname = false;
->>>>>>> 62cc8edd66bc7e36a180b184468c7fa114ff070d
 	}
 	else {
 		var nickname = req.cookies.nickname;
