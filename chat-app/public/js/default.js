@@ -53,9 +53,12 @@ function init_chat_functions(){
 	
 		// Scroll to the bottom of the messages div
 		$('#messages').scrollTop($('#messages')[0].scrollHeight);
-	
-		// Send the message to the server
-		socket.emit('msg', {msg: message, name: name, channel: active_channel});
+		
+		if (message.length > 0){
+			
+			// Send the message to the server
+			socket.emit('msg', {msg: message, name: name, channel: active_channel});
+		}
 	});
 	
 	$('#new-chat a').click( function () {
@@ -103,11 +106,9 @@ socket.on('new_msg', function(data) {
 		$('#messages_'+data.channel).append('<p><span class="strong">' + data.name + ': </span>' + data.msg + '</p>');
 		if($('#message-tabs #tab_' + data.channel).parent().hasClass('active-chat-tab')){
 			$('#messages_'+data.channel).scrollTop($('#messages')[0].scrollHeight);
-			console.log('wel actief');
 		}
 		else {
 			$('#message-tabs #tab_' + data.channel).parent().addClass('new-messages');
-			console.log('niet actief');
 		}
 	}
 	chat_navigation();
