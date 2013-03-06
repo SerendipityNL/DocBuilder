@@ -83,3 +83,11 @@ div#messages .time {
 div#messages .name {
 	color:				#92CC00;
 }
+
+.green {
+	color:				green;
+}
+
+.red {
+	color:				#CC2828;
+}

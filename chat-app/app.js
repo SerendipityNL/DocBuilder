@@ -29,8 +29,12 @@ app.get('/history.json', function(req, res){
 		res.send(chats);
 	});
 });
-app.get('/', function(req, res) {
+app.get('/*', function(req, res) {
 	res.render('index', {});
+	res.writeHead(200, {
+		'Set-Cookie': 'username=Serendipity',
+		'Content-Type': 'text/plain'
+	});
 });
 
 var clients = {};
@@ -44,11 +48,12 @@ io.sockets.on('connection', function(socket) {
 		// Send back a message
 		chat.save({
 			name: data.name,
-			message: data.msg
+			message: data.msg,
+			channel: data.channel
 			}, function(error, docs) {
 				console.log('message saved')
 		});
-		io.sockets.emit('new_msg', { msg: data.msg, name: data.name });
+		io.sockets.emit('new_msg', { msg: data.msg, name: data.name, channel: data.channel });
 	});
 });
 
