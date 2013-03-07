@@ -75,7 +75,9 @@ function new_chat(channel){
 	$('.active-chat-tab').removeClass('active-chat-tab');
 	$('#messages').append(new_channel);
 	$('#message-tabs ul').append(new_tab);
-	chat_navigation();
+	
+	// This next line is maybe not necessary
+	// chat_navigation();
 };
 
 function switch_channel(target){
@@ -87,11 +89,20 @@ function switch_channel(target){
 };
 
 function chat_navigation(){
+	/*
+	** Previous version:
+	
 	$(function() {
 		$('.channel-tab a').click( function () {
 			var target_list = $(this).attr('id').split('_');
 			switch_channel(target_list[1]);
 		});
+	});
+	*/
+	
+	$('.channel-tab a').on('click', function () {
+		var target_list = $(this).attr('id').split('_');
+		switch_channel(target_list[1]);
 	});
 }
 
