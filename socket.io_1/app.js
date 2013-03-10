@@ -8,14 +8,23 @@ var express = require('express'),
 // Let the server listen on port 1337
 server.listen(1337);
 
-// Set the view engine to Swig
-app.engine('.tpl', cons.swig);
+// Configure the app settings
+app.configure(function() {
+	// Set the view engine to Swig
+	app.engine('.tpl', cons.swig);
 
-// Let the view engine handle tpl files
-app.set('view engine', 'tpl');
+	// Let the view engine handle tpl files
+	app.set('view engine', 'tpl');
 
-// Set the path to the views directory
-app.set('views', __dirname + '/views');
+	// Set the path to the views directory
+	app.set('views', __dirname + '/views');
+
+	// Set the path to the public directory
+	app.use(express.static(__dirname + '/public'));
+
+	// Enable the cookieParser so we can work with cookies
+	app.use(express.cookieParser());	
+});
 
 // Configure Swig
 swig.init({
@@ -23,12 +32,6 @@ swig.init({
 	cache: false,
 	allowErrors: true
 });
-
-// Set the path to the public directory
-app.use(express.static(__dirname + '/public'));
-
-// Enable the cookieParser so we can work with cookies
-app.use(express.cookieParser());
 
 app.get('/', function(req, res) {
 	if (typeof req.cookies.nickname === 'undefined') {
@@ -49,9 +52,7 @@ app.get('/', function(req, res) {
 var clients = {};
 
 io.sockets.on('connection', function(socket) {
-
-
-
+	
 	clients[socket.id] = socket;
 
 	// A user has clicked on the link
