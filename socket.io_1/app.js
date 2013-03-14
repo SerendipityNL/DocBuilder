@@ -5,17 +5,31 @@ var express = require('express'),
 	cons = require('consolidate'),
 	swig = require('swig');
 
+// Loading the models	
+var chatModel = require('./models/chat');
+
 // Let the server listen on port 1337
 server.listen(1337);
 
-// Set the view engine to Swig
-app.engine('.tpl', cons.swig);
+app.configure(function() {
+	// Enable the bodyParser so we can access POST data
+	app.use(express.bodyParser());
+	
+	// Enable the cookieParser so we can work with cookies
+	app.use(express.cookieParser());
 
-// Let the view engine handle tpl files
-app.set('view engine', 'tpl');
+	// Set the view engine to Swig
+	app.engine('.tpl', cons.swig);
 
-// Set the path to the views directory
-app.set('views', __dirname + '/views');
+	// Let the view engine handle tpl files
+	app.set('view engine', 'tpl');
+
+	// Set the path to the views directory
+	app.set('views', __dirname + '/views');
+
+	// Set the path to the public directory
+	app.use(express.static(__dirname + '/public'));
+});
 
 // Configure Swig
 swig.init({
@@ -24,40 +38,49 @@ swig.init({
 	allowErrors: true
 });
 
-// Set the path to the public directory
-app.use(express.static(__dirname + '/public'));
-
-// Enable the cookieParser so we can work with cookies
-app.use(express.cookieParser());
-
 app.get('/', function(req, res) {
-	if (typeof req.cookies.nickname === 'undefined') {
-		var nickname = false;
-	}
-	else {
-		var nickname = req.cookies.nickname;
-	}
+	var nickname = null;
 
-	res.cookie('nickname', 'Vincent');
-	//res.clearCookie('nickname');
-	
+	if (typeof req.cookies.nickname !== 'undefined') {
+		nickname = req.cookies.nickname;
+	}
 	res.render('index', {
-		nickname: nickname
+		nickname: nickname,
+	});
+	
+	//res.clearCookie('nickname');
+});
+
+app.post('/', function(req, res) {
+	var nickname = req.param('nickname');
+	res.cookie('nickname', nickname, {maxAge: 900000});
+	res.redirect('/');
+});
+
+app.get('/messages.json', function(req, res) {
+	var data = [];
+
+	chatModel.getLatest(function(data) {
+		res.json(data);
 	});
 });
 
 var clients = {};
 
 io.sockets.on('connection', function(socket) {
-
-
-
+		
+	// Add the client to the list of clients
 	clients[socket.id] = socket;
 
 	// A user has clicked on the link
 	socket.on('msg', function(data) {
 		// Send back a message
-		io.sockets.emit('new_msg', { msg: data.msg });
+		io.sockets.emit('new_msg', { message: data.message, nickname: data.nickname });
+
+
+		chatModel.insertMessage(data.nickname, data.message);
+
+		// Save in the model?
 	});
 });
 
