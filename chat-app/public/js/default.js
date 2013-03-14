@@ -53,9 +53,12 @@ function init_chat_functions(){
 	
 		// Scroll to the bottom of the messages div
 		$('#messages').scrollTop($('#messages')[0].scrollHeight);
-	
-		// Send the message to the server
-		socket.emit('msg', {msg: message, name: name, channel: active_channel});
+		
+		if (message.length > 0){
+			
+			// Send the message to the server
+			socket.emit('msg', {msg: message, name: name, channel: active_channel});
+		}
 	});
 	
 	$('#new-chat a').click( function () {
@@ -72,7 +75,9 @@ function new_chat(channel){
 	$('.active-chat-tab').removeClass('active-chat-tab');
 	$('#messages').append(new_channel);
 	$('#message-tabs ul').append(new_tab);
-	chat_navigation();
+	
+	// This next line is maybe not necessary
+	// chat_navigation();
 };
 
 function switch_channel(target){
@@ -84,11 +89,20 @@ function switch_channel(target){
 };
 
 function chat_navigation(){
+	/*
+	** Previous version:
+	
 	$(function() {
 		$('.channel-tab a').click( function () {
 			var target_list = $(this).attr('id').split('_');
 			switch_channel(target_list[1]);
 		});
+	});
+	*/
+	
+	$('.channel-tab a').on('click', function () {
+		var target_list = $(this).attr('id').split('_');
+		switch_channel(target_list[1]);
 	});
 }
 
@@ -103,11 +117,9 @@ socket.on('new_msg', function(data) {
 		$('#messages_'+data.channel).append('<p><span class="strong">' + data.name + ': </span>' + data.msg + '</p>');
 		if($('#message-tabs #tab_' + data.channel).parent().hasClass('active-chat-tab')){
 			$('#messages_'+data.channel).scrollTop($('#messages')[0].scrollHeight);
-			console.log('wel actief');
 		}
 		else {
 			$('#message-tabs #tab_' + data.channel).parent().addClass('new-messages');
-			console.log('niet actief');
 		}
 	}
 	chat_navigation();

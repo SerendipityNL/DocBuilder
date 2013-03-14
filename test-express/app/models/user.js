@@ -5,9 +5,10 @@ var schema = mongoose.Schema
   , object_id = schema.ObjectId;
 
 var user = new schema({
-	id		:		Number,
-	name	:		String,
-	email	:		String
+	id		 :		Number,
+	name	 :		String,
+	email	 :		String,
+	password :      String,
 });
 
 mongoose.model('user', user);
@@ -22,3 +23,5 @@ model_functions.prototype.find_all = function(callback) {
 };
 
 exports.model_functions = model_functions;
+
+

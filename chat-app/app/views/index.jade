@@ -1,16 +1,14 @@
 extend layout
 block content
 	div#chat
-		div#messages-wrapper
-			div#message-tabs
+		div#message-tabs
 				ul
 					li#new-chat
 						a(href="#") +
+		div#messages-wrapper
 			div#messages
-					
 		form#msg_form(action='', autocomplete='off')
 			input#msg_send(type='submit', value='Verstuur')
 			div#message
 				input(type='text', name='message', size="53")
-
 	script(type='text/javascript', src='/js/default.js')

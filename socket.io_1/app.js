@@ -11,6 +11,7 @@ var chatModel = require('./models/chat');
 // Let the server listen on port 1337
 server.listen(1337);
 
+// Configure the application
 app.configure(function() {
 	// Enable the bodyParser so we can access POST data
 	app.use(express.bodyParser());
@@ -67,9 +68,8 @@ app.get('/messages.json', function(req, res) {
 
 var clients = {};
 
+// Add the client to the list of clients
 io.sockets.on('connection', function(socket) {
-		
-	// Add the client to the list of clients
 	clients[socket.id] = socket;
 
 	// A user has clicked on the link
