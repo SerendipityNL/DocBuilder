@@ -5,11 +5,20 @@ var express = require('express'),
 	cons = require('consolidate'),
 	swig = require('swig');
 
+// Loading the models	
+var chatModel = require('./models/chat');
+
 // Let the server listen on port 1337
 server.listen(1337);
 
-// Configure the app settings
+// Configure the application
 app.configure(function() {
+	// Enable the bodyParser so we can access POST data
+	app.use(express.bodyParser());
+	
+	// Enable the cookieParser so we can work with cookies
+	app.use(express.cookieParser());
+
 	// Set the view engine to Swig
 	app.engine('.tpl', cons.swig);
 
@@ -21,9 +30,6 @@ app.configure(function() {
 
 	// Set the path to the public directory
 	app.use(express.static(__dirname + '/public'));
-
-	// Enable the cookieParser so we can work with cookies
-	app.use(express.cookieParser());	
 });
 
 // Configure Swig
@@ -34,31 +40,47 @@ swig.init({
 });
 
 app.get('/', function(req, res) {
-	if (typeof req.cookies.nickname === 'undefined') {
-		var nickname = false;
-	}
-	else {
-		var nickname = req.cookies.nickname;
-	}
+	var nickname = null;
 
-	res.cookie('nickname', 'Vincent');
-	//res.clearCookie('nickname');
-	
+	if (typeof req.cookies.nickname !== 'undefined') {
+		nickname = req.cookies.nickname;
+	}
 	res.render('index', {
-		nickname: nickname
+		nickname: nickname,
+	});
+	
+	//res.clearCookie('nickname');
+});
+
+app.post('/', function(req, res) {
+	var nickname = req.param('nickname');
+	res.cookie('nickname', nickname, {maxAge: 900000});
+	res.redirect('/');
+});
+
+app.get('/messages.json', function(req, res) {
+	var data = [];
+
+	chatModel.getLatest(function(data) {
+		res.json(data);
 	});
 });
 
 var clients = {};
 
+// Add the client to the list of clients
 io.sockets.on('connection', function(socket) {
-	
 	clients[socket.id] = socket;
 
 	// A user has clicked on the link
 	socket.on('msg', function(data) {
 		// Send back a message
-		io.sockets.emit('new_msg', { msg: data.msg });
+		io.sockets.emit('new_msg', { message: data.message, nickname: data.nickname });
+
+
+		chatModel.insertMessage(data.nickname, data.message);
+
+		// Save in the model?
 	});
 });
 

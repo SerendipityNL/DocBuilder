@@ -17,8 +17,24 @@ h1 {
 	font-weight: 		bold;
 }
 
-h1, p {
+h1, p, form {
 	margin-bottom: 		10px;
+}
+
+input {
+	font-family: 		Helvetica, Arial, sans-serif;
+}
+
+input[type="text"] {
+	background-color: 	#E5E5E5;
+	padding: 			5px 5px;
+	border:				none;
+}
+
+input[type="submit"] {
+	background-color: 	#92CC00;
+	padding: 			5px 10px;
+	border:				none;
 }
 
 div#container {
@@ -29,6 +45,7 @@ div#container {
 div#chatbox {
 	border: 			1px solid #808080;
 	overflow: 			auto;
+	margin-bottom: 		10px;
 }
 
 div#wrapper {
@@ -44,44 +61,20 @@ div#messages p {
 	margin:				0 0 4px;
 }
 
-div#form_msg {
-	background-color: 	#E5E5E5;
-	margin-right: 		100px;
-}
-
-div#form_msg_inner {
-	padding: 			5px;
-}
-
-input#msg_text {
-	width: 				100%;
-	border: 			none;
-	background-color: 	transparent;
-}
-
-input#msg_text:focus {
-	outline: 			none;
-}
-
-div#submit {
-	float: 				right;
-	width: 				100px;
-	background-color: 	#92CC00;
-}
-
-div#submit input {
-	background-color: 	transparent;
-	border: 			none;
-	width: 				100%;
-	padding: 			5px 0;
-}
-
 div#messages .time {
 	color: 				#808080;
 }
 
 div#messages .name {
 	color:				#92CC00;
+}
+
+input#msg_text {
+	width: 				500px;
+}
+
+input#msg_text:focus {
+	outline:			none;
 }
 
 .green {

@@ -11,54 +11,29 @@
 			<h1>Websocket IO</h1>
 			<p>Testen met websockets via Socket.io</p>
 			{% if nickname %}
-				<p class="green">nickname cookie has been set to: {{ nickname }}</p>
-			{% else %}
-				<p class="red">nickname cookie has not yet been set</p>
-			{% endif %}
-			<div id="chatbox">
-				<div id="wrapper">
-					<div id="messages">
-						<p>
-							<span class="time">[22:02]</span>
-							<span class="name">John:</span>
-							<span class="msg">Hello everyone!</span>
-						</p>
-						<p>
-							<span class="time">[22:03]</span>
-							<span class="name">David:</span>
-							<span class="msg">Hi John!</span>
-						</p>
-						<p>
-							<span class="time">[22:05]</span>
-							<span class="name">John:</span>
-							<span class="msg">How are you doing my friends?</span>
-						</p>
-						<p>
-							<span class="time">[22:07]</span>
-							<span class="name">Mike:</span>
-							<span class="msg">Very well, and you?</span>
-						</p>
-						<p>
-							<span class="time">[22:10]</span>
-							<span class="name">John:</span>
-							<span class="msg">Yeah great, just found out about Node.JS, it's awesome!</span>
-						</p>
+				<div id="chatbox">
+					<div id="wrapper">
+						<div id="messages">
+						</div>
 					</div>
 				</div>
 
 				<form action="" autocomplete="off" id="message_form">
-					<div id="submit">
-						<input type="submit" value="Send &raquo;">
-					</div>
-					<div id="form_msg">
-						<div id="form_msg_inner">
-							<input type="text" name="message" id="msg_text" placeholder="Type your message.." value="">
-							<input type="hidden" name="nickname" value="{{ nickname }}">
-						</div>
-					</div>
+					<input type="hidden" name="nickname" id="msg_nickname" value="{{ nickname }}">
+					{{ nickname|title }}:
+					<input type="text" name="message" id="msg_text" placeholder="Type your message.." value="">
+					<input type="submit" value="Verzenden &raquo;">
 				</form>
 			</div>
-		</div>
+			{% else %}
+				<p>
+					Stel een nickname in:
+				</p>
+				<form action="" method="post">
+					<input type="text" name="nickname" value="" placeholder="Nickname.."><input type="submit" value="Instellen &raquo;">
+				</form>
+			{% endif %}
+			
 		<script type="text/javascript" src="/js/default.js"></script>
 	</body>
 </html>
