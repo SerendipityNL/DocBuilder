@@ -13,9 +13,11 @@ module.exports = function (app) {
 	app.get('/users/edit', users.edit);
 	app.get('/users/delete/*', users.delete);
 	app.get('/users/*', users.index);
+
+	app.get('/sessions/*', sessions.index);
 		
 	app.post('/users/new', users.saveNew);
-	app.post('/sessions/new', sessions.auth);
+	app.post('/sessions/', sessions.auth);
 
 	app.listen(1337);
 }

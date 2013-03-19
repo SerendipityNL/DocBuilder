@@ -4,8 +4,8 @@ User = new load.model('user');
 
 
 exports.index = function(req, res) {
-	res.render('users/index', {
-		page_title: 'Users/index!'
+	res.render('sessions/index', {
+		page_title: 'Login'
 	});
 }
 
@@ -17,8 +17,8 @@ exports.auth = function(req, res) {
 			res.redirect('/users/new');
 		}
 		else {
-			res.render('users/new', {
-	 			page_title: 'new!',
+			res.render('sessions/new', {
+	 			page_title: 'Login',
 	 			errors: err
 	 		});
 		}
