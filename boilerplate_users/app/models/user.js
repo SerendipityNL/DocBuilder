@@ -15,7 +15,6 @@ var User = mongoose.model('User', userSchema);
 modelFunctions = function(){};
 
 modelFunctions.prototype.save = function(params, callback) {
-
 	var displayName = params.username;
 	var username = params.username.toLowerCase();
 	
@@ -66,6 +65,18 @@ modelFunctions.prototype.test = function(username, password) {
 	User.findOne({'username' : username}, function(err, user) {
 		if (!err) {
 			console.log(user.authenticate(password));
+		}
+	});
+};
+
+modelFunctions.prototype.auth = function(req) {
+	User.findOne({'email' : req.email}, function(err, user) {
+		if (!err) {
+			console.log(user);
+			user.authenticate(req.password);
+		}
+		else{
+			console.log('not valid');
 		}
 	});
 };
