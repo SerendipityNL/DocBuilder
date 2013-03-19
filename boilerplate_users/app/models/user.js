@@ -92,4 +92,16 @@ modelFunctions.prototype.test = function(username, password) {
 	});
 };
 
+modelFunctions.prototype.auth = function(req) {
+	User.findOne({'email' : req.email}, function(err, user) {
+		if (!err) {
+			console.log(user);
+			user.authenticate(req.password);
+		}
+		else{
+			console.log('not valid');
+		}
+	});
+};
+
 exports.modelFunctions = modelFunctions;
