@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/user-test');
-
-// Validation
-var Validator = require('validator').Validator;
+	mongoose.connect('mongodb://localhost/user-test')
+	Validator = require('validator').Validator;
 
 var userSchema = new mongoose.Schema({
 	email		: String,
@@ -16,10 +14,10 @@ var User = mongoose.model('User', userSchema);
 
 modelFunctions = function(){};
 
-modelFunctions.prototype.save = function(params, callback){
+modelFunctions.prototype.save = function(params, callback) {
 
-	var displayName = params['username'];
-	var username = params['username'].toLowerCase();
+	var displayName = params.username;
+	var username = params.username.toLowerCase();
 	
 	//Validate
 	Validator.prototype.error = function (msg) {
@@ -33,12 +31,12 @@ modelFunctions.prototype.save = function(params, callback){
 
 	var validator = new Validator();
 
-	validator.check(params['email']).notEmpty(); 
-	validator.check(params['first']).notEmpty(); 
-	validator.check(params['last']).notEmpty();
+	validator.check(params.email).notEmpty(); 
+	validator.check(params.first).notEmpty(); 
+	validator.check(params.last).notEmpty();
 
-	validator.check(params['password']).equals(params['confirmPassword']);
-	validator.check(params['email']).len(6, 64).isEmail(); 
+	validator.check(params.password).equals(params.confirmPassword);
+	validator.check(params.email).len(6, 64).isEmail(); 
 
 	var errors = validator.getErrors();
 
@@ -51,22 +49,22 @@ modelFunctions.prototype.save = function(params, callback){
 		password: params['password']
 	});
 	
-	if(!errors){
+	if( ! errors) {
 		user.save(function (err) {
 			callback();
 			return true;
 		});
 	}
-	else{
+	else {
 		callback(errors);
 		return false;
 	}
 };
 
-modelFunctions.prototype.test = function(username, password){
-	username = username.toLowerCase()
-	User.findOne({'username' : username}, function(err, user){
-		if (!err){
+modelFunctions.prototype.test = function(username, password) {
+	username = username.toLowerCase();
+	User.findOne({'username' : username}, function(err, user) {
+		if (!err) {
 			console.log(user.authenticate(password));
 		}
 	});

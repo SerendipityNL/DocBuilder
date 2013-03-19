@@ -5,9 +5,13 @@
 	<h1>{{  page_title }}</h1>
 
 	<div class="errors">
-		{% for error in errors %}
-			{{ error }}<br>
-		{% endfor %}
+		{% if errors %}
+			<ul class="text-error">
+				{% for error in errors %}
+					<li>{{ error }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
 	</div>
 
 	{% include 'users/_form.tpl' %}

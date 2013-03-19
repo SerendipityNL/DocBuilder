@@ -22,6 +22,8 @@ exports.edit = function(req, res) {
 
 exports.saveNew = function(req, res) {
 
+	console.log(req.body);
+
 	var params = {
 		email:		req.param('email'),
 		first:		req.param('first'),
@@ -31,13 +33,11 @@ exports.saveNew = function(req, res) {
 	};
 
 
-	User.save(params, function(err){
+	User.save(req.body, function(err){
 		if ( ! err) {
 			res.redirect('/users/index');
 		}
 		else {
-
-			console.log(err);
 			res.render('users/new', {
 	 			page_title: 'new!',
 	 			errors: err
