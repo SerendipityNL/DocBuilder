@@ -5,10 +5,10 @@ var express = require('express'),
 	users  = require('./app/controllers/user'),
 	socket = require('./app/controllers/socket'),
 	provider = require('./app/models/provider'),
-	load = new provider.get_model();
+	load = new provider.getModel();
 
 var user = new load.model('user');
-user.find_all(function(err, users){
+user.findAll(function(err, users){
 	console.log(users);
 });
 // Create a new object of the Express framework
@@ -29,7 +29,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.cookieDecoder());
 app.use(express.session());
 
-
 // Set the weblog routes
 app.get('/', weblog.index);
 app.get('/weblog', weblog.index);
@@ -40,7 +39,7 @@ app.get('/weblog/view/:id', weblog.view);
 
 function loadUser(req, res, next) {
   if (req.session.user_id) {
-    User.findById(req.session.user_id, function(user) {
+    User.findById(req.session.userId, function(user) {
       if (user) {
         req.currentUser = user;
         next();

@@ -4,10 +4,10 @@ var express = require('express'),
 	weblog = require('./app/controllers/weblog'),
 	socket = require('./app/controllers/socket'),
 	provider = require('./app/models/provider'),
-	load = new provider.get_model();
+	load = new provider.getMaodel();
 
 var user = new load.model('user');
-user.find_all(function(err, users){
+user.findAll(function(err, users){
 	console.log(users);
 });
 // Create a new object of the Express framework

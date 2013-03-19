@@ -27,6 +27,6 @@ for a detailed description on how to use the database, visit the [documentation 
 To get data in app.js and pass it to the views, use the following syntax:
 
 `var user = new load.model('user');
-user.find_all(function(err, users){
+user.findAll(function(err, users){
 	console.log(users);
 });`
