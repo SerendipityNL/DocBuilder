@@ -14,10 +14,33 @@ var User = mongoose.model('User', userSchema);
 
 modelFunctions = function(){};
 
-modelFunctions.prototype.save = function(params, callback) {
+modelFunctions.prototype.findAll = function(callback) {
+	User.find(function(err, users) {
+		if ( ! err) {
+			callback(null, users);
+		}
+	}).sort({'username' : '-1'});
+};
 
-	var displayName = params.username;
-	var username = params.username.toLowerCase();
+modelFunctions.prototype.deleteByUsername = function(username, callback) {
+	User.find({'username' : username}, function (err, user){
+		if ( ! err ){
+			User.remove({'username' : username}, function(err){
+				if ( ! err) {
+					callback();
+				}
+				else {
+					callback(err);
+				}
+			});
+		}
+		else {
+			callback(err);
+		}
+	});
+}
+
+modelFunctions.prototype.save = function(params, callback) {
 	
 	//Validate
 	Validator.prototype.error = function (msg) {
@@ -44,8 +67,7 @@ modelFunctions.prototype.save = function(params, callback) {
 		email: params['email'], 
 		first: params['first'], 
 		last: params['last'], 
-		username: username,
-		displayName: displayName, 
+		username: params['username'], 
 		password: params['password']
 	});
 	
@@ -63,7 +85,7 @@ modelFunctions.prototype.save = function(params, callback) {
 
 modelFunctions.prototype.test = function(username, password) {
 	username = username.toLowerCase();
-	User.findOne({'username' : username}, function(err, user) {
+	User.findOne({'username' : { $regex : new RegExp(username, "i") }}, function(err, user) {
 		if (!err) {
 			console.log(user.authenticate(password));
 		}

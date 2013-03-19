@@ -3,8 +3,25 @@ load = new provider.getModel(),
 User = new load.model('user');
 
 exports.index = function(req, res) {
-	res.render('users/index', {
-		page_title: 'Users/index!'
+	User.findAll( function(err, users) {
+		res.render('users/index', {
+			page_title: 'Users/index!',
+			users:		users
+		});
+	});
+	
+}
+
+exports.delete = function(req, res) {
+	var url = require('url'),
+		urlParts = url.parse(req.url, true),
+		completeUrl = urlParts['href'].split('/'),
+		username = completeUrl.pop();
+
+	User.deleteByUsername(username, function (err) {
+		if ( ! err){
+			res.redirect('/users/index');
+		}
 	});
 }
 
