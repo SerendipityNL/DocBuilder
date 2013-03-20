@@ -22,15 +22,15 @@ modelFunctions.prototype.findAll = function(callback) {
 };
 
 modelFunctions.prototype.findByUsername = function(username, callback) {
-	User.find({'username' : { $regex : new RegExp(username, "i") }}, function (err, user) {
+	User.findOne({'username' : { $regex : new RegExp(username, "i") }}, function (err, user) {
 		if (! err){
-			callback(null, user);
+			callback(user);
 		}
 	});
 }
 
 modelFunctions.prototype.deleteByUsername = function(username, callback) {
-	User.find({'username' : { $regex : new RegExp(username, "i") }}, function (err, user){
+	User.findOne({'username' : { $regex : new RegExp(username, "i") }}, function (err, user){
 		if ( ! err ){
 			User.remove({'username' : user.username}, function(err){
 				if ( ! err) {

@@ -32,22 +32,20 @@ exports.delete = function(req, res) {
 	});
 }
 
-exports.new = function(req, res) {
-	res.render('users/new', {
+exports.create = function(req, res) {
+	res.render('users/create', {
 		page_title: 'New user'
 	});
 }
 
-exports.edit = function(req, res) {
+exports.update = function(req, res) {
 	var username = getLastUrlPart(req.url);
 	
-	User.findByUsername(username, function (err, user) {
-		if ( ! err){
-			res.render('users/edit', {
-				page_title: 'Edit user',
-				user: user
-			});
-		}		
+	User.findByUsername(username, function (user) {
+		res.render('users/update', {
+			page_title: 'Edit user',
+			user: user
+		});
 	});
 }
 
@@ -58,7 +56,7 @@ exports.saveNew = function(req, res) {
 			res.redirect('/users/index');
 		}
 		else {
-			res.render('users/new', {
+			res.render('users/create', {
 	 			page_title: 'New user',
 	 			errors: err
 	 		});
