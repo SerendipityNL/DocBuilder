@@ -107,7 +107,7 @@ modelFunctions.prototype.auth = function(req, callback) {
 			console.log(req.email);
 			console.log(req.password);
 
-		    found_user.authenticate(req.password);
+		    //found_user.authenticate(req.password);
 		}
 	});
 };
