@@ -1,3 +1,4 @@
+// Include the required modules
 var express = require('express'),
 	app = express(),
 	cons = require('consolidate'),
@@ -36,7 +37,7 @@ swig.init({
 require('./config/routes')(app);
 
 // Let the app listen op port 1337
-
+app.listen(1337);
 
 // Set the console message
 console.log('Application accessible at http://localhost:1337');
