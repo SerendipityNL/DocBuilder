@@ -32,34 +32,37 @@ exports.delete = function(req, res) {
 	});
 }
 
-exports.create = function(req, res) {
-	res.render('users/create', {
+exports.new = function(req, res) {
+	res.render('users/new', {
 		page_title: 'New user'
 	});
 }
 
-exports.update = function(req, res) {
+exports.edit = function(req, res) {
 	var username = getLastUrlPart(req.url);
 	
 	User.findByUsername(username, function (user) {
-		res.render('users/update', {
+		res.render('users/edit', {
 			page_title: 'Edit user',
 			user: user
 		});
 	});
 }
 
-exports.saveNew = function(req, res) {
+exports.create = function(req, res) {
 
 	User.save(req.body, function(err){
 		if ( ! err) {
 			res.redirect('/users/index');
 		}
 		else {
-			res.render('users/create', {
+			res.render('users/new', {
 	 			page_title: 'New user',
 	 			errors: err
 	 		});
 		}
 	});
+}
+exports.update = function (req, res) {
+	
 }
