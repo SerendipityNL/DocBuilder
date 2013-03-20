@@ -2,7 +2,7 @@
 	<div class="control-group">
 		<label class="control-label" for="username">Username</label>
 		<div class="controls">
-			<input id="username" name="username" type="text" placeholder="Username" value="{{user.displayName}}">
+			<input id="username" name="username" type="text" placeholder="Username" value="{{user.username}}">
 		</div>
 	</div>
 	<div class="control-group">
