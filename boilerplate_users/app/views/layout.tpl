@@ -24,7 +24,7 @@
 						</ul>	
 					</li>
 				</ul>
-			</did>
+			</div>
 		</div>
 		<div class="container">			
 			<div class="row-fluid">

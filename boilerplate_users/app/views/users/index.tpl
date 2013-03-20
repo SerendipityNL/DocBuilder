@@ -4,7 +4,7 @@
 	<h1>{{  page_title }}</h1>
 	
 	{% for user in users %}
-		<table class="table table-striped table-hover">
+		<table class="table table-striped table-hover table-condensed">
 			<thead>
 				<tr>
 					<th>Username</th>
@@ -22,10 +22,10 @@
 				<td>{{ user.last }}</td>
 				<td>{{ user.email }}</td>
 				<td>
-					<a class="btn btn-small" href="/users/view/{{ user.username }}"><i class="icon-search"></i></a>
-					<a class="btn btn-small" href="/users/edit/{{ user.username }}"><i class="icon-pencil"></i></a>
-					<a class="btn btn-small btn-danger" href="/users/delete/{{ user.username }}"><i class="icon-remove"></i></a>
-				</td>
+					<a class="btn btn-small" href="/users/view/{{ user.username }}"><i class="icon-search"></i></a>	  
+					<a class="btn btn-small" href="/users/edit/{{ user.username }}"><i class="icon-pencil"></i></a>	  
+					<a class="btn btn-small btn-danger" href="/users/delete/{{ user.username }}"><i class="icon-remove icon-white"></i></a>
+				</td>				  
 			</tr>
 		{% endfor %}
 			</tbody>

@@ -1,6 +1,10 @@
 body{
-	padding: 20px;
+	padding: 50px 20px;
 }
 .navbar-inner .brand{
 	margin-left: 20px;
+}
+.table td {
+	padding: 0 5px;
+	line-height: 32px;
 }
