@@ -3,7 +3,7 @@
 {% block content %}
 	<h1>{{  page_title }}</h1>
 	
-	{% if users %}
+	{% for user in users %}
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
@@ -32,5 +32,5 @@
 		</table>
 	{% else %}
 		There are no users in your system! You can register users <a href="/users/new">here</a>.
-	{% endif %}
+	{% endfor %}
 {% endblock %}

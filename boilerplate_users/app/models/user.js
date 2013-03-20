@@ -22,6 +22,14 @@ modelFunctions.prototype.findAll = function(callback) {
 	}).sort({'username' : '-1'});
 };
 
+modelFunctions.prototype.findByUsername = function(username, callback) {
+	User.find({'username' : username}, function (err, user) {
+		if (! err){
+			callback(null, user);
+		}
+	});
+}
+
 modelFunctions.prototype.deleteByUsername = function(username, callback) {
 	User.find({'username' : username}, function (err, user){
 		if ( ! err ){
@@ -73,8 +81,7 @@ modelFunctions.prototype.save = function(params, callback) {
 	
 	if( ! errors) {
 		user.save(function (err) {
-			callback();
-			return true;
+			callback(null);
 		});
 	}
 	else {

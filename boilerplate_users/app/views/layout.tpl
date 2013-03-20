@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
-		<title>DacBuilder - Users</title>
+		<title>DocBuilder - Users</title>
 		<link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.min.css">

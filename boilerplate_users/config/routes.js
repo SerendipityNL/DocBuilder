@@ -10,7 +10,7 @@ module.exports = function (app) {
 	app.get('/test', main.test);
 
 	app.get('/users/new', users.new);
-	app.get('/users/edit', users.edit);
+	app.get('/users/edit/*', users.edit);
 	app.get('/users/delete/*', users.delete);
 	app.get('/users/*', users.index);
 		
