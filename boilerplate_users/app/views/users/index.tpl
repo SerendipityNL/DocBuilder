@@ -34,3 +34,8 @@
 		There are no users in your system! You can register users <a href="/users/new">here</a>.
 	{% endfor %}
 {% endblock %}
+
+{% block sidebar %}
+	<h2>Managing users</h2>
+	This page allows you to manage your users
+{% endblock %}

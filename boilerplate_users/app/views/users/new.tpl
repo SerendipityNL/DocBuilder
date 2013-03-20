@@ -16,3 +16,8 @@
 
 	{% include 'users/_form.tpl' %}
 {% endblock %}
+
+{% block sidebar %}
+	<h2>Adding new users</h2>
+	This form allows you to add new users to the system
+{% endblock %}

@@ -30,7 +30,11 @@
 		</div>
 		<div class="container">			
 			<div class="row-fluid">
-				<div class="span9 offset3">
+				<div class="span3 well">
+					{% block sidebar %}
+					{% endblock %}
+				</div>
+				<div class="span9 well">
 					{% block content %}
 					{% endblock %}
 				</div>

@@ -23,7 +23,7 @@ modelFunctions.prototype.findAll = function(callback) {
 };
 
 modelFunctions.prototype.findByUsername = function(username, callback) {
-	User.find({'username' : username}, function (err, user) {
+	User.find({'username' : { $regex : new RegExp(username, "i") }}, function (err, user) {
 		if (! err){
 			callback(null, user);
 		}
@@ -31,9 +31,9 @@ modelFunctions.prototype.findByUsername = function(username, callback) {
 }
 
 modelFunctions.prototype.deleteByUsername = function(username, callback) {
-	User.find({'username' : username}, function (err, user){
+	User.find({'username' : { $regex : new RegExp(username, "i") }}, function (err, user){
 		if ( ! err ){
-			User.remove({'username' : username}, function(err){
+			User.remove({'username' : user.username}, function(err){
 				if ( ! err) {
 					callback();
 				}
