@@ -12,6 +12,7 @@ function getLastUrlPart(req){
 }
 
 exports.index = function(req, res) {
+	
 	User.findAll( function(err, users) {
 		res.render('users/index', {
 			page_title: 'Manage users',
@@ -64,7 +65,17 @@ exports.create = function(req, res) {
 	});
 }
 exports.update = function (req, res) {
+	var username = getLastUrlPart(req.url);
 	
-	
-	
+	User.update(username, req.body, function(err){
+		if ( ! err) {
+			res.redirect('/users/index');
+		}
+		else {
+			res.render('users/edit', {
+	 			page_title: 'Edit user',
+	 			errors: err
+	 		});
+		}
+	});
 }

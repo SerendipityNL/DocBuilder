@@ -7,7 +7,6 @@ var	main     = require(path + '/main'),
 	sessions = require(path + '/sessions');
 
 module.exports = function (app) {
-
 	// Session GET routes
 	app.get('/login', sessions.index);
 
@@ -18,6 +17,7 @@ module.exports = function (app) {
 		next();
 	});
 
+	// Route to the homepage and the test page
 	app.get('/', main.index);
 	app.get('/test', main.test);
 
