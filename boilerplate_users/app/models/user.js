@@ -3,9 +3,9 @@ var mongoose = require('mongoose');
 	Validator = require('validator').Validator;
 
 var userSchema = new mongoose.Schema({
-	email		: String,
-	first		: String,
-	last		: String,
+	email		: {type: String, required : true, index: {unique: true} },
+	first		: {type: String, required : true }
+	last		: {type: String, required : true }
 });
 
 userSchema.plugin(require('basic-auth-mongoose'));
@@ -34,7 +34,7 @@ modelFunctions.prototype.deleteByUsername = function(username, callback) {
 		if ( ! err ){
 			User.remove({'username' : user.username}, function(err){
 				if ( ! err) {
-					callback();
+					callback(null);
 				}
 				else {
 					callback(err);
