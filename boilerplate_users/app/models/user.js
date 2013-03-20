@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
 	email		: {type: String, required : true, index: {unique: true} },
-	first		: {type: String, required : true }
+	first		: {type: String, required : true },
 	last		: {type: String, required : true }
 });
 
