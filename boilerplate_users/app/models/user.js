@@ -98,17 +98,27 @@ modelFunctions.prototype.test = function(username, password) {
 };
 
 modelFunctions.prototype.auth = function(req, callback) {
+
+	var username = null;
+	
 	User.findOne({'email' : req.email}, function (err, found_user) {
-	if (err){
-		callback('he is dead Jim');
-	} // handle
+		if (err) {
+			var error = 'Failed to login';
+		} // handle
 		else {
 			console.log(found_user);
-			console.log(req.email);
-			console.log(req.password);
-
-		    //found_user.authenticate(req.password);
+			if (found_user) {
+				if (found_user.authenticate(req.password)) {
+					var error = false;
+					var username = found_user.username;
+				}
+				else {
+					var error = 'password does not match';
+				}
+			}
 		}
+		console.log(error);
+		callback(error, username);
 	});
 };
 

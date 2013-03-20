@@ -10,16 +10,41 @@ exports.index = function(req, res) {
 }
 
 
-exports.auth = function(req, res) {
+exports.checkAuth = function(req, res, next) {
+	if ( ! req.session.logged_in) {
+		next();
+		/*
+		req.session.logged_in = false;
+		res.render('sessions/', {
+			page_title: 'Login',
+			error: error
+		});
+		*/
+	} 
+	else {
+		res.redirect('/login');
+	}
+}
 
-	User.auth(req.body, function(err){
-		if ( ! err) {
-			res.redirect('/users/new');
+exports.login = function(req, res) {
+
+	User.auth(req.body, function(error, username){
+		if (!error) {
+			  req.session.logged_in = true;
+			  req.session.username  = username;
+
+				res.render('users/', {
+		 			page_title: 'home',
+		 			sessions : req.session
+		 		});
+
+			  //res.redirect('/users');
 		}
 		else {
-			res.render('sessions/new', {
+			req.session.logged_in = false;
+			res.render('sessions/', {
 	 			page_title: 'Login',
-	 			errors: err
+	 			error: error
 	 		});
 		}
 	});

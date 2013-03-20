@@ -12,7 +12,10 @@ app.configure(function() {
 	app.use(express.bodyParser());
 	
 	// Enable the cookieParser so we can work with cookies
-	app.use(express.cookieParser());
+	app.use(express.cookieParser('super-duper-secret'));
+
+	// add req.session cookie support
+	app.use(express.cookieSession());
 
 	// Set the view engine to Swig
 	app.engine('.tpl', cons.swig);
@@ -33,6 +36,7 @@ swig.init({
 	cache: false,
 	allowErrors: true
 });
+
 
 require('./config/routes')(app);
 

@@ -1,13 +1,23 @@
 // Set the path to the controllers
 var path = '../app/controllers';
 
+// Include the required controllers
+var	main     = require(path + '/main'),
+	users    = require(path + '/users'),
+	sessions = require(path + '/sessions');
+
 module.exports = function (app) {
-	// Include the required controllers
-	var main     = require(path + '/main'),
-		users    = require(path + '/users'),
-		sessions = require(path + '/sessions');
-	
-	// Route to the homepage and the test page
+
+	// Session GET routes
+	app.get('/login', sessions.index);
+
+	// Session POST routes
+	app.post('/login', sessions.login);
+
+	app.all('*', sessions.checkAuth, function(req, res, next) {
+		next();
+	});
+
 	app.get('/', main.index);
 	app.get('/test', main.test);
 
@@ -20,10 +30,4 @@ module.exports = function (app) {
 	// User POST routes
 	app.post('/users/new', users.create);
 	app.post('/users/edit/*', users.update);
-	
-	// Session GET routes
-	app.get('/sessions/*', sessions.index);
-
-	// Session POST routes
-	app.post('/sessions/', sessions.auth);
 }

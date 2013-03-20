@@ -4,11 +4,11 @@
 	<h1>{{  page_title }}</h1>
 
 	<div class="errors">
-		{% if errors %}
+
+
+		{% if error %}
 			<ul class="text-error">
-				{% for error in errors %}
 					<li>{{ error }}</li>
-				{% endfor %}
 			</ul>
 		{% endif %}
 	</div>
