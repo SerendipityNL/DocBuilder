@@ -17,7 +17,7 @@
 			<tbody>
 		{% for user in users %}
 			<tr>
-				<td>{{ user.displayName }}</td>
+				<td>{{ user.username }}</td>
 				<td>{{ user.first }}</td>
 				<td>{{ user.last }}</td>
 				<td>{{ user.email }}</td>

@@ -53,8 +53,6 @@ exports.edit = function(req, res) {
 
 exports.saveNew = function(req, res) {
 
-	console.log(req.body);
-
 	User.save(req.body, function(err){
 		if ( ! err) {
 			res.redirect('/users/index');

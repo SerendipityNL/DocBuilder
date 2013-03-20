@@ -6,7 +6,6 @@ var userSchema = new mongoose.Schema({
 	email		: String,
 	first		: String,
 	last		: String,
-	displayName : String
 });
 
 userSchema.plugin(require('basic-auth-mongoose'));
@@ -78,15 +77,14 @@ modelFunctions.prototype.save = function(params, callback) {
 		username: params['username'], 
 		password: params['password']
 	});
-	
-	if( ! errors) {
+
+	if(errors.length == 0) {
 		user.save(function (err) {
 			callback(null);
 		});
 	}
 	else {
 		callback(errors);
-		return false;
 	}
 };
 
