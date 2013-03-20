@@ -1,12 +1,12 @@
 // Set the path to the controllers
 var path = '../app/controllers';
 
+// Include the required controllers
+var	main     = require(path + '/main'),
+	users    = require(path + '/users'),
+	sessions = require(path + '/sessions');
+
 module.exports = function (app) {
-	// Include the required controllers
-	var main     = require(path + '/main'),
-		users    = require(path + '/users'),
-		sessions = require(path + '/sessions');
-	
 	// Route to the homepage and the test page
 	app.get('/', main.index);
 	app.get('/test', main.test);
