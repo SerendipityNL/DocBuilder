@@ -55,15 +55,6 @@ exports.saveNew = function(req, res) {
 
 	console.log(req.body);
 
-	// var params = {
-	// 	email:		req.param('email'),
-	// 	first:		req.param('first'),
-	// 	last:		req.param('last'),
-	// 	username:	req.param('username'),
-	// 	password:	req.param('password')
-	// };
-
-
 	User.save(req.body, function(err){
 		if ( ! err) {
 			res.redirect('/users/index');

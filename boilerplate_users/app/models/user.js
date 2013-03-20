@@ -99,14 +99,17 @@ modelFunctions.prototype.test = function(username, password) {
 	});
 };
 
-modelFunctions.prototype.auth = function(req) {
-	User.findOne({'email' : req.email}, function(err, user) {
-		if (!err) {
-			console.log(user);
-			user.authenticate(req.password);
-		}
-		else{
-			console.log('not valid');
+modelFunctions.prototype.auth = function(req, callback) {
+	User.findOne({'email' : req.email}, function (err, found_user) {
+	if (err){
+		callback('he is dead Jim');
+	} // handle
+		else {
+			console.log(found_user);
+			console.log(req.email);
+			console.log(req.password);
+
+		    found_user.authenticate(req.password);
 		}
 	});
 };
