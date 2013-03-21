@@ -9,15 +9,16 @@ var	main     = require(path + '/main'),
 module.exports = function (app) {
 	// Session GET routes
 	app.get('/login', sessions.index);
-
-	// Session POST routes
 	app.post('/login', sessions.login);
 
-	/*
-	app.all('*', sessions.checkAuth, function(req, res, next) {
-		next();
-	});
-	*/
+	app.all('*',function(req,res,next){
+
+	if (req.session.logged_in) {
+	    next();
+	}
+	else{
+		res.redirect('/login');
+	}
 
 	// Route to the homepage and the test page
 	app.get('/', main.index);

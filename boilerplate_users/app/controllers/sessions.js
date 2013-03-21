@@ -12,14 +12,7 @@ exports.index = function(req, res) {
 
 exports.checkAuth = function(req, res, next) {
 	if ( ! req.session.logged_in) {
-		next();
-		/*
-		req.session.logged_in = false;
-		res.render('sessions/', {
-			page_title: 'Login',
-			error: error
-		});
-		*/
+		
 	} 
 	else {
 		res.redirect('/login');
@@ -33,12 +26,9 @@ exports.login = function(req, res) {
 			  req.session.logged_in = true;
 			  req.session.username  = username;
 
-				res.render('users/', {
-		 			page_title: 'home',
-		 			sessions : req.session
-		 		});
+			  res.cookie('username', username, { maxAge: 900000, httpOnly: false});
 
-			  //res.redirect('/users');
+			  res.redirect('/users/');
 		}
 		else {
 			req.session.logged_in = false;
