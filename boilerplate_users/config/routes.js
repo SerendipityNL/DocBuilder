@@ -13,9 +13,11 @@ module.exports = function (app) {
 	// Session POST routes
 	app.post('/login', sessions.login);
 
+	/*
 	app.all('*', sessions.checkAuth, function(req, res, next) {
 		next();
 	});
+	*/
 
 	// Route to the homepage and the test page
 	app.get('/', main.index);
