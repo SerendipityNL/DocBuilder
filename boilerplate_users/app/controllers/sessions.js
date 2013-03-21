@@ -10,13 +10,21 @@ exports.index = function(req, res) {
 }
 
 
-exports.checkAuth = function(req, res, next) {
-	if ( ! req.session.logged_in) {
+// exports.checkAuth = function(req, res, next) {
+// 	if ( ! req.session.logged_in) {
 		
-	} 
-	else {
-		res.redirect('/login');
-	}
+// 	} 
+// 	else {
+// 		res.redirect('/login');
+// 	}
+// }
+
+
+exports.logout = function(req, res) {
+	delete req.session.logged_in;
+	delete req.session.username;
+
+	res.redirect('/login');
 }
 
 exports.login = function(req, res) {
@@ -27,6 +35,10 @@ exports.login = function(req, res) {
 			  req.session.username  = username;
 
 			  res.cookie('username', username, { maxAge: 900000, httpOnly: false});
+
+			   // console logs
+			   console.log(req.session.logged_in);
+			   console.log(req.session.username);
 
 			  res.redirect('/users/');
 		}

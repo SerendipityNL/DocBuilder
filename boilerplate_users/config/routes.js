@@ -7,10 +7,11 @@ var	main     = require(path + '/main'),
 	sessions = require(path + '/sessions');
 
 module.exports = function (app) {
-	// Session GET routes
+
 	app.get('/login', sessions.index);
 	app.post('/login', sessions.login);
 
+	// check login for each page
 	app.all('*',function(req,res,next){
 
 	if (req.session.logged_in) {
@@ -21,6 +22,8 @@ module.exports = function (app) {
 	}
 
 	// Route to the homepage and the test page
+	app.get('/logout', sessions.logout);
+
 	app.get('/', main.index);
 	app.get('/test', main.test);
 

@@ -21,6 +21,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="/users/">Users</a></li>
 							<li><a href="/users/new">Users - New</a></li>
+							<li><a href="/logout">Logout</a></li>
 						</ul>	
 					</li>
 				</ul>
