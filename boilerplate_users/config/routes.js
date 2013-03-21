@@ -12,14 +12,15 @@ module.exports = function (app) {
 	app.post('/login', sessions.login);
 
 	// check login for each page
-	app.all('*',function(req,res,next){
+	app.all('*', function(req,res,next) {
 
-	if (req.session.logged_in) {
-	    next();
-	}
-	else{
-		res.redirect('/login');
-	}
+		if (req.session.logged_in) {
+		    next();
+		}
+		else{
+			res.redirect('/login');
+		}
+	});
 
 	// Route to the homepage and the test page
 	app.get('/logout', sessions.logout);
