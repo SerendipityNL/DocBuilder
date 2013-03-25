@@ -48,33 +48,39 @@ modelFunctions.prototype.deleteByUsername = function(username, callback) {
 }
 
 modelFunctions.prototype.update = function(username, params, callback){
-	Validator.prototype.error = function (msg) {
-	    this._errors.push(msg);
-	    return this;
-	}
-
-	Validator.prototype.getErrors = function () {
-	    return this._errors;
-	}
-
-	var validator = new Validator();
-
-	validator.check(params.email).notEmpty(); 
-	validator.check(params.first).notEmpty(); 
-	validator.check(params.last).notEmpty();
-
-	validator.check(params.password).equals(params.confirmPassword);
-	validator.check(params.email).len(6, 64).isEmail(); 
-
-	var errors = validator.getErrors();
-	
 	User.findOne({'username' : { $regex : new RegExp(username, "i") }}, function (err, user) {
 		if (! err){
+			
+			Validator.prototype.error = function (msg) {
+			    this._errors.push(msg);
+			    return this;
+			}
+		
+			Validator.prototype.getErrors = function () {
+			    return this._errors;
+			}
+		
+			var validator = new Validator();
+		
+			validator.check(params.email).notEmpty(); 
+			validator.check(params.first).notEmpty(); 
+			validator.check(params.last).notEmpty();
+			validator.check(params.email).len(6, 64).isEmail(); 
+						
+			if (validator.check(params.oldPassword).notEmpty()){
+				if (user.authenticate(params.oldPassword)){
+					validator.check(params.newPassword).equals(params.confirmNewPassword);
+				}
+				
+			}
+		
+			var errors = validator.getErrors();
+			
 			user.email = params['email'], 
 			user.first = params['first'], 
 			user.last = params['last'], 
 			user.username = params['username'], 
-			user.password = params['password']
+			user.password = params['newPassword']
 			user.save(function (err) {
 				if (! err) {
 					callback(null);
