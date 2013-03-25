@@ -137,15 +137,6 @@ modelFunctions.prototype.save = function(params, callback) {
 	}
 };
 
-modelFunctions.prototype.test = function(username, password) {
-	username = username.toLowerCase();
-	User.findOne({'username' : { $regex : new RegExp(username, "i") }}, function(err, user) {
-		if (!err) {
-			console.log(user.authenticate(password));
-		}
-	});
-};
-
 modelFunctions.prototype.auth = function(req, callback) {
 
 	var username = null;
@@ -155,7 +146,6 @@ modelFunctions.prototype.auth = function(req, callback) {
 			var error = 'Failed to login';
 		} // handle
 		else {
-			console.log(found_user);
 			if (found_user) {
 				if (found_user.authenticate(req.password)) {
 					var error = false;
@@ -166,7 +156,6 @@ modelFunctions.prototype.auth = function(req, callback) {
 				}
 			}
 		}
-		console.log(error);
 		callback(error, username);
 	});
 };
