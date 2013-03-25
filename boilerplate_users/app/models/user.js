@@ -66,21 +66,22 @@ modelFunctions.prototype.update = function(username, params, callback){
 			validator.check(params.first).notEmpty(); 
 			validator.check(params.last).notEmpty();
 			validator.check(params.email).len(6, 64).isEmail(); 
+			
+			user.email = params['email'], 
+			user.first = params['first'], 
+			user.last = params['last'], 
+			user.username = params['username'];
 						
 			if (validator.check(params.oldPassword).notEmpty()){
 				if (user.authenticate(params.oldPassword)){
 					validator.check(params.newPassword).equals(params.confirmNewPassword);
+					user.password = params['newPassword'];
 				}
 				
 			}
 		
 			var errors = validator.getErrors();
 			
-			user.email = params['email'], 
-			user.first = params['first'], 
-			user.last = params['last'], 
-			user.username = params['username'], 
-			user.password = params['newPassword']
 			user.save(function (err) {
 				if (! err) {
 					callback(null);

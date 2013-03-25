@@ -13,7 +13,6 @@
 			</ul>
 		{% endif %}
 	</div>
-	{{user}}
 	{% include 'users/_form.tpl' %}
 {% endblock %}
 
