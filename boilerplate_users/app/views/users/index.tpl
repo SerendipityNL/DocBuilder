@@ -22,9 +22,11 @@
 							<td>{{ user.last }}</td>
 							<td>{{ user.email }}</td>
 							<td>
-								<a class="btn btn-small" href="/users/view/{{ user.username }}"><i class="icon-search"></i></a>	  
-								<a class="btn btn-small" href="/users/edit/{{ user.username }}"><i class="icon-pencil"></i></a>	  
-								<a class="btn btn-small btn-danger" href="/users/delete/{{ user.username }}"><i class="icon-remove icon-white"></i></a>
+								<a class="btn btn-small" href="/users/view/{{ user.username }}"><i class="icon-search"></i></a>
+								<a class="btn btn-small" href="/users/edit/{{ user.username }}"><i class="icon-pencil"></i></a>
+								{% if user.admin == 0 %}
+									<a class="btn btn-small btn-danger" href="/users/delete/{{ user.username }}"><i class="icon-remove icon-white"></i></a>
+								{% endif %}
 							</td>				  
 						</tr>
 			{% if loop.last %}
