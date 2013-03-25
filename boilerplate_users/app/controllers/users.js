@@ -16,8 +16,7 @@ exports.index = function(req, res) {
 	User.findAll( function(err, users) {
 		res.render('users/index', {
 			page_title: 'Manage users',
-			users:		users,
-			session:	req.session
+			users:		users
 		});
 	});
 }

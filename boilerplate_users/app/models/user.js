@@ -137,6 +137,17 @@ modelFunctions.prototype.save = function(params, callback) {
 	}
 };
 
+modelFunctions.prototype.isAdmin = function(username, callback) {
+	User.findOne({'username' : username}, function(err, user){
+		if (err) {
+			callback(err);
+		}
+		else {
+			callback(null, user.admin);
+		}
+	});
+}
+
 modelFunctions.prototype.auth = function(req, callback) {
 
 	var username = null;

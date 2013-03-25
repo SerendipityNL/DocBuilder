@@ -19,6 +19,7 @@ module.exports = function (app) {
 	app.all('*', function(req,res,next) {
 
 		if (req.session.logged_in) {
+			global.session = req.session;
 		    next();
 		}
 		else{

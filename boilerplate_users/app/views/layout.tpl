@@ -14,17 +14,23 @@
 			<div class="navbar-inner">
 				<a class="brand" href="/">DocBuilders</a>
 				<ul class="nav">
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown">
-							Users
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="/users/">Users</a></li>
-							<li><a href="/users/new">Users - New</a></li>
-							
-						</ul>	
-					</li>
-					<li><a href="/logout">Logout</a></li>
+					{% if session.logged_in == true %}
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown">
+								Users
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="/users/">Users</a></li>
+								{% if session.isAdmin %}
+								<li><a href="/users/new">Users - New</a></li>
+								{% endif %}
+								
+							</ul>	
+						</li>
+						<li><a href="/logout">Logout</a></li>
+					{% else %}
+						<li><a href="/login">Login</a></li>
+					{% endif %}
 				</ul>
 			</div>
 		</div>
@@ -36,6 +42,7 @@
 				</div>
 				<div class="span9 well">
 					{% block content %}
+						
 					{% endblock %}
 				</div>
 			</div>
