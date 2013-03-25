@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 var userSchema = new mongoose.Schema({
 	email		: {type: String, required : true, index: {unique: true} },
 	first		: {type: String, required : true },
-	last		: {type: String, required : true }
+	last		: {type: String, required : true },
+	admin		: {type: Number, required : true, default: 0}
 });
 
 userSchema.plugin(require('basic-auth-mongoose'));
@@ -65,19 +66,20 @@ modelFunctions.prototype.update = function(username, params, callback){
 			validator.check(params.email).notEmpty(); 
 			validator.check(params.first).notEmpty(); 
 			validator.check(params.last).notEmpty();
-			validator.check(params.email).len(6, 64).isEmail(); 
+			validator.check(params.email).len(6, 64).isEmail();
+			validator.check(params.admin).notEmpty();
 			
 			user.email = params['email'], 
 			user.first = params['first'], 
 			user.last = params['last'], 
-			user.username = params['username'];
+			user.username = params['username'],
+			user.admin = params['admin'];
 						
 			if (validator.check(params.oldPassword).notEmpty()){
 				if (user.authenticate(params.oldPassword)){
 					validator.check(params.newPassword).equals(params.confirmNewPassword);
 					user.password = params['newPassword'];
 				}
-				
 			}
 		
 			var errors = validator.getErrors();

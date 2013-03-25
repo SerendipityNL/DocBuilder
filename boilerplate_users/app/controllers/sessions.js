@@ -33,6 +33,7 @@ exports.login = function(req, res) {
 		if (!error) {
 			  req.session.logged_in = true;
 			  req.session.username  = username;
+			  console.log(username);
 
 			  res.cookie('username', username, { maxAge: 900000, httpOnly: false});
 

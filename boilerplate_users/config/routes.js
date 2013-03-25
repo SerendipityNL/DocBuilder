@@ -10,7 +10,11 @@ module.exports = function (app) {
 
 	app.get('/login', sessions.index);
 	app.post('/login', sessions.login);
-
+	
+	// Just for testing purposes
+	app.get('/register', users.new);
+	app.post('/register', users.create);
+	
 	// check login for each page
 	app.all('*', function(req,res,next) {
 

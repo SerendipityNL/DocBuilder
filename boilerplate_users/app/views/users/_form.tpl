@@ -25,9 +25,9 @@
 	</div>
 	{% if user %}
 		<div class="control-group">
-			<label class="control-label" for="password">Old password</label>
+			<label class="control-label" for="password">Current password</label>
 			<div class="controls">
-				<input id="oldPassword" name="oldPassword" type="password" placeholder="Old Password">
+				<input id="oldPassword" name="oldPassword" type="password" placeholder="Current Password">
 			</div>
 		</div>
 		<div class="control-group">
@@ -41,7 +41,21 @@
 			<div class="controls">
 				<input id="confirmNewPassword" name="confirmNewPassword" type="password" placeholder="Confirm new password">
 			</div>
-		</div>	
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="password">Admin</label>
+			<div class="controls">
+				<select name="admin">
+					{% if user.admin == 1 %}
+						<option value="0">No</option>
+						<option value="1" selected="selected">Yes</option>
+					{% else %}
+						<option value="0" selected="selected">No</option>
+						<option value="1">Yes</option>
+					{% endif %}
+				</select>
+			</div>
+		</div>
 	{% else %}
 		<div class="control-group">
 			<label class="control-label" for="password">Password</label>
