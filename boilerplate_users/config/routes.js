@@ -38,7 +38,9 @@ module.exports = function (app) {
 	app.get('/users/edit/*', users.edit);
 	app.get('/users/delete/*', users.delete);
 	app.get('/users/*', users.index);
-
+	
+	app.get('/dashboard', users.dashboard);
+	
 	// User POST routes
 	app.post('/users/new', users.create);
 	app.post('/users/edit/*', users.update);
