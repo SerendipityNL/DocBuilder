@@ -17,11 +17,11 @@ module.exports = function (app) {
 	
 	// check login for each page
 	app.all('*', function(req,res,next) {
-
 		if (req.session.logged_in) {
+
 		    next();
 		}
-		else{
+		else {
 			res.redirect('/login');
 		}
 	});
