@@ -1,7 +1,8 @@
 var provider = require('../models/provider'),
 load = new provider.getModel(),
 User = new load.model('user'),
-url = require('url');
+url = require('url'),
+gravatar = require('gravatar');
 
 function getLastUrlPart(req){
 	var urlParts = url.parse(req, true),
@@ -16,8 +17,7 @@ exports.index = function(req, res) {
 	User.findAll( function(err, users) {
 		res.render('users/index', {
 			page_title: 'Manage users',
-			users:		users,
-			session:	req.session
+			users:		users
 		});
 	});
 }
@@ -64,6 +64,20 @@ exports.create = function(req, res) {
 		}
 	});
 }
+
+exports.dashboard = function (req, res) {
+	
+	User.findByUsername(session.username, function (user) {
+		var avatarUrl = gravatar.url(user.email, {s: '230', r: 'x', d: '404'});
+		
+		res.render('users/dashboard', {
+			page_title: 'Documents',
+			user: user,
+			avatarUrl: avatarUrl
+		});
+	});
+}
+
 exports.update = function (req, res) {
 	var username = getLastUrlPart(req.url);
 	

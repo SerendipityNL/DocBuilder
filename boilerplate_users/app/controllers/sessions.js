@@ -31,12 +31,17 @@ exports.login = function(req, res) {
 
 	User.auth(req.body, function(error, username){
 		if (!error) {
-			  req.session.logged_in = true;
-			  req.session.username  = username;
-
-			  res.cookie('username', username, { maxAge: 900000, httpOnly: false});
-
-			  res.redirect('/users/');
+			req.session.logged_in = true;
+			req.session.username  = username;
+			User.isAdmin(username, function(err, isAdmin) {
+				if (!err) {
+					req.session.isAdmin = isAdmin;
+				}
+				res.cookie('username', username, { maxAge: 900000, httpOnly: false});
+			
+				res.redirect('/users/');
+			});
+			
 		}
 		else {
 			req.session.logged_in = false;

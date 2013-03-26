@@ -18,7 +18,7 @@ module.exports = function (app) {
 	// check login for each page
 	app.all('*', function(req,res,next) {
 		if (req.session.logged_in) {
-
+			global.session = req.session;
 		    next();
 		}
 		else {
@@ -37,7 +37,9 @@ module.exports = function (app) {
 	app.get('/users/edit/*', users.edit);
 	app.get('/users/delete/*', users.delete);
 	app.get('/users/*', users.index);
-
+	
+	app.get('/dashboard', users.dashboard);
+	
 	// User POST routes
 	app.post('/users/new', users.create);
 	app.post('/users/edit/*', users.update);
