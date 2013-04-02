@@ -35,6 +35,7 @@ module.exports = function (app) {
 
 	// User GET routes
 	app.get('/users/new', users.new);
+	app.get('/users/activate/*', users.activate);
 	app.get('/users/edit/*', users.edit);
 	app.get('/users/delete/*', users.delete);
 	app.get('/users/*', users.index);

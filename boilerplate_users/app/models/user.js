@@ -112,51 +112,43 @@ modelFunctions.prototype.save = function(params, callback) {
 	var validator = new Validator();
 
 	validator.check(params.email).notEmpty();
-
 	validator.check(params.password).equals(params.confirmPassword);
 	validator.check(params.email).len(6, 64).isEmail(); 
 
 	var errors = validator.getErrors();
 
-	// vanaf hier vincent
-
-	var token = this.generateToken();
-
-	// laat undefined zien
-	console.log(token);
+	// random string for email validation
+	var randomstring = require("randomstring");
+	var token = randomstring.generate();
 
 	var user = new User({
 		email: params['email'],
 		username: params['username'],
 		password: params['password'],
-		email_token: token
+		token: token
 	});
 
-	// save uitgeschakeld voor testen
 	if(errors.length == 0) {
-		// user.save(function (err) {
-		// 	callback(null);
-		// });
+		user.save(function (err) {
+			callback(null);
+		});
+
+		this.sendEmail( params['username'], params['email'], token);
+
 	}
+
 	else {
 		callback(errors);
 	}
 };
 
 
-// generates a random token
-modelFunctions.prototype.generateToken = function(){
-
-	require('crypto').randomBytes(32, function(ex, buf) {
-		var token = buf.toString('hex');
-		return token;
-	});
-
-}
-
 // sends e-mail
-modelFunctions.prototype.sendEmail = function(username, email, callback){
-		// send e-mail
+modelFunctions.prototype.sendEmail = function(username, user_email, token, callback){
+
+		var activation_link = "<a href=\x22localhost:1337/users/activate/"+token+"\x22>link</a>";
+
+		// e-mail settings
 		var email   = require("../..//node_modules/emailjs/email");
 		var server  = email.server.connect({
 		   user:    "doctopus.nl@gmail.com", 
@@ -167,10 +159,10 @@ modelFunctions.prototype.sendEmail = function(username, email, callback){
 
 		// send the message and get a callback with an error or details of the message that was sent
 		server.send({
-		   text:    "i hope this works", 
+		   text:    "Thanks "+username+" for using Doctopus! please click this "+activation_link+" to activate your account", 
 		   from:    "you <doctopus.nl@gmail.com>", 
-		   to:      "someone <tjerk.dijkstra@gmail.com>",
-		   subject: "testing emailjs"
+		   to:      "<"+user_email+">",
+		   subject: "Activation e-mail Doctopus"
 		}, function(err, message) { console.log(err || message); });
 }
 

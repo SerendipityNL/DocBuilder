@@ -89,6 +89,15 @@ exports.dashboard = function (req, res) {
 	});
 }
 
+exports.activate = function (req, res) {
+	
+	var token = getLastUrlPart(req.url);
+	
+	User.activate(token, function (callback) {
+			console.log(callback);
+	});
+}
+
 exports.update = function (req, res) {
 	var username = getLastUrlPart(req.url);
 	
