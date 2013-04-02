@@ -4,7 +4,8 @@ var path = '../app/controllers';
 // Include the required controllers
 var	main     = require(path + '/main'),
 	users    = require(path + '/users'),
-	sessions = require(path + '/sessions');
+	sessions = require(path + '/sessions')
+	compose = require(path + '/compose');
 
 module.exports = function (app) {
 
@@ -43,4 +44,7 @@ module.exports = function (app) {
 	// User POST routes
 	app.post('/users/new', users.create);
 	app.post('/users/edit/*', users.update);
+
+	// Compose GET routes
+	app.get('/compose', compose.index);
 }

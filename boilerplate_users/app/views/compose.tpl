@@ -35,18 +35,8 @@
 			</div>
 		</div>
 		<div class="container">			
-			<div class="row-fluid">
-				<div class="span3 well">
-					{% block sidebar %}
-					{% endblock %}
-				</div>
-				<div class="span9 well">
-					{% block content %}
-					{% endblock %}
-				</div>
+				{% block content %}{% endblock %}
 			</div>
-		</div>
-		{% block scripts %}
-		{% endblock %}
+		<script type="text/javascript" src="/js/compose.js"></script>
 	</body>
 </html>
