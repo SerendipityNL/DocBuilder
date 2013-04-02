@@ -13,4 +13,5 @@
 	</div>
 	<div class="controls">
 		<button class="btn btn-primary" type="submit">Submit</button>
+		<a href="/register">Register</a>
 </form>

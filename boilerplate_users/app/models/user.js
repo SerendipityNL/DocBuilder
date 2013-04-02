@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
 	email		: {type: String, required : true, index: {unique: true} },
-	first		: {type: String, required : true },
-	last		: {type: String, required : true },
+	first		: {type: String },
+	last		: {type: String },
 	admin		: {type: Number, required : true, default: 0}
 });
 
@@ -110,9 +110,7 @@ modelFunctions.prototype.save = function(params, callback) {
 
 	var validator = new Validator();
 
-	validator.check(params.email).notEmpty(); 
-	validator.check(params.first).notEmpty(); 
-	validator.check(params.last).notEmpty();
+	validator.check(params.email).notEmpty();
 
 	validator.check(params.password).equals(params.confirmPassword);
 	validator.check(params.email).len(6, 64).isEmail(); 
@@ -120,10 +118,8 @@ modelFunctions.prototype.save = function(params, callback) {
 	var errors = validator.getErrors();
 
 	var user = new User({
-		email: params['email'], 
-		first: params['first'], 
-		last: params['last'], 
-		username: params['username'], 
+		email: params['email'],
+		username: params['username'],
 		password: params['password']
 	});
 

@@ -5,24 +5,27 @@
 			<input id="username" name="username" type="text" placeholder="Username" value="{{user.username}}">
 		</div>
 	</div>
-	<div class="control-group">
-		<label class="control-label" for="first">Firstname</label>
-		<div class="controls">
-			<input id="first" name="first" type="text" placeholder="Firstname" value="{{user.first}}">
+	{% if user %}
+		<div class="control-group">
+			<label class="control-label" for="first">Firstname</label>
+			<div class="controls">
+				<input id="first" name="first" type="text" placeholder="Firstname" value="{{user.first}}">
+			</div>
 		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label" for="last">Lastname</label>
-		<div class="controls">
-			<input id="last" name="last" type="text" placeholder="Lastname" value="{{user.last}}">
+		<div class="control-group">
+			<label class="control-label" for="last">Lastname</label>
+			<div class="controls">
+				<input id="last" name="last" type="text" placeholder="Lastname" value="{{user.last}}">
+			</div>
 		</div>
-	</div>
+	{% endif %}
 	<div class="control-group">
 		<label class="control-label" for="email">Email</label>
 		<div class="controls">
 			<input id="email" name="email" type="email" placeholder="email@example.com" value="{{user.email}}">
 		</div>
 	</div>
+
 	{% if user %}
 		<div class="control-group">
 			<label class="control-label" for="password">Current password</label>
