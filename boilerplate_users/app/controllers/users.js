@@ -20,6 +20,17 @@ exports.index = function(req, res) {
 			users:		users
 		});
 	});
+
+
+	// var username = "Henkiebob";
+	// var email    = "tjerk.dijkstra@gmail.com";
+
+	// User.sendEmail(username, function (err) {
+	// 	if(err){
+	// 		console.log(err);
+	// 	}
+	// });
+
 }
 
 exports.delete = function(req, res) {
