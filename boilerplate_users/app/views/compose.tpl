@@ -12,7 +12,7 @@
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
-				<a class="brand" href="/">DocBuilders</a>
+				<a class="brand" href="/">Doctopus</a>
 				<ul class="nav">
 					{% if session.logged_in == true %}
 						<li class="dropdown">
