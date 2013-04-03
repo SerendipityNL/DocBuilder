@@ -15,6 +15,9 @@ module.exports = function (app) {
 	app.get('/users/activate/*', users.activate);
 	app.get('/users/error/');
 
+	app.get('/forgot-password', users.reset);
+	app.post('/forgot-password', users.forgotPassword);
+
 	// Just for testing purposes
 	app.get('/register', users.new);
 	app.post('/register', users.create);

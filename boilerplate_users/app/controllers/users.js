@@ -4,6 +4,8 @@ User = new load.model('user'),
 url = require('url'),
 gravatar = require('gravatar');
 
+
+// strips part of url and puts in var
 function getLastUrlPart(req){
 	var urlParts = url.parse(req, true),
 		completeUrl = urlParts['href'].split('/'),
@@ -12,6 +14,7 @@ function getLastUrlPart(req){
 	return getLastPart;
 }
 
+// shows users
 exports.index = function(req, res) {
 	
 	User.findAll( function(err, users) {
@@ -20,19 +23,9 @@ exports.index = function(req, res) {
 			users:		users
 		});
 	});
-
-
-	// var username = "Henkiebob";
-	// var email    = "tjerk.dijkstra@gmail.com";
-
-	// User.sendEmail(username, function (err) {
-	// 	if(err){
-	// 		console.log(err);
-	// 	}
-	// });
-
 }
 
+// deletes user
 exports.delete = function(req, res) {
 
 	var username = getLastUrlPart(req.url);
@@ -44,12 +37,14 @@ exports.delete = function(req, res) {
 	});
 }
 
+// adds new user
 exports.new = function(req, res) {
 	res.render('users/new', {
 		page_title: 'New user'
 	});
 }
 
+// edits user
 exports.edit = function(req, res) {
 	var username = getLastUrlPart(req.url);
 	
@@ -61,6 +56,7 @@ exports.edit = function(req, res) {
 	});
 }
 
+// creating a user
 exports.create = function(req, res) {
 
 	User.save(req.body, function(err){
@@ -76,6 +72,7 @@ exports.create = function(req, res) {
 	});
 }
 
+// makes dashboard
 exports.dashboard = function (req, res) {
 	
 	User.findByUsername(session.username, function (user) {
@@ -89,6 +86,7 @@ exports.dashboard = function (req, res) {
 	});
 }
 
+// activates user with link send in registration e-mail
 exports.activate = function (req, res) {
 	
 	var token = getLastUrlPart(req.url);
@@ -109,6 +107,29 @@ exports.activate = function (req, res) {
 	});
 }
 
+// makes dashboard
+exports.reset = function (req, res) {		
+	res.render('users/reset', {
+		page_title: 'Reset password'
+	});
+}
+
+exports.forgotPassword = function (req, res){
+
+	User.resetPassword(req.email, function(err){
+			if ( ! err) {
+				res.redirect('/users/index');
+			}
+			else {
+				res.render('users/edit', {
+		 			page_title: 'Edit user',
+		 			errors: err
+		 		});
+			}
+		});
+}
+
+// updates user
 exports.update = function (req, res) {
 	var username = getLastUrlPart(req.url);
 	
