@@ -194,9 +194,11 @@ modelFunctions.prototype.activate = function(token, callback) {
 				});
 			}else{
 				var error = "No user with this token";
+
+				callback(error)
 			}
 		}
-		callback(error, callback);
+		callback(error);
 	});
 };
 
@@ -210,12 +212,12 @@ modelFunctions.prototype.auth = function(req, callback) {
 		} // handle
 		else {
 			if (found_user) {
-				if (found_user.authenticate(req.password)) {
+				if (found_user.authenticate(req.password) && found_user.token == 1) {
 					var error = false;
 					var username = found_user.username;
 				}
 				else {
-					var error = 'password does not match';
+					var error = 'password does not match, or user not activated';
 				}
 			}
 		}

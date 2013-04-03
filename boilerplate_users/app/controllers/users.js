@@ -96,12 +96,13 @@ exports.activate = function (req, res) {
 	User.activate(token, function (callback) {
 
 		if(callback == true){
-			res.render('users/', {
-	 			page_title: 'Users'
-	 		});
-		}else{
-			res.render('users/', {
-	 			page_title: 'Users'
+			console.log(succes);
+		}
+
+		else{
+			res.render('users/error', {
+	 			page_title: 'Error',
+	 			errors: callback
 	 		});
 		}
 
