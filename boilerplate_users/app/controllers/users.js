@@ -116,15 +116,18 @@ exports.reset = function (req, res) {
 
 exports.forgotPassword = function (req, res){
 
+	console.log(req.email);
+
 	User.resetPassword(req.email, function(err){
 			if ( ! err) {
 				res.redirect('/users/index');
 			}
 			else {
-				res.render('users/edit', {
-		 			page_title: 'Edit user',
-		 			errors: err
-		 		});
+				console.log(err);
+				// res.render('users/edit', {
+		 	// 		page_title: 'Edit user',
+		 	// 		errors: err
+		 	// 	});
 			}
 		});
 }
