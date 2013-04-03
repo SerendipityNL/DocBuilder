@@ -94,7 +94,17 @@ exports.activate = function (req, res) {
 	var token = getLastUrlPart(req.url);
 	
 	User.activate(token, function (callback) {
-			console.log(callback);
+
+		if(callback == true){
+			res.render('users/', {
+	 			page_title: 'Users'
+	 		});
+		}else{
+			res.render('users/', {
+	 			page_title: 'Users'
+	 		});
+		}
+
 	});
 }
 

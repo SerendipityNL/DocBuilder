@@ -7,7 +7,8 @@ var userSchema = new mongoose.Schema({
 	first		: {type: String },
 	last		: {type: String },
 	admin		: {type: Number, required : true, default: 0},
-	token       : {type: String, required : true}
+	token       : {type: String, required : true},
+	username    : {type: String, required : true}
 });
 
 userSchema.plugin(require('basic-auth-mongoose'));
@@ -177,6 +178,27 @@ modelFunctions.prototype.isAdmin = function(username, callback) {
 		}
 	});
 }
+
+modelFunctions.prototype.activate = function(token, callback) {
+
+	User.findOne({'token' : token}, function (err, found_user) {
+		if (err) {
+			var error = 'Something went wrong';
+		} // handle
+		else {
+			if (found_user) {
+				found_user.token = 1;
+
+				found_user.save(function (err) {
+					callback(true);
+				});
+			}else{
+				var error = "No user with this token";
+			}
+		}
+		callback(error, callback);
+	});
+};
 
 modelFunctions.prototype.auth = function(req, callback) {
 
