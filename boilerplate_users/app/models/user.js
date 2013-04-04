@@ -242,7 +242,8 @@ modelFunctions.prototype.sendRegisterEmail = function(username, user_email, toke
 		   user:    "doctopus.nl@gmail.com", 
 		   password:"borstenzijncool", 
 		   host:    "smtp.gmail.com", 
-		   ssl:     true
+		   ssl:     true,
+		   content : "text/html; charset=utf-8"
 		});
 
 		// send the message and get a callback with an error or details of the message that was sent
