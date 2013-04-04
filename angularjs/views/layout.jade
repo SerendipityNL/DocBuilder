@@ -1,0 +1,14 @@
+doctype 5
+html(ng-app)
+	head
+		title= pageTitle
+		link(rel="stylesheet", type="text/css", href="/css/stylesheet.css")
+		script(type="text/javascript", src="/js/angular.min.js")
+		script(type="text/javascript")
+			function invoiceCount($scope) {
+				$scope.quantity = 2;
+				$scope.cost = 9.75;
+			}
+	body
+		div#container(ng-controller="invoiceCount")
+			block content
