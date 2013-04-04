@@ -1,0 +1,26 @@
+!!! 5
+html(ng-app)
+	head
+		title= pageTitle
+		link(rel="stylesheet", type="text/css", href="/css/stylesheet.css")
+		script(type="text/javascript", src="/js/angular.min.js")
+		script(type="text/javascript")
+			function invoiceCount($scope) {
+				$scope.quantity = 2;
+				$scope.cost = 9.75;
+			}
+	body
+		div#container(ng-controller="invoiceCount")
+			h1= pageTitle
+			table
+				thead
+					tr
+						th Aantal
+						th Prijs
+				tbody
+					tr
+						td: input(type="integer", ng-model="quantity", required)
+						td: input(type="number", ng-model="cost", required)
+					tr
+						td(style="text-align:right") Totaal:
+						td {{ quantity * cost | currency:'&euro; ' }}

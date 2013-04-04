@@ -1,6 +1,6 @@
 body {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-	font-size: 12px;
+	font-size: 13px;
 	margin: 0;
 	padding: 0;
 }
@@ -19,6 +19,32 @@ h2 {
 
 p, ul {
 	margin: 0 0 10px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+thead th {
+	font-weight: bold;
+}
+
+th, td {
+	text-align: left;
+	padding: 3px 15px 3px 0;
+}
+
+th:last-child, td:last-child {
+	padding-right: 0;
+}
+
+input[type="text"],
+input[type="integer"],
+input[type="number"] {
+	border: 1px solid #B3B3B3;
+	background-color: #E5E5E5;
+	padding: 4px;
+	width: 160px;
 }
 
 div#container {

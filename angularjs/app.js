@@ -19,7 +19,7 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res) {
-	res.render('index.ejs', {
+	res.render('index.jade', {
 		pageTitle: 'Angular test'
 	});
 });
