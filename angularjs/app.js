@@ -1,8 +1,6 @@
 // Include the required modules
 var express = require('express'),
-	fs = require("fs"),
 	app = express();
-
 
 // Configure the application
 app.configure(function() {
@@ -20,19 +18,10 @@ app.configure(function() {
 	app.use(express.static(__dirname + '/public'));
 });
 
-function renderPage(page, res) {
-	fs.readFile('./views/'+page+'.html', function(err, file) {
-		//if (err) throw err;
-
-		res.writeHead(200);
-		res.write(file, "binary");
-		res.end();
-	});
-}
-
 app.get('/', function(req, res) {
-	renderPage('indexa', res);
-	//res.render('index.jade');
+	res.render('index.ejs', {
+		pageTitle: 'Angular test'
+	});
 });
 
 // Let the app listen op port 1337
