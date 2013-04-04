@@ -12,6 +12,12 @@ module.exports = function (app) {
 	app.get('/login', sessions.index);
 	app.post('/login', sessions.login);
 	
+	app.get('/users/activate/*', users.activate);
+	app.get('/users/error/');
+
+	app.get('/forgot-password', users.reset);
+	app.post('/forgot-password', users.forgotPassword);
+
 	// Just for testing purposes
 	app.get('/register', users.new);
 	app.post('/register', users.create);
@@ -35,7 +41,6 @@ module.exports = function (app) {
 
 	// User GET routes
 	app.get('/users/new', users.new);
-	app.get('/users/activate/*', users.activate);
 	app.get('/users/edit/*', users.edit);
 	app.get('/users/delete/*', users.delete);
 	app.get('/users/*', users.index);

@@ -14,4 +14,5 @@
 	<div class="controls">
 		<button class="btn btn-primary" type="submit">Submit</button>
 		<a href="/register">Register</a>
+		<a href="/forgot-password">Forgot password</a>
 </form>

@@ -7,7 +7,8 @@ var userSchema = new mongoose.Schema({
 	first		: {type: String },
 	last		: {type: String },
 	admin		: {type: Number, required : true, default: 0},
-	token       : {type: String, required : true}
+	token       : {type: String, required : true},
+	username    : {type: String, required : true}
 });
 
 userSchema.plugin(require('basic-auth-mongoose'));
@@ -133,7 +134,7 @@ modelFunctions.prototype.save = function(params, callback) {
 			callback(null);
 		});
 
-		this.sendEmail( params['username'], params['email'], token);
+		this.sendRegisterEmail ( params['username'], params['email'], token );
 
 	}
 
@@ -143,8 +144,95 @@ modelFunctions.prototype.save = function(params, callback) {
 };
 
 
+modelFunctions.prototype.isAdmin = function (username, callback) {
+	User.findOne({'username' : username}, function(err, user){
+		if (err) {
+			callback(err);
+		}
+		else {
+			callback(null, user.admin);
+		}
+	});
+}
+
+
+modelFunctions.prototype.resetPassword = function (email, callback){
+
+	User.findOne({'email' : email}, function (err, found_user) {
+		if (err) {
+			var error = 'something went wrong';
+		} // handle
+		else {
+				if (found_user) {
+					// random string for email validation
+					var randomstring = require("randomstring");
+					var new_pw = randomstring.generate();
+
+					found_user.password = new_pw;
+
+					found_user.save(function (err) {
+						callback(true);
+						this.sendResetEmail (found_user.email, new_pw );
+					});
+
+				}
+				else {
+					var error = 'No user with such e-mail';
+				}
+		}
+		
+		callback(error);
+	});
+}
+
+modelFunctions.prototype.activate = function(token, callback) {
+
+	User.findOne({'token' : token}, function (err, found_user) {
+		if (err) {
+			var error = 'Something went wrong';
+		} // handle
+		else {
+			if (found_user) {
+				found_user.token = 1;
+
+				found_user.save(function (err) {
+					callback(true);
+				});
+			}else{
+				var error = "No user with this token";
+
+				callback(error)
+			}
+		}
+		callback(error);
+	});
+};
+
+modelFunctions.prototype.auth = function(req, callback) {
+
+	var username = null;
+	
+	User.findOne({'email' : req.email}, function (err, found_user) {
+		if (err) {
+			var error = 'Failed to login';
+		} // handle
+		else {
+			if (found_user) {
+				if (found_user.authenticate(req.password) && found_user.token == 1) {
+					var error = false;
+					var username = found_user.username;
+				}
+				else {
+					var error = 'password does not match, or user not activated';
+				}
+			}
+		}
+		callback(error, username);
+	});
+};
+
 // sends e-mail
-modelFunctions.prototype.sendEmail = function(username, user_email, token, callback){
+modelFunctions.prototype.sendRegisterEmail = function(username, user_email, token, callback){
 
 		var activation_link = "<a href=\x22localhost:1337/users/activate/"+token+"\x22>link</a>";
 
@@ -167,38 +255,26 @@ modelFunctions.prototype.sendEmail = function(username, user_email, token, callb
 }
 
 
-modelFunctions.prototype.isAdmin = function(username, callback) {
-	User.findOne({'username' : username}, function(err, user){
-		if (err) {
-			callback(err);
-		}
-		else {
-			callback(null, user.admin);
-		}
-	});
+// sends e-mail
+modelFunctions.prototype.sendResetEmail = function(user_email, new_pw, callback){
+
+		// e-mail settings
+		var email   = require("../..//node_modules/emailjs/email");
+		var server  = email.server.connect({
+		   user:    "doctopus.nl@gmail.com", 
+		   password:"borstenzijncool", 
+		   host:    "smtp.gmail.com", 
+		   ssl:     true
+		});
+
+		// send the message and get a callback with an error or details of the message that was sent
+		server.send({
+		   text:    "Dear, "+username+" your password has been reset to: "+new_pw+", you can use this to login into your account.", 
+		   from:    "you <doctopus.nl@gmail.com>", 
+		   to:      "<"+user_email+">",
+		   subject: "Password reset e-mail Doctopus"
+		}, function(err, message) { console.log(err || message); });
 }
 
-modelFunctions.prototype.auth = function(req, callback) {
-
-	var username = null;
-	
-	User.findOne({'email' : req.email}, function (err, found_user) {
-		if (err) {
-			var error = 'Failed to login';
-		} // handle
-		else {
-			if (found_user) {
-				if (found_user.authenticate(req.password)) {
-					var error = false;
-					var username = found_user.username;
-				}
-				else {
-					var error = 'password does not match';
-				}
-			}
-		}
-		callback(error, username);
-	});
-};
 
 exports.modelFunctions = modelFunctions;
