@@ -1,6 +1,7 @@
 // Include the required modules
 var express = require('express'),
-	app = express();
+	app = express(),
+	routes = require('./routes');
 
 // Configure the application
 app.configure(function() {
@@ -14,15 +15,23 @@ app.configure(function() {
 	// add req.session cookie support
 	app.use(express.cookieSession());
 
+	// Enable the logging
+	app.use(express.logger('dev'));
+
 	// Set the path to the public directory
 	app.use(express.static(__dirname + '/public'));
+
+	// Set the views directory
+	app.set('views', __dirname + '/views');
+
+	// Set the view engine
+	app.set('view engine', 'jade');
 });
 
-app.get('/', function(req, res) {
-	res.render('index.jade', {
-		pageTitle: 'Angular test'
-	});
-});
+// Page routes
+app.get('/', routes.index);
+app.get('/test1', routes.test1);
+app.get('/test2', routes.test2);
 
 // Let the app listen op port 1337
 app.listen(1337);

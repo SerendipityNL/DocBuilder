@@ -5,6 +5,15 @@ body {
 	padding: 0;
 }
 
+a:link, a:visited {
+	color: #0088CC;
+	text-decoration: none;
+}
+
+a:hover, a:active {
+	text-decoration: underline;
+}
+
 h1 {
 	margin: 0 0 15px;
 	padding: 0;
@@ -19,6 +28,7 @@ h2 {
 
 p, ul {
 	margin: 0 0 10px;
+	line-height: 150%;
 }
 
 table {
