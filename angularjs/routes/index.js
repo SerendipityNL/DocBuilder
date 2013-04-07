@@ -11,11 +11,11 @@ exports.test1 = function(req, res){
 };
 
 exports.test2 = function(req, res){
-	users = [
-		{name: 'Vincent'},
-		{name: 'Tjerk'},
-		{name: 'Douwe'},
-		{name: 'Edwin'}
+	var users = [
+		{name: 'Lorem'},
+		{name: 'Ipsum'},
+		{name: 'Dolar'},
+		{name: 'Sit'}
 	];
 	res.render('test2.jade', {
 		pageTitle: 'Angular test 2',

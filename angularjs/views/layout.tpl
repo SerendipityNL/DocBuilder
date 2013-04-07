@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<title>{{ pageTitle }}</title>
-		<link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css">
-		<script type="text/javascript" src="/javascripts/angular.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+		<script type="text/javascript" src="/js/angular.min.js"></script>
 		{% block head %}{% endblock %}
 	</head>
 	<body>
