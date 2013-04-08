@@ -1,0 +1,14 @@
+h1 Todo's
+p: a(href='#/new') New todo
+table
+	thead
+		tr
+			th Name
+			th Title
+			th(colspan='2') Actions
+	tbody
+		tr(ng-repeat='todo in todos')
+			td {{todo.name}}
+			td {{todo.title}}
+			td: a(href='#/edit/1') Edit
+			td: a(href='#/delete/1') Delete

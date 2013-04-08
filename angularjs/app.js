@@ -1,7 +1,7 @@
 // Include the required modules
 var express = require('express'),
 	app = express(),
-	routes = require('./routes');
+	todos = require('./routes/todos');
 
 // Configure the application
 app.configure(function() {
@@ -28,10 +28,16 @@ app.configure(function() {
 	app.set('view engine', 'jade');
 });
 
-// Page routes
-app.get('/', routes.index);
-app.get('/test1', routes.test1);
-app.get('/test2', routes.test2);
+// GET routes
+app.get('/', todos.index);
+app.get('/todos/list.json', todos.listJSON);
+
+// POST routes
+app.post('/todos/create', todos.create);
+app.post('/todos/delete', todos.delete);
+
+// Load the todos partials
+app.get('/todos/:partial', todos.partials);
 
 // Let the app listen op port 1337
 app.listen(1337);
