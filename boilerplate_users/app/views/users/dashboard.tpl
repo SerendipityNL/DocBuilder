@@ -110,6 +110,6 @@
 	<p><img src="{{ avatarUrl }}" class="avatar" /></p>
 	<p><strong>Name</strong><br /></p>
 	<p>{{user.first}} {{user.last}}</p>
-	<p><a href="#" class="btn btn-primary">Manage info</a></p>
+	<p><a href="/users/edit/{{session.username}}" class="btn btn-primary">Manage info</a></p>
 
 {% endblock %}
