@@ -1,8 +1,16 @@
+* {
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
 body {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 	font-size: 13px;
 	margin: 0;
 	padding: 0;
+	background: #F4F4F4 url('../img/bodybg.png') repeat left top;
+	color: #404040;
 }
 
 a:link, a:visited {
@@ -15,9 +23,10 @@ a:hover, a:active {
 }
 
 h1 {
-	margin: 0 0 15px;
-	padding: 0;
+	margin: 0 0 12px;
+	padding: 0 0 3px;
 	font-size: 2em;
+	border-bottom: 1px solid #CCC;
 }
 
 h2 {
@@ -29,6 +38,10 @@ h2 {
 p, ul {
 	margin: 0 0 10px;
 	line-height: 150%;
+}
+
+li {
+	margin: 0 0 0 20px;
 }
 
 table {
@@ -57,9 +70,9 @@ input[type="text"],
 input[type="integer"],
 input[type="number"] {
 	border: 1px solid #B3B3B3;
-	background-color: #E5E5E5;
-	padding: 4px;
-	width: 160px;
+	background-color: #FFF;
+	padding: 5px;
+	width: 150px;
 }
 
 input::-moz-focus-inner {
@@ -73,7 +86,7 @@ input::-moz-focus-inner {
 	border: 1px solid #005999;
 	color: #FFF;
 	padding: 5px 15px;
-	margin: 0;
+	margin: 0 5px 0 0;
 	text-decoration: none;
 	cursor: pointer;
 	vertical-align: top;
@@ -85,6 +98,15 @@ input::-moz-focus-inner {
 }
 
 div#container {
-	width: 978px;
+	width: 500px;
 	margin: 20px auto;
+	background: transparent url('../img/containerbg.png') repeat left top;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #CCC;
+}
+
+div#container-inner {
+	padding: 20px;
 }

@@ -13,22 +13,25 @@ angular.module('todo', []).
 				templateUrl: 'todos/edit',
 				controller: todoNew
 			}).
+			when('/delete/:id', {
+				templateUrl: 'todos/delete',
+				controller: todoNew
+			}).
 			otherwise({
 				redirectTo:'/'
 			});
 	});
 
 function todoIndex($scope, $http) {
-	$http.get('todos/list.json').
-		success(function(data, status, headers, config) {
-			$scope.todos = data;
+	$http.get('todos/list.json').success(function(data, status, headers, config) {
+		$scope.todos = data;
 	});
 }
 
 function todoNew($scope, $http) {
 	$scope.form = {};
 	$scope.submitPost = function () {
-		alert('form submitted');
+		console.log('form has been submitted');
 		/*
 		$http.post('/api/post', $scope.form).
 		success(function(data) {

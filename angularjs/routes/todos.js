@@ -15,7 +15,9 @@ exports.list = function(req, res) {
 		{	name: 'Edwin ten Wolde',
 			title: "Creating the bootstrap CSS"}
 	];
-	res.send(data);
+	setTimeout(function() {
+		res.send(data);
+	}, 0); // <-- Just for demonstration purposes (e.g 2000) 
 }
 
 exports.partial = function(req, res){

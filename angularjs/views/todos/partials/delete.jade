@@ -1,2 +1,5 @@
 h1 Delete todo
-a(href='#/') Back
+p Are you sure you want to delete this todo?
+form(method='post')
+	a(href='#/', class='btn') Nope
+	input(type='submit', value='Yes please!', class='btn')
