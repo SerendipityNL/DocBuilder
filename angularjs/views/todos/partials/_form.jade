@@ -1,10 +1,11 @@
-p
-	label(for='name') Name:
-	input(type='text', name='name')
-p
-	label(for='title') Title:
-	input(type='text', name='title', style='width:300px')
-p
-	a(href='#/') Back
-	|  
-	input(type='submit', name='Save')
+form
+	p
+		label(for='name') Name:
+		input(type='text', name='name')
+	p
+		label(for='title') Title:
+		input(type='text', name='title', style='width:300px')
+	p
+		a(href='#/', class='btn') Back
+		|  
+		input(type='submit', value='Save', class='btn')

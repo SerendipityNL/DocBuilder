@@ -9,13 +9,9 @@ angular.module('todo', []).
 				templateUrl: 'todos/new',
 				controller: todoNew
 			}).
-			when('/edit/:todoId', {
-				templateUrl: 'todos/edit'm
-				controller: todoEdit
-			}).
-			when('/delete/:todoId', {
-				templateUrl: 'todos/delete',
-				controller: todoDelete
+			when('/edit/:id', {
+				templateUrl: 'todos/edit',
+				controller: todoNew
 			}).
 			otherwise({
 				redirectTo:'/'
@@ -30,11 +26,14 @@ function todoIndex($scope, $http) {
 }
 
 function todoNew($scope, $http) {
-
-}
-
-function todoEdit($scope, $http) {
-}
-
-function todoDelete($scope, $http) {
+	$scope.form = {};
+	$scope.submitPost = function () {
+		alert('form submitted');
+		/*
+		$http.post('/api/post', $scope.form).
+		success(function(data) {
+			$location.path('/');
+		});
+		*/
+	};
 }

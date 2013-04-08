@@ -30,14 +30,8 @@ app.configure(function() {
 
 // GET routes
 app.get('/', todos.index);
-app.get('/todos/list.json', todos.listJSON);
-
-// POST routes
-app.post('/todos/create', todos.create);
-app.post('/todos/delete', todos.delete);
-
-// Load the todos partials
-app.get('/todos/:partial', todos.partials);
+app.get('/todos/list.json', todos.list);
+app.get('/todos/:partial', todos.partial);
 
 // Let the app listen op port 1337
 app.listen(1337);
