@@ -1,0 +1,15 @@
+body {
+	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	font-size: 13px;
+	margin: 0;
+	padding: 0;
+}
+
+a:link, a:visited {
+	color: #0088CC;
+	text-decoration: none;
+}
+
+a:hover, a:active {
+	text-decoration: underline;
+}
