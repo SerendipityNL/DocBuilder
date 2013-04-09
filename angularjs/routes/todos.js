@@ -1,7 +1,11 @@
+var fs = require('fs');
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('angular-todo', 'root', 'usbw', {
+	host: 'localhost',
+	port: 3306,
 	freezeTableName: true
 });
+
 
 var Todo = sequelize.define('Todo', 
 	{	name: Sequelize.STRING,
@@ -30,6 +34,6 @@ exports.findOne = function(req, res) {
 }
 
 exports.partial = function(req, res){
-	var partial = req.params.partial;
-	res.render('todos/partials/' + partial + '.jade');
+	var filePath = 'todos/partials/'+req.params.partial+'.jade';
+	res.render(filePath);
 };
