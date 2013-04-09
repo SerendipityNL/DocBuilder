@@ -33,6 +33,10 @@ exports.findOne = function(req, res) {
 	})
 }
 
+exports.save = function(req, res) {
+	res.send(req.params.name);
+}
+
 exports.partial = function(req, res){
 	var filePath = 'todos/partials/'+req.params.partial+'.jade';
 	res.render(filePath);

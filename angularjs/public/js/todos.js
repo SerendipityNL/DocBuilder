@@ -7,11 +7,11 @@ angular.module('todo', []).
 			}).
 			when('/new', {
 				templateUrl: 'todos/new',
-				controller: createTodo
+				controller: saveTodo
 			}).
 			when('/edit/:id', {
 				templateUrl: 'todos/edit',
-				controller: updateTodo
+				controller: saveTodo
 			}).
 			when('/delete/:id', {
 				templateUrl: 'todos/delete',
@@ -27,15 +27,11 @@ function listTodos($scope, $http) {
 	});
 }
 
-function updateTodo($scope, $http, $routeParams) {
-	id = $routeParams.id;
-	$http.get('todos/find/'+id).success(function(todo) {
-		$scope.todo = todo;
-	})
-}
-
-function createTodo($scope, $http) {
+function saveTodo($scope, $http, $location) {
 	$scope.save = function() {
-		console.log($scope.todo);
+		$http.post('todos/save', $scope.todo).
+			success(function(data) {
+				$location.path('/');				
+		});
 	}
 }

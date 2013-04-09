@@ -34,6 +34,7 @@ app.get('/', todos.index);
 // Api calls
 app.get('/todos/find_all', todos.findAll);
 app.get('/todos/find/:id', todos.findOne);
+app.post('/todos/save', todos.save);
 
 // Todo partions, MUST be below other todo routes
 app.get('/todos/:partial', todos.partial);
