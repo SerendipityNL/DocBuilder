@@ -1,23 +1,32 @@
+var Sequelize = require('sequelize');
+var sequelize = new Sequelize('angular-todo', 'root', 'usbw', {
+	freezeTableName: true
+});
+
+var Todo = sequelize.define('Todo', 
+	{	name: Sequelize.STRING,
+		title: Sequelize.STRING
+	},
+	{tableName: 'todos'}
+);
+
 exports.index = function(req, res) {
 	res.render('todos/index.jade', {
 		pageTitle: 'Todolist AngularJS'
 	});
 }
 
-exports.list = function(req, res) {
-	var data = [
-		{	name: 'Vincent Bremer',
-			title: 'Building Angular todo list'},
-		{	name: 'Douwe de Haan',
-			title: 'Setup Doctopus repository'},
-		{	name: 'Tjerk Dijkstra',
-			title: "Following REST tutorials"},
-		{	name: 'Edwin ten Wolde',
-			title: "Creating the bootstrap CSS"}
-	];
-	setTimeout(function() {
-		res.send(data);
-	}, 0); // <-- Just for demonstration purposes (e.g 2000) 
+exports.findAll = function(req, res) {
+	Todo.findAll().success(function(rows) {
+		res.send(rows)
+	});
+}
+
+exports.findOne = function(req, res) {
+	id = req.params.id;
+	Todo.find(id).success(function(row) {
+		res.send(row);
+	})
 }
 
 exports.partial = function(req, res){

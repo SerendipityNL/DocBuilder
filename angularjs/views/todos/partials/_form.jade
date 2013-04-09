@@ -1,11 +1,10 @@
-form(method='post')
+form(method='post', ng-submit='Blaat()')
 	p
 		label(for='name') Name:
-		input(type='text', name='name')
+		input(type='text', name='name', ng-model='todo.name', required)
 	p
 		label(for='title') Title:
-		input(type='text', name='title', style='width:200px')
+		input(type='text', name='title', style='width:250px', ng-model='todo.title', required)
 	p
 		a(href='#/', class='btn') Back
-		|  
 		input(type='submit', value='Save', class='btn')

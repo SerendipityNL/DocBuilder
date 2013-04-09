@@ -7,15 +7,13 @@ angular.module('todo', []).
 			}).
 			when('/new', {
 				templateUrl: 'todos/new',
-				controller: todoNew
 			}).
 			when('/edit/:id', {
 				templateUrl: 'todos/edit',
-				controller: todoNew
+				controller: todoFind
 			}).
 			when('/delete/:id', {
 				templateUrl: 'todos/delete',
-				controller: todoNew
 			}).
 			otherwise({
 				redirectTo:'/'
@@ -23,20 +21,14 @@ angular.module('todo', []).
 	});
 
 function todoIndex($scope, $http) {
-	$http.get('todos/list.json').success(function(data, status, headers, config) {
-		$scope.todos = data;
+	$http.get('todos/find_all').success(function(todos, status, headers, config) {
+		$scope.todos = todos;
 	});
 }
 
-function todoNew($scope, $http) {
-	$scope.form = {};
-	$scope.submitPost = function () {
-		console.log('form has been submitted');
-		/*
-		$http.post('/api/post', $scope.form).
-		success(function(data) {
-			$location.path('/');
-		});
-		*/
-	};
+function todoFind($scope, $http, $routeParams) {
+	id = $routeParams.id;
+	$http.get('todos/find/'+id).success(function(todo) {
+		$scope.todo = todo;
+	})
 }

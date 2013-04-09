@@ -1,6 +1,9 @@
 h1 Todo's
 ul
 	li: a(href='#/new') New todo
+
+p: input(type='text', placeholder='Filter results', style='width:300px', ng-model='search') 
+
 table
 	thead
 		tr
@@ -8,8 +11,8 @@ table
 			th Title
 			th(colspan='2') Actions
 	tbody
-		tr(ng-repeat='todo in todos')
+		tr(ng-repeat='todo in todos | filter:search')
 			td {{todo.name}}
 			td {{todo.title}}
-			td: a(href='#/edit/1') Edit
-			td: a(href='#/delete/1') Delete
+			td: a(href='#/edit/{{todo.id}}') Edit
+			td: a(href='#/delete/{{todo.id}}') Delete

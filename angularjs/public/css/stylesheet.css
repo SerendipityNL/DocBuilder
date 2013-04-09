@@ -42,10 +42,12 @@ p, ul {
 
 li {
 	margin: 0 0 0 20px;
+	padding: 0;
 }
 
 table {
 	border-collapse: collapse;
+	width: 100%;
 }
 
 thead th {
@@ -86,7 +88,7 @@ input::-moz-focus-inner {
 	border: 1px solid #005999;
 	color: #FFF;
 	padding: 5px 15px;
-	margin: 0 5px 0 0;
+	margin: 0 10px 0 0;
 	text-decoration: none;
 	cursor: pointer;
 	vertical-align: top;

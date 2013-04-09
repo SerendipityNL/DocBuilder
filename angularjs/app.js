@@ -28,9 +28,14 @@ app.configure(function() {
 	app.set('view engine', 'jade');
 });
 
-// GET routes
+// Todo index page
 app.get('/', todos.index);
-app.get('/todos/list.json', todos.list);
+
+// Api calls
+app.get('/todos/find_all', todos.findAll);
+app.get('/todos/find/:id', todos.findOne);
+
+// Todo partions, MUST be below other todo routes
 app.get('/todos/:partial', todos.partial);
 
 // Let the app listen op port 1337
