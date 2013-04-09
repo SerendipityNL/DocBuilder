@@ -38,6 +38,11 @@ exports.delete = function(req, res) {
 }
 
 // adds new user
+exports.test = function(req, res) {
+	console.log(req);
+}
+
+// adds new user
 exports.new = function(req, res) {
 	res.render('users/new', {
 		page_title: 'New user'

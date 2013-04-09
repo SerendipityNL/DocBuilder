@@ -18,6 +18,8 @@ module.exports = function (app) {
 	app.get('/forgot-password', users.reset);
 	app.post('/forgot-password', users.forgotPassword);
 
+	app.post('/test-data', users.test);
+
 	// Just for testing purposes
 	app.get('/register', users.new);
 	app.post('/register', users.create);
