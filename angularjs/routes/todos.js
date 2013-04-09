@@ -1,4 +1,3 @@
-var fs = require('fs');
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('angular-todo', 'root', 'usbw', {
 	host: 'localhost',
@@ -6,12 +5,14 @@ var sequelize = new Sequelize('angular-todo', 'root', 'usbw', {
 	freezeTableName: true
 });
 
-
+// Set the todo model
 var Todo = sequelize.define('Todo', 
 	{	name: Sequelize.STRING,
 		title: Sequelize.STRING
 	},
-	{tableName: 'todos'}
+	{	tableName: 'todos',
+		underscored: true
+	}
 );
 
 exports.index = function(req, res) {
@@ -21,20 +22,30 @@ exports.index = function(req, res) {
 }
 
 exports.findAll = function(req, res) {
-	Todo.findAll().success(function(rows) {
-		res.send(rows)
+	Todo.findAll().success(function(todos) {
+		res.send(todos)
 	});
 }
 
 exports.findOne = function(req, res) {
 	id = req.params.id;
-	Todo.find(id).success(function(row) {
-		res.send(row);
-	})
+	Todo.find(id).success(function(todo) {
+		res.send(todo);
+	});
 }
 
-exports.save = function(req, res) {
-	res.send(req.params.name);
+exports.insert = function(req, res) {
+	Todo.create({name: req.body.name, title: req.body.title}).success(function(todo) {
+		res.send(todo);
+	});
+}
+
+exports.update = function(req, res) {
+	res.send(req.params.id);
+}
+
+exports.delete = function(req, res) {
+	res.send(req.params.id);
 }
 
 exports.partial = function(req, res){

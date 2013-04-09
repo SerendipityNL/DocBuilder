@@ -5,7 +5,6 @@ var express = require('express'),
 
 // Configure the application
 app.configure(function() {
-
 	// Enable the bodyParser so we can access POST data
 	app.use(express.bodyParser());
 	
@@ -28,16 +27,20 @@ app.configure(function() {
 	app.set('view engine', 'jade');
 });
 
-// Todo index page
+// Todo index page (homepage)
 app.get('/', todos.index);
 
-// Api calls
+// Todo GET routes
 app.get('/todos/find_all', todos.findAll);
 app.get('/todos/find/:id', todos.findOne);
-app.post('/todos/save', todos.save);
 
-// Todo partions, MUST be below other todo routes
-app.get('/todos/:partial', todos.partial);
+// Todo POST routes
+app.post('/todos/save', todos.insert);
+app.post('/todos/save/:id', todos.update);
+app.post('/todos/delete/:id', todos.update);
+
+// Render the todo partials, must be below other todo routes
+app.get('/todos/:partial', todos.partial); 
 
 // Let the app listen op port 1337
 app.listen(1337);

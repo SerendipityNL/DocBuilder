@@ -7,14 +7,15 @@ angular.module('todo', []).
 			}).
 			when('/new', {
 				templateUrl: 'todos/new',
-				controller: saveTodo
+				controller: insertTodo
 			}).
 			when('/edit/:id', {
 				templateUrl: 'todos/edit',
-				controller: saveTodo
+				controller: updateTodo
 			}).
 			when('/delete/:id', {
 				templateUrl: 'todos/delete',
+				controller: deleteTodo
 			}).
 			otherwise({
 				redirectTo:'/'
@@ -27,11 +28,30 @@ function listTodos($scope, $http) {
 	});
 }
 
-function saveTodo($scope, $http, $location) {
+function insertTodo($scope, $http, $location) {
 	$scope.save = function() {
 		$http.post('todos/save', $scope.todo).
-			success(function(data) {
-				$location.path('/');				
+			success(function(todo) {
+				console.log(todo);
+				$location.path('/');
 		});
 	}
+}
+
+function updateTodo($scope, $http, $location, $routeParams) {
+	var todoId = $routeParams.id;
+	$http.get('todos/find/'+todoId).success(function(todo) {
+		$scope.todo = todo;
+	});
+
+	$scope.save = function() {
+		$http.post('todos/save/'+todoId, $scope.todo).
+			success(function(todo) {
+				$location.path('/');
+		});
+	}
+}
+
+function deleteTodo($scope, $http, $location, $routeParams) {
+	var todoId = $routeParams.id;
 }
