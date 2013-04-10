@@ -60,7 +60,7 @@ exports.delete = function(req, res) {
 	Todo.find(id).success(function(todo) {
 		todo.destroy().success(function() {
 			res.send('Todo deleted!');
-		})
+		});
 	});
 }
 
