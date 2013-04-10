@@ -3,9 +3,14 @@ html(ng-app="todo")
 	head
 		title= pageTitle
 		link(rel="stylesheet", type="text/css", href="/css/stylesheet.css")
+		link(rel="stylesheet", type="text/css", href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css")
 		script(type="text/javascript", src="/js/jquery-1.9.1.min.js")
 		script(type="text/javascript", src="/js/angular.min.js")			
 		script(type="text/javascript", src="/js/todos.js")
+		script(type="text/javascript", src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js")
+		script(type="text/javascript", src="https://raw.github.com/codef0rmer/angular-dragdrop/master/src/angular-dragdrop.min.js")
+		script(type="text/javascript", src="/js/todos.js")	
+
 	body
 		div#container
 			div(ng-view)#container-inner

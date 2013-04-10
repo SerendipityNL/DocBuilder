@@ -11,8 +11,17 @@ table
 			th Title
 			th(colspan='2') Actions
 	tbody
-		tr(ng-repeat='todo in todos | filter:search')
-			td {{todo.name}}
-			td {{todo.title}}
-			td: a(href='#/edit/{{todo.id}}') Edit
-			td: a(href='#/delete/{{todo.id}}') Delete
+		//- tr(ng-repeat='todo in todos | filter:search')
+		//- 	td {{todo.name}}
+		//- 	td {{todo.title}}
+		//- 	td: a(href='#/edit/{{todo.id}}') Edit
+		//- 	td: a(href='#/delete/{{todo.id}}') Delete
+
+
+		div(ng-controller='SortableCTRL')
+		ul#sortable
+			li(ng-repeat='todo in todos | filter:search')
+				{{todo.name}}
+
+
+	pre(ng-bind='sortableArray|json').
