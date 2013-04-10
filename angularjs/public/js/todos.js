@@ -14,7 +14,7 @@ angular.module('todo', []).
 				controller: updateTodo
 			}).
 			when('/delete/:id', {
-				templateUrl: 'todos/delete',
+				/*templateUrl: 'todos/delete',*/
 				controller: deleteTodo
 			}).
 			otherwise({
@@ -54,4 +54,9 @@ function updateTodo($scope, $http, $location, $routeParams) {
 
 function deleteTodo($scope, $http, $location, $routeParams) {
 	var todoId = $routeParams.id;
+	$http.post('todos/delete/'+todoId, {delete: true})
+		.success(function() {
+			$location.path('/');
+
+	});
 }

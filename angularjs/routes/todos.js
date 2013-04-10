@@ -28,24 +28,40 @@ exports.findAll = function(req, res) {
 }
 
 exports.findOne = function(req, res) {
-	id = req.params.id;
+	var id = req.params.id;
 	Todo.find(id).success(function(todo) {
 		res.send(todo);
 	});
 }
 
 exports.insert = function(req, res) {
-	Todo.create({name: req.body.name, title: req.body.title}).success(function(todo) {
+	Todo.create({
+		name: req.body.name, 
+		title: req.body.title
+	}).success(function(todo) {
 		res.send(todo);
 	});
 }
 
 exports.update = function(req, res) {
-	res.send(req.params.id);
+	var id = req.params.id;
+	Todo.find(id).success(function(todo) {
+		todo.updateAttributes({
+			name: req.body.name, 
+			title: req.body.title
+		}).success(function() {
+			res.send('Done!');
+		});
+	});
 }
 
 exports.delete = function(req, res) {
-	res.send(req.params.id);
+	var id = req.params.id;
+	Todo.find(id).success(function(todo) {
+		todo.destroy().success(function() {
+			res.send('Todo deleted!');
+		})
+	});
 }
 
 exports.partial = function(req, res){
