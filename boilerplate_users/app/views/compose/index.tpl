@@ -1,7 +1,6 @@
 {% extends 'compose.tpl' %}
 
 {% block content %}
-<div id="container">
 
 	<a href="#" id="toggle_borders">Toggle borders</a>
 
@@ -31,4 +30,3 @@
 </div>
 	
 {% endblock %}
-

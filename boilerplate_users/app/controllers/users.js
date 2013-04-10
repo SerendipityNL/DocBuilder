@@ -39,7 +39,9 @@ exports.delete = function(req, res) {
 
 // adds new user
 exports.test = function(req, res) {
-	console.log(req);
+	res.render('users/test', {
+		page_title: 'test'
+	});
 }
 
 // adds new user
