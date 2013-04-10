@@ -21,7 +21,7 @@ table
 		div(ng-controller='SortableCTRL')
 		ul#sortable
 			li(ng-repeat='todo in todos | filter:search')
-				{{todo.name}}
+				{{todo.title}}
 
 
 	pre(ng-bind='sortableArray|json').
