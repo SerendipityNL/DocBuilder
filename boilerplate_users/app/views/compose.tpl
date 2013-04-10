@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
-		<title>DocBuilder - Users</title>
+		<title>DocBuilder - Compose</title>
 		<link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.min.css">
 		<link rel="stylesheet" type="text/css" href="/css/fixes.css">
+
 		<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui-1.10.1.custom.js"></script>
+		<script type="text/javascript" src="/js/functions.js"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -33,10 +36,8 @@
 					{% endif %}
 				</ul>
 			</div>
+		<div id="container">
+		{% block content %}{% endblock %}
 		</div>
-		<div class="container">			
-				{% block content %}{% endblock %}
-			</div>
-		<script type="text/javascript" src="/js/compose.js"></script>
 	</body>
-</html>
+	</html>
