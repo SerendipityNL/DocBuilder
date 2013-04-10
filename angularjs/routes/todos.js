@@ -8,7 +8,8 @@ var sequelize = new Sequelize('angular-todo', 'root', 'usbw', {
 // Set the todo model
 var Todo = sequelize.define('Todo', 
 	{	name: Sequelize.STRING,
-		title: Sequelize.STRING
+		title: Sequelize.STRING,
+		sort: {type: Sequelize.INTEGER, defaultValue: 0}
 	},
 	{	tableName: 'todos',
 		underscored: true
@@ -22,7 +23,7 @@ exports.index = function(req, res) {
 }
 
 exports.findAll = function(req, res) {
-	Todo.findAll().success(function(todos) {
+	Todo.findAll({order: 'sort ASC'}).success(function(todos) {
 		res.send(todos)
 	});
 }
@@ -53,6 +54,22 @@ exports.update = function(req, res) {
 			res.send('Done!');
 		});
 	});
+}
+
+function updateById(todoId, data) {
+	Todo.find(todoId).success(function(todo) {
+		todo.updateAttributes(data).success(function() {});
+	});
+}
+
+exports.order = function(req, res) {
+	var todos = req.body;
+	var data = {}
+	
+	for (i = 0; i < todos.length; i++) {
+		var data = {sort: i}
+		updateById(todos[i], data);
+	}
 }
 
 exports.delete = function(req, res) {

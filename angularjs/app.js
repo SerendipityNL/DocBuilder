@@ -38,6 +38,7 @@ app.get('/todos/find/:id', todos.findOne);
 app.post('/todos/save', todos.insert);
 app.post('/todos/save/:id', todos.update);
 app.post('/todos/delete/:id', todos.delete);
+app.post('/todos/order', todos.order);
 
 // Render the todo partials, must be below other todo routes
 app.get('/todos/:partial', todos.partial); 

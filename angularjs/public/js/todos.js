@@ -22,45 +22,35 @@ angular.module('todo', []).
 			});
 	});
 
-function SortableCTRL($scope, $http) {
-    var sortableEle;
-    
-	$http.get('todos/find_all').success(function(todos, status, headers, config) {
-		$scope.sortableArray = [];
-
-		for (var i=0;i<todos.length;i++)
-		{ 
-			console.log(todos[i].id);
-			$scope.sortableArray.push(todos[i].id);
-		}
-	});
-    
-    
-    $scope.dragStart = function(e, ui) {
-        ui.item.data('start', ui.item.index());
-    }
-    $scope.dragEnd = function(e, ui) {
-        var start = ui.item.data('start'),
-            end = ui.item.index();
-        
-        $scope.sortableArray.splice(end, 0, 
-            $scope.sortableArray.splice(start, 1)[0]);
-        
-        $scope.$apply();
-        console.log($scope.sortableArray);
-    }
-        
-    sortableEle = $('#sortable').sortable({
-        start: $scope.dragStart,
-        update: $scope.dragEnd
-    });
-}
-
-
-
 function listTodos($scope, $http) {
 	$http.get('todos/find_all').success(function(todos, status, headers, config) {
+		$scope.sortableArray = [];
+		for (var i = 0; i<todos.length; i++) { 
+			$scope.sortableArray.push(todos[i].id);
+		}
 		$scope.todos = todos;
+	});
+
+	$scope.dragStart = function(e, ui) {
+		ui.item.data('start', ui.item.index());
+	}
+
+	$scope.dragEnd = function(e, ui) {
+		var start = ui.item.data('start'),
+			end = ui.item.index();
+
+		$scope.sortableArray.splice(end, 0, $scope.sortableArray.splice(start, 1)[0]);
+
+		$scope.$apply();
+		console.log($scope.sortableArray);
+		$http.post('todos/order', $scope.sortableArray).
+			success(function() {});
+	}
+
+	var sortableEle;
+	sortableEle = $('#sortable').sortable({
+		start: $scope.dragStart,
+		update: $scope.dragEnd
 	});
 }
 

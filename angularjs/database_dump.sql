@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `todos` (
   `name` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   `done` tinyint(1) NOT NULL DEFAULT '0',
+  `sort` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -36,8 +37,8 @@ CREATE TABLE IF NOT EXISTS `todos` (
 -- Dumping data for table `todos`
 --
 
-INSERT INTO `todos` (`id`, `name`, `title`, `done`, `created_at`, `updated_at`) VALUES
-(1, 'Vincent Bremer', 'Building Angular todo list', 0, '2013-04-09 10:18:33', '2013-04-09 10:18:33'),
-(2, 'Douwe de Haan', 'Setup Doctopus repository', 0, '2013-04-09 10:18:33', '2013-04-09 10:18:33'),
-(3, 'Tjerk Dijkstra', 'Drag and drop on GRID', 0, '2013-04-09 10:18:33', '2013-04-09 10:18:33'),
-(4, 'Edwin ten Wolde', 'Creating the bootstrap CSS', 0, '2013-04-09 10:18:33', '2013-04-09 10:18:33');
+INSERT INTO `todos` (`id`, `name`, `title`, `done`, `sort`, `created_at`, `updated_at`) VALUES
+(1, 'Vincent Bremer', 'Building Angular todo list', 0, 0, '2013-04-09 10:18:33', '2013-04-09 10:18:33'),
+(2, 'Douwe de Haan', 'Setup Doctopus repository', 1, 0, '2013-04-09 10:18:33', '2013-04-09 10:18:33'),
+(3, 'Tjerk Dijkstra', 'Drag and drop on GRID', 0, 2, '2013-04-09 10:18:33', '2013-04-09 10:18:33'),
+(4, 'Edwin ten Wolde', 'Creating the bootstrap CSS', 3, 0, '2013-04-09 10:18:33', '2013-04-09 10:18:33');
