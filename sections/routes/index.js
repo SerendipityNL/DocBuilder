@@ -1,5 +1,3 @@
-var _ = require('underscore');
-
 var items = [
 	{'id': 1, 'parent_id': 0, 'title': 'This is section #1'},
 	{'id': 2, 'parent_id': 1, 'title': 'This is section #2'},
@@ -14,29 +12,30 @@ var items = [
 	{'id': 11, 'parent_id': 9, 'title': 'This is section #11'},
 	{'id': 12, 'parent_id': 11, 'title': 'This is section #12'},
 	{'id': 13, 'parent_id': 11, 'title': 'This is section #13'},
-	{'id': 14, 'parent_id': 13, 'title': 'This is section #14'}
+	{'id': 14, 'parent_id': 1, 'title': 'This is section #14'}
 ]
 
 exports.index = function(req, res) {
 	res.render('index', {});
 }
 
-exports.json = function(req, res) {
+exports.returnJSON = function(req, res) {
 	var menu = {
 		'parents': {},
 		'items': {}
 	};
-	_.each(items, function(item) {
-		var parent = item.parent_id;
-		var child = item.id;
 
-		if ( ! _.isArray(menu.parents[parent])) {
-			menu.parents[parent] = [];
+	for (i = 0; i < items.length; i++) {
+		var parentId = items[i].parent_id;
+		var ownId = items[i].id;
+
+		if (typeof(menu.parents[parentId]) == 'undefined') {
+			menu.parents[parentId] = [];
 		}
 
-		menu.parents[parent].push(child);
-		menu.items[child] = item;
-
-	});
-	res.send(menu);	
+		menu.parents[parentId].push(ownId);
+		menu.items[ownId] = items[i];
+	}
+	
+	res.send(menu);
 }

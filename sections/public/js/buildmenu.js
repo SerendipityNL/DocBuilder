@@ -1,5 +1,4 @@
 function buildMenu(parent, data) {
-
 	var html = '';
 	html += '<ul class="dd-list">';
 	if ( ! _.isEmpty(data.parents)) {
@@ -27,7 +26,8 @@ $(document).ready(function() {
 		var menu = buildMenu(0, data);
 		$('.sections').append(menu);
 		$('.sections').nestable({
-			listNodeName: 'ul'
+			listNodeName: 'ul',
+			maxDepth: 6
 		});
 	})
 });
