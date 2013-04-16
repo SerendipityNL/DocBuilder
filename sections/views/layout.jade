@@ -3,10 +3,14 @@ html(lang='en')
 	head
 		title Doctopus - sections
 		link(rel='stylesheet', type='text/css', href='/css/stylesheet.css')
-		script(type='text/javascript', src='/js/zepto.min.js')
-		script(type='text/javascript', src='/js/underscore-min.js')
 		block head
 	body
 		div#container
 			div#container-inner
 				block content
+			div#footer
+				a(href='http://localhost:1337/') Home
+				|  | 
+				a(href='http://localhost:1337/sections') Sections
+				|  | 
+				a(href='http://localhost:1337/blocks') Blocks

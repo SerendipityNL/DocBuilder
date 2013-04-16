@@ -16,11 +16,22 @@ var items = [
 ]
 
 exports.index = function(req, res) {
-	res.render('index', {});
+	res.render('index');
 }
 
-exports.returnJSON = function(req, res) {
-	var menu = {
+exports.blocks = function(req, res) {
+	res.render('blocks');
+}
+
+exports.getBlocks = function(req, res) {
+}
+
+exports.sections = function(req, res) {
+	res.render('sections');
+}
+
+exports.getSections = function(req, res) {
+	var sections = {
 		'parents': {},
 		'items': {}
 	};
@@ -29,13 +40,13 @@ exports.returnJSON = function(req, res) {
 		var parentId = items[i].parent_id;
 		var ownId = items[i].id;
 
-		if (typeof(menu.parents[parentId]) == 'undefined') {
-			menu.parents[parentId] = [];
+		if (typeof(sections.parents[parentId]) == 'undefined') {
+			sections.parents[parentId] = [];
 		}
 
-		menu.parents[parentId].push(ownId);
-		menu.items[ownId] = items[i];
+		sections.parents[parentId].push(ownId);
+		sections.items[ownId] = items[i];
 	}
 	
-	res.send(menu);
+	res.send(sections);
 }

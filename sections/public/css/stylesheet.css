@@ -110,7 +110,7 @@ input::-moz-focus-inner {
 }
 
 div#container {
-	width: 600px;
+	width: 800px;
 	margin: 20px auto;
 	background: transparent url('../img/containerbg.png') repeat left top;
 	-webkit-border-radius: 8px;
@@ -121,14 +121,71 @@ div#container {
 
 div#container-inner {
 	padding: 20px;
+	overflow: hidden;
+	min-height: 200px;
+}
+
+div#footer {
+	border-top: 1px solid #CCC;
+	padding: 10px 20px;
 }
 
 
+/* -------------------------------------
+----- Block ----------------------------
+------------------------------------- */
+
+div.blocks-left {
+	float: left;
+	display: inline;
+	width: 560px;
+}
+
+div.blocks-right {
+	float: right;
+	display: inline;
+	width: 180px;
+}
+
+ul.blocks {
+	overflow: hidden;
+}
+
+.col_1,
+.col_2,
+.col_3,
+.col_4,
+.dragme {
+	display: inline-block;
+	float: left;
+	position: relative;
+	margin: 4px 1% 4px 1%;
+	line-height: 50px;
+	list-style: none;
+	background-color: #FAFAFA;
+	text-align: center;
+	outline: 1px solid #CCC;
+	font-weight: bold;
+	cursor: move;
+}
+
+.col_1 { width: 23%; }
+
+.col_2 { width: 48%; }
+
+.col_3 { width: 73%; }
+
+.col_4 { width: 98%; }
+
+.dragme { width: 98%; }
 
 
 
+/* -------------------------------------
+----- SECTIONS -------------------------
+------------------------------------- */
 
-.dd { position: relative; display: block; margin: 0; padding: 0; max-width: 600px; list-style: none; font-size: 13px; line-height: 20px; }
+.dd { position: relative; display: block; margin: 0; padding: 0; list-style: none; font-size: 13px; line-height: 20px; }
 
 .dd-list { display: block; position: relative; margin: 0; padding: 0; list-style: none; }
 .dd-list .dd-list { padding-left: 30px; }

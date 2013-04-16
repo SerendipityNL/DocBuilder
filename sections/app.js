@@ -29,7 +29,12 @@ app.configure(function() {
 
 // Todo index page (homepage)
 app.get('/', routes.index);
-app.get('/items.json', routes.returnJSON);
+
+app.get('/blocks', routes.blocks);
+app.get('/blocks.json', routes.getBlocks);
+
+app.get('/sections', routes.sections);
+app.get('/sections.json', routes.getSections);
 
 // Let the app listen op port 1337
 app.listen(1337);
