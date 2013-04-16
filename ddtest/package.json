@@ -1,0 +1,16 @@
+{
+  "name": "form",
+  "version": "0.0.1",
+  "description": "Form for Sue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Douwe",
+  "license": "BSD",
+  "dependencies": {
+		"express": "3.x",
+		"jade": "*"
+  }
+}
