@@ -3,9 +3,9 @@ extends layout
 block content
 	h1 Blocks
 
-	div.blocks_left
+	div.canvas
 		h2 Canvas
-		ul.blocks_canvas.connectedSortable
+		ul.connectedSortable
 			li.col_2 Block #1
 			li.col_2 Block #2
 			li.col_1 Block #3
@@ -16,15 +16,19 @@ block content
 			li.col_1 Block #8
 			li.col_1 Block #9
 
-	div.blocks_right
+	div.elements
 		h2 Drag me
-		ul.blocks_avail.connectedSortable
-			li.col_2 Block #1
-			li.col_2 Block #2
+		ul.connectedSortable
+			li.col_2 Element #1
+			li.col_2 Element #2
 
 	script(type='text/javascript')
 		$(function() {
-			$('.blocks_canvas, .blocks_avail').sortable({
-				connectWith: 'ul'
+			$('.canvas > ul').sortable({
+				helper:"clone"
+			}).disableSelection();
+
+			$('.elements > ul').sortable({
+				connectWith: '.canvas > ul'
 			}).disableSelection();
 		});

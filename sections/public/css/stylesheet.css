@@ -135,19 +135,19 @@ div#footer {
 ----- Block ----------------------------
 ------------------------------------- */
 
-div.blocks_left {
+div.canvas {
 	float: left;
 	display: inline;
 	width: 560px;
 }
 
-div.blocks_right {
+div.elements {
 	float: right;
 	display: inline;
 	width: 180px;
 }
 
-ul.blocks {
+ul {
 	overflow: hidden;
 }
 
@@ -168,18 +168,18 @@ ul.blocks {
 	cursor: move;
 }
 
-ul.blocks_canvas .col_1 { width: 23%; }
+.canvas .col_1 { width: 23%; }
 
-ul.blocks_canvas .col_2 { width: 48%; }
+.canvas .col_2 { width: 48%; }
 
-ul.blocks_canvas .col_3 { width: 73%; }
+.canvas .col_3 { width: 73%; }
 
-ul.blocks_canvas .col_4 { width: 98%; }
+.canvas .col_4 { width: 98%; }
 
-ul.blocks_avail .col_1, 
-ul.blocks_avail .col_2,
-ul.blocks_avail .col_3,
-ul.blocks_avail .col_4 {
+.elements .col_1, 
+.elements .col_2,
+.elements .col_3,
+.elements .col_4 {
 	width: 98%;
 }
 
