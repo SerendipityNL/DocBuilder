@@ -131,6 +131,7 @@ div#footer {
 }
 
 
+
 /* -------------------------------------
 ----- Block ----------------------------
 ------------------------------------- */
@@ -186,7 +187,6 @@ ul {
 
 
 
-
 /* -------------------------------------
 ----- SECTIONS -------------------------
 ------------------------------------- */
@@ -201,7 +201,7 @@ ul {
 .dd-empty,
 .dd-placeholder { display: block; position: relative; margin: 0; padding: 0; min-height: 20px; font-size: 13px; line-height: 20px; }
 
-.dd-handle { display: block; height: 30px; margin: 5px 0; padding: 5px 10px; color: #333; text-decoration: none; font-weight: bold; border: 1px solid #ccc;
+.dd-handle { display: block; height: 30px; margin: 0 0 5px 0; padding: 5px 10px; color: #333; text-decoration: none; font-weight: bold; border: 1px solid #ccc;
     background: #fafafa;
     box-sizing: border-box; -moz-box-sizing: border-box;
 }

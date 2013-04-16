@@ -1,5 +1,8 @@
 extends layout
 
+block head
+	script(type='text/javascript', src='/js/blocks.js')
+
 block content
 	h1 Blocks
 
@@ -21,14 +24,3 @@ block content
 		ul.connectedSortable
 			li.col_2 Element #1
 			li.col_2 Element #2
-
-	script(type='text/javascript')
-		$(function() {
-			$('.canvas > ul').sortable({
-				helper:"clone"
-			}).disableSelection();
-
-			$('.elements > ul').sortable({
-				connectWith: '.canvas > ul'
-			}).disableSelection();
-		});
