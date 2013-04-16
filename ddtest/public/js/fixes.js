@@ -1,39 +1,32 @@
 $(function(){
-
-resort();
-	/*$(".sortableContent").sortable({
-		placeholder:	'sortPlaceholder',
-		start:			function(event, ui) {
-			$('.ui-sortable-placeholder').width(ui.item.width());
-		},
-	}).disableSelection();
-	
-	$(".sortableSidebar").sortable({
-		placeholder:	'sortPlaceholder',
-		helper:			'clone',
-		connectWith:	'.sortableLists'
-	}).disableSelection();*/
+	startSortable();
+	BlockListener();
 });
 
-function resort(){
-	$("#sortable1, #sortable2").sortable({
-		helper:					'clone',
-		appendTo:				'#sortable1',
+function startSortable(){
+	$("#sortable1").sortable({
 		items:					' > div',
-		forcePlaceholderSize: 	true,
 		cursorAt:				{
 			left: 	5,
 			top: 	5
 		},
+		delay:					300,
 		placeholder:			'sortPlaceholder',
 		start:					function(event, ui) {
-			ui.item.appendTo('#sortable1');
-			console.log(ui);
-			//$("#sortable1, #sortable2").sortable('refresh');
 			$('.sortPlaceholder').width(ui.item.width());
 			console.log('start');
 		},
-		connectWith:	".connectedSortable"
 	}).disableSelection().sortable('refresh');	
-	$(".connectSortable").sortable('refresh');
+
+}
+
+function restartSortable() {
+	$("#sortable1").sortable('refresh');
+}
+
+function BlockListener() {
+	$("#sortable1 div").on('click', function(e) {
+		$(this).toggleClass('emptyBlock filledBlock');
+		console.log('click');
+	});
 }

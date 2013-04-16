@@ -6,20 +6,23 @@ body{
 .border {
 	outline: 1px solid #000;
 }
-.connectedSortable{
-	margin: 0;
-	padding: 0;
-}
-.connectedSortable div{
-	position: relative;
+#sortable1 div {
 	padding: 1px;
 	margin: 10px;
-	display: inline;
+	display: block;
 	float: left;
+	position: relative;
 	height: 90px;
 	text-align: center;
 	width: 170px;
 	outline: 1px solid black;
+}
+.emptyBlock{
+	outline: 2px dashed #AAA !important;
+}
+.emptyBlock:hover {
+	outline: 2px dashed #34c3ff !important;
+	background: #2ba2d3;
 }
 .sortPlaceholder{
 	background: #2ba2d3 !important;
