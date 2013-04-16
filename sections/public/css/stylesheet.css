@@ -135,13 +135,13 @@ div#footer {
 ----- Block ----------------------------
 ------------------------------------- */
 
-div.blocks-left {
+div.blocks_left {
 	float: left;
 	display: inline;
 	width: 560px;
 }
 
-div.blocks-right {
+div.blocks_right {
 	float: right;
 	display: inline;
 	width: 180px;
@@ -154,13 +154,12 @@ ul.blocks {
 .col_1,
 .col_2,
 .col_3,
-.col_4,
-.dragme {
+.col_4 {
 	display: inline-block;
 	float: left;
 	position: relative;
 	margin: 4px 1% 4px 1%;
-	line-height: 50px;
+	line-height: 100px;
 	list-style: none;
 	background-color: #FAFAFA;
 	text-align: center;
@@ -169,15 +168,22 @@ ul.blocks {
 	cursor: move;
 }
 
-.col_1 { width: 23%; }
+ul.blocks_canvas .col_1 { width: 23%; }
 
-.col_2 { width: 48%; }
+ul.blocks_canvas .col_2 { width: 48%; }
 
-.col_3 { width: 73%; }
+ul.blocks_canvas .col_3 { width: 73%; }
 
-.col_4 { width: 98%; }
+ul.blocks_canvas .col_4 { width: 98%; }
 
-.dragme { width: 98%; }
+ul.blocks_avail .col_1, 
+ul.blocks_avail .col_2,
+ul.blocks_avail .col_3,
+ul.blocks_avail .col_4 {
+	width: 98%;
+}
+
+
 
 
 
