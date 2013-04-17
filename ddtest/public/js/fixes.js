@@ -58,12 +58,18 @@ function startSortable(){
 			$('.sortPlaceholder').width(ui.item.width()).height(ui.item.height());
 		},
 		change:					function(e, ui) {
-			if (ui.item.position().top == $('.sortPlaceholder').prev().position().top){
-				// Items are the same
-			}
-			else {
+			if ($('.sortPlaceholder').prev().length > 0){
+				if (ui.item.position().top == $('.sortPlaceholder').prev().position().top){
+					// Items are the same
+				}
+				else {
+					placeholderResize(e, ui);
+				}
+			} else {
 				placeholderResize(e, ui);
 			}
+
+			
 		}
 	}).disableSelection().sortable('refresh');	
 
@@ -89,6 +95,8 @@ function placeholderResize(e, ui){
 				case 4:
 					width = 710;
 					break;
+				default:
+					width = $('.sortPlaceholder').width(ui.item.width());
 				
 			}
 		}
@@ -162,10 +170,12 @@ function removeNextEmpty(el) {
 $.fn.getPreviousBlocks = function(){
 	var previousBlocks = 0;
 	var previousTotalSize = 0;
-	var blockOffset = $(this).prev().position().top;
+	var nextBlocks = 0;
+	var nextTotalSize = 0;
 	var placeholderOffset = $(this).position().top;
 	
 	if ($(this).prev().length > 0) {
+		var blockOffset = $(this).prev().position().top;
 		
 		if (blockOffset == $(this).prev().position().top) {
 			previousBlocks = 1;
