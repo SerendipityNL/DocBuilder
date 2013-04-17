@@ -6,16 +6,20 @@ $(function(){
 
 function addBlocksButtons() {
 	$('#sidebar button').on('click', function(e) {
-	
-		if (typeof(parseInt($('#addBlocksNumber').val())) == 'number'){
+		if ($(this).hasClass('addBlocksBefore')) {
+			var pos = 'before';
+		}
+		else if ($(this).hasClass('addBlocksAfter')) {
+			var pos = 'after';
+		}
+		
+		if ($('#addBlocksNumber').val() == '') {
+			var blocks = 1;
+			addBlocks(pos, blocks)
+		}
+		else if (typeof(parseInt($('#addBlocksNumber').val())) == 'number'){
 			var blocks = $('#addBlocksNumber').val()
-			
-			if ($(this).hasClass('addBlocksBefore')) {
-				addBlocks('before', blocks);
-			}
-			else if ($(this).hasClass('addBlocksAfter')) {
-				addBlocks('after', blocks);
-			}
+			addBlocks(pos, blocks)
 		}
 		else {
 			alert('Is geen cijfer, mongool!!!');
