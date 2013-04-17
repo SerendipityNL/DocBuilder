@@ -1,10 +1,47 @@
 $(function(){
 	startSortable();
-	BlockListener();
+	blockListener();
+	addBlocksButtons()
 });
 
+function addBlocksButtons() {
+	$('#sidebar button').on('click', function(e) {
+	
+		if (typeof(parseInt($('#addBlocksNumber').val())) == 'number'){
+			var blocks = $('#addBlocksNumber').val()
+			
+			if ($(this).hasClass('addBlocksBefore')) {
+				addBlocks('before', blocks);
+			}
+			else if ($(this).hasClass('addBlocksAfter')) {
+				addBlocks('after', blocks);
+			}
+		}
+		else {
+			alert('Is geen cijfer, mongool!!!');
+		}
+		
+	});
+}
+
+function addBlocks(pos, blocks){
+	var htmlToInsert = '';
+	
+	for (i = 0; i < blocks; i++){
+		htmlToInsert += '<div class="col_1 emptyBlock"><span class="addBlock">+</span><span class="deleteBlock">−</span></div>';
+	}
+	if (pos === 'before') {
+		$('#sortable1').prepend(htmlToInsert);
+	}
+	else if (pos === 'after'){
+		$('#sortable1').append(htmlToInsert);
+	}
+	blockListener();
+	restartSortable();
+}
+
 function startSortable(){
-	$("#sortable1").sortable({
+	$('#sortable1').sortable({
 		items:					' > div',
 		cursorAt:				{
 			left: 	5,
@@ -14,22 +51,28 @@ function startSortable(){
 		placeholder:			'sortPlaceholder',
 		start:					function(event, ui) {
 			$('.sortPlaceholder').width(ui.item.width()).height(ui.item.height());
-			console.log('start');
 		},
 	}).disableSelection().sortable('refresh');	
 
 }
 
 function restartSortable() {
-	$("#sortable1").sortable('refresh');
+	$('#sortable1').sortable('refresh');
 }
 
-function BlockListener() {
-	$("#sortable1 div").on('click', function(e) {
-		if ($(this).hasClass('emptyBlock')) {
-			changeToFilled($(this));
+function blockListener() {
+	$('#sortable1 > div > span').on('click', function(e) {
+		e.stopPropagation();
+		if ($(this).hasClass('addBlock')) {
+			changeToFilled($(this).parent());
 		}
-		else if ($(this).hasClass('filledBlock')) {
+		else if ($(this).hasClass('deleteBlock')) {
+			removeBlock($(this).parent());
+		}
+	});
+	
+	$('#sortable1 div').on('click', function(e) {
+		if ($(this).hasClass('filledBlock')) {
 			changeSize($(this));
 		}
 	});
@@ -37,7 +80,11 @@ function BlockListener() {
 
 function changeToFilled(el) {
 	el.toggleClass('emptyBlock filledBlock');
-	el.text('changed to filled');
+	el.html('<p>changed to filled<p>');
+}
+
+function removeBlock(el) {
+	el.remove();
 }
 
 function changeSize(el) {

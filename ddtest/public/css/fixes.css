@@ -7,8 +7,7 @@ body{
 	outline: 1px solid #000;
 }
 #sortable1 div {
-	padding: 1px;
-	margin: 10px 10px 10px 0;
+	margin: 0 10px 10px 0;
 	display: block;
 	float: left;
 	position: relative;
@@ -19,13 +18,13 @@ body{
 	width: 170px;
 }
 .col_2 {
-	width: 352px;
+	width: 350px;
 }
 .col_3 {
-	width: 534px;
+	width: 530px;
 }
 .col_4 {
-	width: 716px;
+	width: 710px;
 }
 .filledBlock {
 	outline: 2px solid #EEE;
@@ -38,10 +37,22 @@ body{
 	font-size: 45px;
 	color: #BBB;
 }
-.emptyBlock:hover {
-	outline: 2px solid #34c3ff !important;
-	background: #2ba2d3;
-	color: #1f7aa1;
+.emptyBlock span {
+	display: block;
+	height: 100%;
+	width: 50%;
+	float: left;
+	text-align: center;
+}
+.emptyBlock .addBlock:hover {
+	outline: 2px solid #33c5ff !important;
+	background: #299ecc;
+	color: #1a6380;
+}
+.emptyBlock .deleteBlock:hover {
+	outline: 2px solid #ff3333 !important;
+	background: #cc2929;
+	color: #801a1a;
 }
 .sortPlaceholder{
 	background: #2ba2d3 !important;
