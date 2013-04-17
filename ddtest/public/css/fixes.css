@@ -8,21 +8,36 @@ body{
 }
 #sortable1 div {
 	padding: 1px;
-	margin: 10px;
+	margin: 10px 10px 10px 0;
 	display: block;
 	float: left;
 	position: relative;
 	height: 90px;
 	text-align: center;
-	width: 170px;
 	outline: 1px solid black;
+}
+.col_1 {
+	width: 170px;
+}
+.col_2 {
+	width: 352px;
+}
+.col_3 {
+	width: 534px;
+}
+.col_4 {
+	width: 716px;
 }
 .emptyBlock{
 	outline: 2px dashed #AAA !important;
+	line-height: 90px;
+	font-size: 45px;
+	color: #BBB;
 }
 .emptyBlock:hover {
-	outline: 2px dashed #34c3ff !important;
+	outline: 2px solid #34c3ff !important;
 	background: #2ba2d3;
+	color: #1f7aa1;
 }
 .sortPlaceholder{
 	background: #2ba2d3 !important;
