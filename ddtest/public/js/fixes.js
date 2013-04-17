@@ -19,6 +19,7 @@ function addBlocksButtons() {
 		}
 		else if (typeof(parseInt($('#addBlocksNumber').val())) == 'number'){
 			var blocks = $('#addBlocksNumber').val()
+			$('#addBlocksNumber').val('');
 			addBlocks(pos, blocks)
 		}
 		else {
