@@ -11,7 +11,10 @@ html
 		script(type="text/javascript", src="/js/fixes.js")
 		block head
 	body
-		div.container
+		div.navbar.navbar-inverse.navbar-fixed-top
+			div.navbar-inner
+				a.brand(href="/") Reset
+		div.container.well
 			.row
 				include content
 				include sidebar
