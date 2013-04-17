@@ -14,7 +14,6 @@ body{
 	position: relative;
 	height: 90px;
 	text-align: center;
-	outline: 1px solid black;
 }
 .col_1 {
 	width: 170px;
@@ -27,6 +26,11 @@ body{
 }
 .col_4 {
 	width: 716px;
+}
+.filledBlock {
+	outline: 2px solid #EEE;
+	background: #DDD;
+	line-height: 90px;
 }
 .emptyBlock{
 	outline: 2px dashed #AAA !important;

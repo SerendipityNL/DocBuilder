@@ -13,7 +13,7 @@ function startSortable(){
 		delay:					300,
 		placeholder:			'sortPlaceholder',
 		start:					function(event, ui) {
-			$('.sortPlaceholder').width(ui.item.width());
+			$('.sortPlaceholder').width(ui.item.width()).height(ui.item.height());
 			console.log('start');
 		},
 	}).disableSelection().sortable('refresh');	
@@ -41,6 +41,7 @@ function changeToFilled(el) {
 }
 
 function changeSize(el) {
+	removeNextEmpty(el);
 	if (el.hasClass('col_1')) {
 		el.removeClass('col_1');
 		el.addClass('col_2');
@@ -57,7 +58,6 @@ function changeSize(el) {
 		el.removeClass('col_4');
 		el.addClass('col_1');
 	}
-	removeNextEmpty(el);
 }
 
 function removeNextEmpty(el) {
