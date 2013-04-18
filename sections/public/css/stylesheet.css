@@ -110,7 +110,7 @@ input::-moz-focus-inner {
 }
 
 div#container {
-	width: 800px;
+	width: 978px;
 	margin: 20px auto;
 	background: transparent url('../img/containerbg.png') repeat left top;
 	-webkit-border-radius: 8px;
@@ -136,16 +136,27 @@ div#footer {
 ----- Block ----------------------------
 ------------------------------------- */
 
+div.sections {
+	float: left;
+	display: inline-block;
+	width: 20%;
+}
+
 div.canvas {
 	float: left;
-	display: inline;
-	width: 560px;
+	display: inline-block;
+	width: 460px;
+	width: 60%;
 }
 
 div.elements {
 	float: right;
-	display: inline;
-	width: 180px;
+	display: inline-block;
+	width: 20%;
+}
+
+div.content {
+	padding: 10px;
 }
 
 ul {
@@ -160,14 +171,19 @@ ul {
 	display: inline-block;
 	float: left;
 	position: relative;
-	margin: 4px 1% 4px 1%;
-	line-height: 100px;
+	margin: 1px 1% 5px 1%;
 	list-style: none;
 	background-color: #FAFAFA;
-	text-align: center;
 	outline: 1px solid #CCC;
-	font-weight: bold;
-	cursor: move;
+	min-height: 50px;
+}
+
+.col_1 > p,
+.col_2 > p,
+.col_3 > p,
+.col_4 > p {
+	padding: 5px;
+	margin: 0;
 }
 
 .canvas .col_1 { width: 23%; }
@@ -189,6 +205,31 @@ ul {
 	background-color: #F2F2F2;
 }
 
+.sortable > li:hover .resize,
+.sortable > li:hover .move {
+	display: block;
+}
+
+.resize, .move {
+	position: absolute;
+	border-bottom: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	height: 32px;
+	width: 32px;
+	display: none;
+	cursor: pointer;
+	top: 0;
+}
+
+.move {
+	left: 32px;
+	background: #FAFAFA url('../img/move_icon32.png') no-repeat left top;
+}
+
+.resize {
+	left: 0;
+	background: #FAFAFA url('../img/resize_icon32.png') no-repeat left top;
+}
 
 
 
@@ -199,14 +240,14 @@ ul {
 .dd { position: relative; display: block; margin: 0; padding: 0; list-style: none; font-size: 13px; line-height: 20px; }
 
 .dd-list { display: block; position: relative; margin: 0; padding: 0; list-style: none; }
-.dd-list .dd-list { padding-left: 30px; }
+.dd-list .dd-list { padding-left: 20px; }
 .dd-collapsed .dd-list { display: none; }
 
 .dd-item,
 .dd-empty,
 .dd-placeholder { display: block; position: relative; margin: 0; padding: 0; min-height: 20px; font-size: 13px; line-height: 20px; }
 
-.dd-handle { display: block; height: 30px; margin: 0 0 5px 0; padding: 5px 10px; color: #333; text-decoration: none; font-weight: bold; border: 1px solid #ccc;
+.dd-handle { display: block; height: 30px; margin: 0 0 5px 0; padding: 5px 10px; color: #333; text-decoration: none; border: 1px solid #ccc;
     background: #fafafa;
     box-sizing: border-box; -moz-box-sizing: border-box;
 }

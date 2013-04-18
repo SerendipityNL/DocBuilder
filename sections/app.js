@@ -36,6 +36,8 @@ app.get('/blocks.json', routes.getBlocks);
 app.get('/sections', routes.sections);
 app.get('/sections.json', routes.getSections);
 
+app.get('/combined', routes.combined);
+
 // Let the app listen op port 1337
 app.listen(1337);
 

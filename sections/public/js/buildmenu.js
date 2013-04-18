@@ -20,11 +20,10 @@ function buildMenu(parent, data) {
 }
 
 $(document).ready(function() {
-	$('li').remove();
 	$.getJSON('sections.json', function(data) {
 		var menu = buildMenu(0, data);
-		$('.sections').append(menu);
-		$('.sections').nestable({
+		$('.dd-sections').append(menu);
+		$('.dd-sections').nestable({
 			listNodeName: 'ul',
 			maxDepth: 6
 		});
