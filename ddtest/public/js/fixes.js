@@ -87,7 +87,6 @@ function placeholderResize(e, ui){
 					switch (restSize) {
 						
 						case 1:
-						default:
 							width = '170px';
 							break;
 						case 2:
@@ -200,7 +199,7 @@ $.fn.getPreviousBlocks = function(callback){
 							if ($(this).prev().prev().prev().prev().length > 0) {
 			
 								if (blockOffset == $(this).prev().prev().prev().prev().position().top) {
-									previousBlocks = 4
+									previousBlocks = 4;
 									previousTotalSize += parseInt($(this).prev().prev().prev().prev().attr('data-colspan'));
 								}
 							}
@@ -210,7 +209,7 @@ $.fn.getPreviousBlocks = function(callback){
 			}
 		}
 		else {
-			previousBlocks = 0
+			previousBlocks = 0;
 			previousTotalSize = 0;
 		}
 	} else {
@@ -238,7 +237,7 @@ $.fn.getPreviousBlocks = function(callback){
 							if ($(this).next().next().next().next().length > 0) {
 				
 								if (placeholderOffset == $(this).next().next().next().next().position().top) {
-									nextBlocks = 4
+									nextBlocks = 4;
 									nextTotalSize += parseInt($(this).next().next().next().next().attr('data-colspan'));
 								}
 							}
@@ -248,7 +247,7 @@ $.fn.getPreviousBlocks = function(callback){
 			}
 		}
 		else {
-			nextBlocks = 0
+			nextBlocks = 0;
 			nextTotalSize = 0;
 		}
 	}
