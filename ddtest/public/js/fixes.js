@@ -1,7 +1,7 @@
 $(function(){
 	startSortable();
 	blockListener();
-	addBlocksButtons()
+	addBlocksButtons();
 });
 
 function addBlocksButtons() {
@@ -76,35 +76,36 @@ function startSortable(){
 }
 
 function placeholderResize(e, ui){
-	var width = 0;
-	var data = $('.sortPlaceholder').getPreviousBlocks();
-	if (data.previousTotalSize < 4 ){
-		if (data.previousTotalSize < ui.item.attr('data-colspan')){	
-			var restSize = 4 - data.previousTotalSize;
-			switch (restSize) {
-				
-				case 1:
-					width = 170;
-					break;
-				case 2:
-					width = 350;
-					break;
-				case 3:
-					width = 530;
-					break;
-				case 4:
-					width = 710;
-					break;
-				default:
-					width = $('.sortPlaceholder').width(ui.item.width());
+
+	var width = ui.item.width();
+	$('.sortPlaceholder').getPreviousBlocks(function (first, data) {
+		if (first == false) {
+			if (data.previousTotalSize < 4 ){
+				if (data.previousTotalSize < parseInt(ui.item.attr('data-colspan'))){	
+					var restSize = 4 - data.previousTotalSize;
+					console.log('hiero!');
+					switch (restSize) {
+						
+						case 1:
+						default:
+							width = '170px';
+							break;
+						case 2:
+							width = '350px';
+							break;
+						case 3:
+							width = '530px';
+							break;
+						case 4:
+							width = '710px';
+							break;
+					}
+				}
 				
 			}
 		}
-		else {
-			width = $('.sortPlaceholder').width(ui.item.width());
-		}
-		$('.sortPlaceholder').width(width+'px');
-	}
+		$('.sortPlaceholder').width(width);
+	});
 }
 
 function restartSortable() {
@@ -123,6 +124,8 @@ function blockListener() {
 			removeBlock($(this).parent());
 		}
 	});
+	
+	$('#sortable1 div').unbind('click');
 	
 	$('#sortable1 div').on('click', function(e) {
 		if ($(this).hasClass('filledBlock')) {
@@ -167,12 +170,13 @@ function removeNextEmpty(el) {
 	}
 }
 
-$.fn.getPreviousBlocks = function(){
+$.fn.getPreviousBlocks = function(callback){
 	var previousBlocks = 0;
 	var previousTotalSize = 0;
 	var nextBlocks = 0;
 	var nextTotalSize = 0;
 	var placeholderOffset = $(this).position().top;
+	var first = false;
 	
 	if ($(this).prev().length > 0) {
 		var blockOffset = $(this).prev().position().top;
@@ -192,7 +196,7 @@ $.fn.getPreviousBlocks = function(){
 						if (blockOffset == $(this).prev().prev().prev().position().top) {
 							previousBlocks = 3;
 							previousTotalSize += parseInt($(this).prev().prev().prev().attr('data-colspan'));
-			
+							
 							if ($(this).prev().prev().prev().prev().length > 0) {
 			
 								if (blockOffset == $(this).prev().prev().prev().prev().position().top) {
@@ -209,6 +213,8 @@ $.fn.getPreviousBlocks = function(){
 			previousBlocks = 0
 			previousTotalSize = 0;
 		}
+	} else {
+		first = true;
 	}
 	
 	if ($(this).next().length > 0) {
@@ -253,5 +259,5 @@ $.fn.getPreviousBlocks = function(){
 		'nextBlocks' : nextBlocks,
 		'nextTotalSize' : nextTotalSize,
 	};
-	return data
+	callback(first, data)
 }
