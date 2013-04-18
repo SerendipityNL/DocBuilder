@@ -2,7 +2,19 @@ $(function(){
 	startSortable();
 	blockListener();
 	addBlocksButtons();
+	editListener();
 });
+var editListenLink = function(e) {	
+	e.stopPropagation();
+	createEditor($(this));
+	$('#js-save').on('click.saveText', saveText);
+};
+
+function editListener() {
+	// when edit event is clicked show editor and replace the p with textarea
+	$('.actions .edit').unbind('click', editListenLink);
+	$('.actions .edit').on('click', editListenLink);
+}
 
 function addBlocksButtons() {
 	$('#sidebar button').on('click', function(e) {
@@ -68,11 +80,8 @@ function startSortable(){
 			} else {
 				placeholderResize(e, ui);
 			}
-
-			
 		}
-	}).disableSelection().sortable('refresh');	
-
+	}).disableSelection().sortable('refresh');
 }
 
 function placeholderResize(e, ui){
@@ -81,9 +90,8 @@ function placeholderResize(e, ui){
 	$('.sortPlaceholder').getPreviousBlocks(function (first, data) {
 		if (first == false) {
 			if (data.previousTotalSize < 4 ){
-				if (data.previousTotalSize < parseInt(ui.item.attr('data-colspan'))){	
-					var restSize = 4 - data.previousTotalSize;
-					console.log('hiero!');
+				var restSize = 4 - data.previousTotalSize;
+				if (restSize < parseInt(ui.item.attr('data-colspan'))){	
 					switch (restSize) {
 						
 						case 1:
@@ -135,7 +143,8 @@ function blockListener() {
 
 function changeToFilled(el) {
 	el.toggleClass('emptyBlock filledBlock');
-	el.html('<p>changed to filled<p>').attr('data-colspan', '1');
+	el.html('<ul class="actions"><li><a href="#" class="edit">Edit</a></li></ul><p>changed to filled<p>').attr('data-colspan', '1');
+	editListener();
 }
 
 function removeBlock(el) {

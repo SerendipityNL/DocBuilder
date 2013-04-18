@@ -32,7 +32,6 @@ body{
 .filledBlock {
 	outline: 2px solid #EEE;
 	background: #DDD;
-	line-height: 90px;
 }
 .emptyBlock{
 	outline: 2px dashed #AAA !important;
@@ -40,24 +39,48 @@ body{
 	font-size: 45px;
 	color: #BBB;
 }
-.emptyBlock span {
-	display: block;
-	height: 100%;
-	width: 50%;
-	float: left;
-	text-align: center;
-}
-.emptyBlock .addBlock:hover {
-	outline: 2px solid #33c5ff !important;
-	background: #299ecc;
-	color: #1a6380;
-}
-.emptyBlock .deleteBlock:hover {
-	outline: 2px solid #ff3333 !important;
-	background: #cc2929;
-	color: #801a1a;
-}
+	.emptyBlock span {
+		display: block;
+		height: 100%;
+		width: 50%;
+		float: left;
+		text-align: center;
+	}
+	.emptyBlock .addBlock:hover {
+		outline: 2px solid #33c5ff !important;
+		background: #299ecc;
+		color: #1a6380;
+	}
+	.emptyBlock .deleteBlock:hover {
+		outline: 2px solid #ff3333 !important;
+		background: #cc2929;
+		color: #801a1a;
+	}
+
 .sortPlaceholder{
 	background: #2ba2d3 !important;
 	outline: 1px solid #34c3ff !important;
+}
+ul.actions {
+	position: absolute;
+	right: 0;
+	top: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: none;
+}
+	ul.actions li{
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		background: #CCC;
+	}
+		ul.actions a{
+			display: block;
+			padding: 5px 10px;
+			text-decoration: none;
+		}
+.filledBlock:hover .actions {
+	display: block;
 }
