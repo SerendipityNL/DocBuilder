@@ -1,9 +1,3 @@
-$(function(){
-	startSortable();
-	blockListener();
-	addBlocksButtons();
-	editListener();
-});
 var editListenLink = function(e) {	
 	e.stopPropagation();
 	createEditor($(this));
@@ -16,78 +10,147 @@ function editListener() {
 	$('.actions .edit').on('click', editListenLink);
 }
 
-function addBlocksButtons() {
-	$('#sidebar button').on('click', function(e) {
-		if ($(this).hasClass('addBlocksBefore')) {
-			var pos = 'before';
-		}
-		else if ($(this).hasClass('addBlocksAfter')) {
-			var pos = 'after';
-		}
-		
-		if ($('#addBlocksNumber').val() == '') {
-			var blocks = 1;
-			addBlocks(pos, blocks)
-		}
-		else if (typeof(parseInt($('#addBlocksNumber').val())) == 'number'){
-			var blocks = $('#addBlocksNumber').val()
-			$('#addBlocksNumber').val('');
-			addBlocks(pos, blocks)
-		}
-		else {
-			alert('Is geen cijfer, probeer het opnieuw!');
-		}
-		
-	});
-}
+(function( $ ) {
+	var methods = {
+		init: function ( that, options ) {
+			methods.el = that;
+			
+			methods.settings = $.extend( {
+				  sortable 		: {
+					  selector				: '#sortable1'
+					, items					: ' > div'
+					, delay					: 300
+					, placeholder			: 'col-placeholder'
+					, cursor				: {
+						  left 				: 5
+						, top				: 5
+					}
+				  }
+				, texteditor	: {
+					  selector				: '#textarea'
+					, test					: 'bla'
+				}
+				, test						: 'bla'
+			}, options);
+			
+			methods.startSortable();
+		},
+		startSortable: function() {
 
-function addBlocks(pos, blocks){
-	var htmlToInsert = '';
+			var sortVar = methods.settings.sortable;
+
+			$(sortVar.selector).sortable({
+				  items					: sortVar.items
+				, cursorAt				: {
+					  left					: sortVar.cursor.left
+					, top					: sortVar.cursor.top
+				}
+				, delay					: sortVar.delay
+				, placeholder			: sortVar.placeholder
+				, start					: function(e, ui) {
+					$(sortVar.placeholder).width(ui.item.width()).height(ui.item.height());
+				}
+				, change				: function(e, ui) {
+					if ($(sortVar.placeholder).prev().length > 0){
+						if (ui.item.position().top == $(sortVar.placeholder).prev().position().top){
+							// Items are the same
+						}
+						else {
+							methods.placeholderResize(e, ui);
+						}
+					} else {
+						methods.placeholderResize(e, ui);
+					}
+				}
+			}).disableSelection().sortable('refresh');
+		},
+		placeholderResize: function(e, ui){
+			var placeholderSelector = '.' + methods.settings.sortable.placeholder;
+			// This stuff must be rewritten under $.fn.getSurroundingBlocks, which needs to be renamed to resizePlaceholder
+			var width = ui.item.width();
+			$(placeholderSelector).getSurroundingBlocks( function (first, data) {
+				if ( (first == false) && (data.returnData.prevTotalSize < 4) ) {
+					var restSize = 4 - data.returnData.prevTotalSize;
+					if (restSize < parseInt(ui.item.attr('data-colspan'))){
+						switch (restSize) {
+							case 1:
+								width = '23%';
+								break;
+							case 2:
+								width = '48%';
+								break;
+							case 3:
+								width = '73%';
+								break;
+							case 4:
+								width = '98%';
+								break;
+						}
+					}
+				}
+				$(placeholderSelector).width(width);
+			});
+		}
+	};
 	
-	for (i = 0; i < blocks; i++){
-		htmlToInsert += '<div class="col_1 emptyBlock"><span class="addBlock">+</span><span class="deleteBlock">−</span></div>';
-	}
-	if (pos === 'before') {
-		$('#sortable1').prepend(htmlToInsert);
-	}
-	else if (pos === 'after'){
-		$('#sortable1').append(htmlToInsert);
-	}
-	blockListener();
-	restartSortable();
-}
-
-function startSortable(){
-	$('#sortable1').sortable({
-		items:					' > div',
-		cursorAt:				{
-			left: 	5,
-			top: 	5
-		},
-		delay:					300,
-		placeholder:			'sortPlaceholder',
-		start:					function(e, ui) {
-			$('.sortPlaceholder').width(ui.item.width()).height(ui.item.height());
-		},
-		change:					function(e, ui) {
-			if ($('.sortPlaceholder').prev().length > 0){
-				if (ui.item.position().top == $('.sortPlaceholder').prev().position().top){
-					// Items are the same
-				}
-				else {
-					placeholderResize(e, ui);
-				}
-			} else {
-				placeholderResize(e, ui);
+	$.fn.getPrev = function (data){
+		var prevBlockOffset = prevBlockOffset;
+		if ($(this).prev().length > 0) {
+			if ($(this).prev().position().top == data.usableData.prevBlockOffset) {
+				data.returnData.prevBlocks++;
+				data.returnData.prevTotalSize += parseInt($(this).prev().attr('data-colspan'));
+				$(this).prev().getPrev(data);
 			}
 		}
-	}).disableSelection().sortable('refresh');
-}
+	};
+	$.fn.getSurroundingBlocks = function(callback){
+		var data = {
+			  returnData : {
+				  prevBlocks 		: 0
+				, prevTotalSize		: 0
+				, nextBlocks 		: 0
+				, nextTotalSize 	: 0
+				, first 			: false
+			}
+			, usableData : {
+				  prevBlockOffset	: ''
+				, placeholderOffset : ''
+			}
+			
+		};
+		data.usableData.placeholderOffset = $(this).position().top;
+		var first = false;
+		
+		if ($(this).prev().length > 0) {
+			data.usableData.prevBlockOffset = $(this).prev().position().top;
+			$(this).getPrev(data);
+		}
+		else {
+			first = true;
+		}
+		
+		callback(first, data)
+	};
+	
+	$.fn.doctopus = function( method ) {
+		return this.each( function() {
+			if (methods[method]) {
+				return methods[methods].apply( this, Array.prototype.slice.call( arguments, 1) );
+			}
+			else if ( typeof method === 'object' || ! method ) {
+				return methods.init ( this, method );
+			}
+			else {
+				$.error( 'Method ' + method + ' does not exist on jQuery.doctopus' );
+			}
+		});
+	};
+})( jQuery );
 
 function placeholderResize(e, ui){
 
 	var width = ui.item.width();
-	$('.sortPlaceholder').getPreviousBlocks(function (first, data) {
+	$('.col-placeholder').getPreviousBlocks(function (first, data) {
 		if (first == false) {
 			if (data.previousTotalSize < 4 ){
 				var restSize = 4 - data.previousTotalSize;
@@ -119,12 +182,22 @@ function restartSortable() {
 	$('#sortable1').sortable('refresh');
 }
 
+function selectEmpty() {
+	$('#sortable1 > div').on('click.selectEmpty', function() {
+		if ($(this).hasClass('emptyBlock')) {
+				console.log('hiero');
+				$('.selectedEmptyBlock').removeClass('selectedEmptyBlock')
+				$(this).addClass('selectedEmptyBlock');
+		}
+	});
+}
+
 function blockListener() {
 	$('#sortable1 > div > span').on('click', function(e) {
 		
 		e.stopPropagation();
 		
-		if ($(this).hasClass('addBlock')) {
+		if ($(this).hasClass('emptyBlock')) {
 			changeToFilled($(this).parent());
 		}
 		else if ($(this).hasClass('deleteBlock')) {
@@ -178,94 +251,9 @@ function removeNextEmpty(el) {
 	}
 }
 
-$.fn.getPreviousBlocks = function(callback){
-	var previousBlocks = 0;
-	var previousTotalSize = 0;
-	var nextBlocks = 0;
-	var nextTotalSize = 0;
-	var placeholderOffset = $(this).position().top;
-	var first = false;
-	
-	if ($(this).prev().length > 0) {
-		var blockOffset = $(this).prev().position().top;
-		
-		if (blockOffset == $(this).prev().position().top) {
-			previousBlocks = 1;
-			previousTotalSize += parseInt($(this).prev().attr('data-colspan'));
-			
-			if ($(this).prev().prev().length > 0) {
-			
-				if (blockOffset == $(this).prev().prev().position().top) {
-					previousBlocks = 2;
-					previousTotalSize += parseInt($(this).prev().prev().attr('data-colspan'));
-			
-					if ($(this).prev().prev().prev().length > 0) {
-			
-						if (blockOffset == $(this).prev().prev().prev().position().top) {
-							previousBlocks = 3;
-							previousTotalSize += parseInt($(this).prev().prev().prev().attr('data-colspan'));
-							
-							if ($(this).prev().prev().prev().prev().length > 0) {
-			
-								if (blockOffset == $(this).prev().prev().prev().prev().position().top) {
-									previousBlocks = 4;
-									previousTotalSize += parseInt($(this).prev().prev().prev().prev().attr('data-colspan'));
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		else {
-			previousBlocks = 0;
-			previousTotalSize = 0;
-		}
-	} else {
-		first = true;
-	}
-	
-	if ($(this).next().length > 0) {
-		
-		if (placeholderOffset == $(this).next().position().top) {
-			nextBlocks = 1;
-			nextTotalSize += parseInt($(this).next().attr('data-colspan'));
-			
-			if ($(this).next().next().length > 0) {
-				
-				if (placeholderOffset == $(this).next().next().position().top) {
-					nextBlocks = 2;
-					nextTotalSize += parseInt($(this).next().next().attr('data-colspan'));
-				
-					if ($(this).next().next().next().length > 0) {
-				
-						if (placeholderOffset == $(this).next().next().next().position().top) {
-							nextBlocks = 3;
-							nextTotalSize += parseInt($(this).next().next().next().attr('data-colspan'));
-				
-							if ($(this).next().next().next().next().length > 0) {
-				
-								if (placeholderOffset == $(this).next().next().next().next().position().top) {
-									nextBlocks = 4;
-									nextTotalSize += parseInt($(this).next().next().next().next().attr('data-colspan'));
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		else {
-			nextBlocks = 0;
-			nextTotalSize = 0;
-		}
-	}
-	
-	var data = {
-		'previousBlocks' : previousBlocks,
-		'previousTotalSize': previousTotalSize,
-		'nextBlocks' : nextBlocks,
-		'nextTotalSize' : nextTotalSize,
-	};
-	callback(first, data)
-}
+$(function(){
+	blockListener();
+	editListener();
+	selectEmpty();
+	$(document).doctopus();
+});

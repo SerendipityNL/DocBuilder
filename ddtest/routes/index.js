@@ -1,3 +1,7 @@
 exports.index = function(req, res){
-	res.render('index.jade');
+	res.render('blocks.jade');
 };
+
+exports.print = function(req, res) {
+	res.render('print.jade')
+}

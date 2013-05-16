@@ -14,7 +14,7 @@ body{
 	display: block;
 	float: left;
 	position: relative;
-	height: 90px;
+/*	height: 90px;*/
 	text-align: center;
 }
 .col_1 {
@@ -34,11 +34,15 @@ body{
 	background: #DDD;
 }
 .emptyBlock{
-	outline: 2px dashed #AAA !important;
+	outline: 2px dashed #AAA;
 	line-height: 90px;
+	height: 90px;
 	font-size: 45px;
 	color: #BBB;
 }
+	.selectedEmptyBlock {
+		outline: 2px dashed #F00;
+	}
 	.emptyBlock span {
 		display: block;
 		height: 100%;
@@ -57,7 +61,7 @@ body{
 		color: #801a1a;
 	}
 
-.sortPlaceholder{
+.col-placeholder{
 	background: #2ba2d3 !important;
 	outline: 1px solid #34c3ff !important;
 }
