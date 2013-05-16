@@ -1,0 +1,203 @@
+/* ---------------------------------
+---- DEFAULT ELEMENTS
+--------------------------------- */
+
+* {
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+body {
+	background-color: #CCC;
+}
+
+body, input, textarea {
+	font: 13px Arial, sans-serif;
+}
+
+h1 {
+	font-size: 2em;
+	margin-bottom: 15px;
+}
+
+h2 {
+	font-size: 1.5em;
+	margin-bottom: 10px;
+}
+
+p {
+	margin-bottom: 10px;
+}
+
+/* ---------------------------------
+---- LAYOUT
+--------------------------------- */
+
+div#header {
+	background-color: #404040;
+	color: #CCC;
+	font-size: 2em;
+	line-height: 45px;
+}
+
+div#header-inner {
+	width: 978px;
+	margin: 0px auto;
+}
+
+div#header a {
+	padding: 0 10px;
+	color: #CCC;
+	text-decoration: none;
+}
+
+div#header a:hover,
+div#header a:active {
+	color: #FFF;
+}
+
+div#container {
+	width: 978px;
+	margin: 0 auto;
+	background-color: #FFF;
+	overflow: hidden;
+	border: 1px solid #B3B3B3;
+	border-top: none;
+}
+
+div#canvas {
+	width: 670px;
+	float: left;
+}
+
+div#canvas-inner {
+	padding: 20px 10px;
+	overflow: hidden;
+}
+
+div#sidebar {
+	float: left;
+	width: 308px;
+}
+
+div#sidebar-inner {
+	padding: 20px 10px;
+	overflow: hidden;
+}
+
+div#blocks {}
+
+/* ---------------------------------
+---- COLUMNS
+--------------------------------- */
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-placeholder {
+	display: inline;
+	float: left;
+	position: relative;
+	margin: 4px 1% 4px 1%;
+	min-height: 100px;
+	outline: 1px solid #CCC;
+	background-color: #F2F2F2;
+}
+
+.col-1 {
+	width: 23%;
+}
+
+.col-2 {
+	width: 48%;
+}
+
+.col-3 {
+	width: 73%;
+}
+
+.col-4 {
+	width: 98%;
+}
+
+.col-content {
+	margin: 0;
+	padding: 5px;
+	word-wrap: break-word;
+}
+
+.col-1:hover .col-actions,
+.col-2:hover .col-actions,
+.col-3:hover .col-actions,
+.col-4:hover .col-actions {
+	display: block;
+}
+
+ul.col-actions {
+	position: absolute;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: none;
+}
+
+ul.col-actions li {
+	display: inline-block;
+	border-right: 1px solid #CCC;	
+	background-color: #404040;
+}
+
+ul.col-actions li:last-child {
+	border-right: none;
+}
+
+ul.col-actions li a {
+	display: block;
+	line-height: 24px;
+	padding: 0 6px;
+	font-size: 0.9em;
+	text-decoration: none;
+}
+
+ul.col-actions li a:link,
+ul.col-actions li a:visited {
+	color: #CCC;
+}
+
+ul.col-actions li a:hover,
+ul.col-actions li a:active {
+	color: #FFF;
+}
+
+.col-text {
+	width: 250px;
+	height: 150px;
+}
+
+/* ---------------------------------
+---- FORM ELEMENTS
+--------------------------------- */
+
+form {
+	padding: 0;
+	margin: 0;
+}
+
+input, textarea, select {
+	border: 1px solid #B3B3B3;
+	background-color: #FFF;
+	padding: 5px;
+}
+
+input[type="submit"] {
+	border: 1px solid #B3B3B3;
+	background-color: #CCC;
+	padding: 5px 20px;
+}
+
+label {
+	display: inline-block;
+	width: 100px;
+}

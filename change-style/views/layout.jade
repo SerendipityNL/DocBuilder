@@ -1,0 +1,22 @@
+doctype 5
+html(ng-app)
+	head
+		title= pageTitle
+		link(rel="stylesheet", type="text/css", href="/css/stylesheet.css")
+		script(type="text/javascript", src="/js/jquery.min.js")
+		script(type="text/javascript", src="/js/functions.js")
+		block head
+	body
+		div#header 
+			div#header-inner
+				a(href='#') Doctopus - #{pageTitle}
+
+		div#container
+
+			div#canvas
+				div#canvas-inner
+					block content
+			
+			div#sidebar
+				div#sidebar-inner
+					block sidebar

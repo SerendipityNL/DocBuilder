@@ -1,0 +1,29 @@
+extend ../layout
+
+block head
+	script(src='/js/document.js')
+
+block content
+	h2 Edit document
+
+	div#blocks
+		for block in blocks
+			div(class='col-#{block.cols} block-#{block.type}')
+				p.col-content #{block.content}
+
+		div(style='clear:both')
+
+block sidebar
+	h2 Change styling
+	p
+		label Font-size:
+		select(name="font-size")
+			option(value="12") 10 pt
+			option(value="12") 11 pt
+			option(value="12") 12 pt
+			option(value="12") 13 pt
+			option(value="12") 14 pt
+			option(value="12") 15 pt
+	p
+		label Color:
+
