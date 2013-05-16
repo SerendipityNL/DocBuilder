@@ -31,6 +31,8 @@ app.configure(function() {
 // Page routes
 app.get('/', routes.index);
 
+app.get('/print', routes.print);
+
 // Let the app listen op port 1337
 app.listen(1337);
 
