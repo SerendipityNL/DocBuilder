@@ -1,0 +1,10 @@
+extend ../layout
+
+block content
+	h2 Dropzone
+	div#dropzone
+		form(class="dropzone" , enctype="multipart/form-data" , id="my_awesome_dropzone", action="/file-upload")
+
+	//- form(enctype="multipart/form-data", action="/file-upload", method="POST")
+	//- 	input(name="file", type="file")
+	//- 	input(type="submit", value="Upload File")

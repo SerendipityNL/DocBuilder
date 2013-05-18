@@ -1,0 +1,26 @@
+doctype 5
+html(ng-app)
+	head
+		title= pageTitle
+		link(rel="stylesheet", type="text/css", href="/css/bootstrap.min.css")
+		link(rel="stylesheet", type="text/css", href="/css/bootstrap-responsive.min.css")
+		link(rel="stylesheet", type="text/css", href="/css/stylesheet.css")
+		script(type="text/javascript", src="/js/jquery.min.js")
+		script(type="text/javascript", src="/js/jquery-ui-1.10.2.custom.min.js")
+		script(type="text/javascript", src="/js/dropzone.js")
+		script(type="text/javascript", src="/js/functions.js")
+		block head
+	body
+		div#header 
+			div#header-inner
+				a(href='#') Doctopus
+
+		div#container
+
+			div#canvas
+				div#canvas-inner
+					block content
+			
+			div#sidebar
+				div#sidebar-inner
+					block sidebar

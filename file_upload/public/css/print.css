@@ -1,0 +1,13 @@
+div {
+	display: none;
+	visibility: hidden;
+}
+
+#blocks {
+	display: block;
+	visibility: visible;
+}
+	#blocks > div {
+		display: block;
+		visibility: visible;
+	}
