@@ -1,12 +1,20 @@
 $(document).ready(function() {
-	$('.col-resize').on('click', function(e) {
-		e.preventDefault();
-		var parent = $(this).parents('div[class^=col-]');
-		var oldClass = parent.attr('class');
-		var newClass = 'col-' + $(this).attr('data-set-cols');
+	$('select').on('change', function() {
+		var name = $(this).attr('name');
+		var value = $(this).val();
 
-		if (oldClass != newClass) {
-			parent.switchClass(oldClass, newClass, 250);
-		}	
+		var setting = {};
+		setting[name] = value;		
+		console.log(setting);
+
+		$('#blocks p').css(name, value);
+
+		/*
+		$.ajax({
+			url: '/setstyle'
+		})
+		*/
+		
+		
 	});
 });

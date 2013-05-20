@@ -32,6 +32,10 @@ app.configure(function() {
 // Page routes
 app.get('/', doc.edit);
 
+app.post('/setstyle', function(req, res) {
+	
+});
+
 // Let the app listen op port 1337
 server.listen(1337);
 

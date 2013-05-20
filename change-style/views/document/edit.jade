@@ -1,8 +1,7 @@
 extend ../layout
 
 block head
-	script(src='/js/document.js')
-
+	
 block content
 	h2 Edit document
 
@@ -15,15 +14,36 @@ block content
 
 block sidebar
 	h2 Change styling
+	h3 Paragraph
 	p
-		label Font-size:
+		label Font size:
 		select(name="font-size")
-			option(value="12") 10 pt
-			option(value="12") 11 pt
-			option(value="12") 12 pt
-			option(value="12") 13 pt
-			option(value="12") 14 pt
-			option(value="12") 15 pt
+			option(value="11px") 11px
+			option(value="12px") 12px
+			option(value="13px") 13px
+			option(value="14px") 14px
+			option(value="15px") 15px
+			option(value="16px") 16px
 	p
 		label Color:
+		select(name="color")
+			option(value="#000000") Black
+			option(value="#FF6A00") Orange
+			option(value="#0026FF") Blue
+			option(value="#FF0000") Red
+
+	p
+		label Font family:
+		select(name="font-family")
+			option(value="arial") Arial
+			option(value="verdana") Verdana
+			option(value="consolas") Consolas
+			option(value="comic sans ms") Comic Sans MS
+
+	p
+		label Font weight:
+		select(name="font-weight")
+			option(value="normal") Normal
+			option(value="bold") Bold
+			
 
