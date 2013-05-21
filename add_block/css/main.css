@@ -114,7 +114,7 @@ div.emptyBlock{
 
 .plus_icon{
     display:        block;
-    background:     url('../img/plus_icon.png') no-repeat;
+    background:     url('../img/plus_icon.png') center no-repeat;
     width:          64px;
     height:         64px;
     width:          50%;
