@@ -16,6 +16,19 @@ $(document).ready(function() {
 		$('.js-editor-iframe').find("body").css("font-family", $(this).val());
 	});
 	
+
+
+
+	if(deletemode = true){
+		$('#recycle_bin').droppable({
+	      drop: function( event, ui ) {
+	      	//alert('dropped');
+	      	console.log($(ui.draggable).remove());
+	      }
+		});
+	}
+
+
 });
 
 function saveTextFunction() {
