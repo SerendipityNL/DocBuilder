@@ -6156,3 +6156,11 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+#recycle_bin{
+  width:200px;
+  background:#000;
+  padding:10px;
+  height:200px;
+  float:right;
+}
+
