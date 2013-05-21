@@ -2,7 +2,7 @@
 var express = require('express'),
 	app = express(),
 	server = require('http').createServer(app),
-	doc = require('./routes/document');
+	style = require('./routes/style.njs');
 
 // Configure the application
 app.configure(function() {
@@ -30,11 +30,9 @@ app.configure(function() {
 });
 
 // Page routes
-app.get('/', doc.edit);
-
-app.post('/setstyle', function(req, res) {
-	
-});
+app.get('/', style.edit);
+app.get('/getstyle', style.getstyle);
+app.post('/setstyle', style.setstyle);
 
 // Let the app listen op port 1337
 server.listen(1337);
