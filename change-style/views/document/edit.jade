@@ -1,13 +1,12 @@
 extend ../layout
 
+include ../mixins/form
+
 block head
 	
 block content
 	h2 Edit document
-
 	div#blocks
-		each value, key in styles
-			p #{key} : #{value}
 		for block in blocks
 			div(class='col-#{block.cols} block-#{block.type}')
 				p.col-content #{block.content}
@@ -17,37 +16,7 @@ block content
 block sidebar
 	h2 Change styling
 	h3 Paragraph
-	p
-		label Font size:
-		select(name="font_size")
-			option(value="11px") 11px
-			option(value="12px") 12px
-			option(value="13px") 13px
-			option(value="14px") 14px
-			option(value="15px") 15px
-			option(value="16px") 16px
-			option(value="24px") 24px
-	p
-		label Color:
-		select(name="color")
-			option(value="#000000") Black
-			option(value="#FF6A00") Orange
-			option(value="#0026FF") Blue
-			option(value="#FF0000") Red
-
-	p
-		label Font family:
-		select(name="font_family")
-			option(value="arial") Arial
-			option(value="comic sans ms") Comic Sans MS
-			option(value="monospace") Monospace
-			option(value="verdana") Verdana
-			option(value="ubuntu") Ubuntu
-
-	p
-		label Font weight:
-		select(name="font_weight")
-			option(value="normal") Normal
-			option(value="bold") Bold
-			
-
+	p: mixin text('Font size:', 'font_size', style.font_size)
+	p: mixin select('Color:', 'color', options.colors, style.color)
+	p: mixin select('Font family:', 'font_family', options.fonts, style.font_family)
+	p: mixin select('Font weight:', 'font_weight', options.weights, style.font_weight)

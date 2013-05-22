@@ -11,31 +11,60 @@ var blocks = [
 	{ "id": 10, "content": "Dit is een tekstveld #10", "cols": 3, "type": "text" }
 ];
 
-var styles = {
-	'font_size': '14px',
+var style = {
+	'font_size': '14',
 	'color': '#000000',
 	'font_family': 'arial',
 	'font_weight': 'normal'
 }
 
+var options = {
+	'font_sizes': {
+		'12': '12 px',
+		'13': '13 px',
+		'14': '14 px',
+		'15': '15 px',
+		'16': '16 px',
+		'20': '20 px',
+		'24': '24 px'
+	},
+	'colors': {
+		'#000000': 'Black',
+		'#FF6A00': 'Orange',
+		'#0026FF': 'Blue',
+		'#FF0000': 'Red'
+	},
+	'fonts': {
+		'arial': 'Arial',
+		'comic sans ms': 'Comic Sans MS',
+		'monospace': 'Monospace',
+		'verdana': 'Verdana',
+		'ubuntu': 'Ubuntu'
+	},
+	'weights': {
+		'normal': 'Normal',
+		'bold': 'Bold'
+	}
+}
+
 exports.edit = function(req, res) {
 	res.render('document/edit', {
 		'pageTitle': 'Document wijzigen',
-		'styles': styles,
+		'options': options,
+		'style': style,
 		'blocks': blocks
 	});
 };
 
 exports.setstyle = function (req, res) {
-	styles[req.body]
+	style[req.body]
 	var data = req.body;
-	//console.log(data);
 	for (var key in data) {
-		styles[key] = data[key];
+		style[key] = data[key];
 	}
 	res.send(data);
 }
 
 exports.getstyle = function (req, res) {
-	res.send(styles);
+	res.send(style);
 }
