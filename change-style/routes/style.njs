@@ -1,7 +1,7 @@
 var blocks = [
 	{ "id": 1, "content": "Dit is een tekstveld #1", "cols": 4, "type": "text" },
 	{ "id": 2, "content": "Dit is een tekstveld #2", "cols": 2, "type": "text" },
-	{ "id": 3, "content": "Dit is een tekstveld #3", "cols": 2, "type": "text" },
+	{ "id": 3, "content": ["List item #1", "List item #2", "List item #3"], "cols": 2, "type": "list" },
 	{ "id": 4, "content": "Dit is een tekstveld #4", "cols": 3, "type": "text" },
 	{ "id": 5, "content": "Dit is een tekstveld #5", "cols": 1, "type": "text" },
 	{ "id": 6, "content": "Dit is een tekstveld #6", "cols": 2, "type": "text" },
@@ -19,20 +19,12 @@ var style = {
 }
 
 var options = {
-	'font_sizes': {
-		'12': '12 px',
-		'13': '13 px',
-		'14': '14 px',
-		'15': '15 px',
-		'16': '16 px',
-		'20': '20 px',
-		'24': '24 px'
-	},
 	'colors': {
 		'#000000': 'Black',
 		'#FF6A00': 'Orange',
 		'#0026FF': 'Blue',
-		'#FF0000': 'Red'
+		'#FF0000': 'Red',
+		'#008000': 'Green'
 	},
 	'fonts': {
 		'arial': 'Arial',

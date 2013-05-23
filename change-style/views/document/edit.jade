@@ -9,14 +9,20 @@ block content
 	div#blocks
 		for block in blocks
 			div(class='col-#{block.cols} block-#{block.type}')
-				p.col-content #{block.content}
-
+				if block.type == 'text'
+					p.col-content #{block.content}
+				if block.type == 'list'
+					ul
+					for item in block.content
+						li= item
 		div(style='clear:both')
 
 block sidebar
 	h2 Change styling
 	h3 Paragraph
-	p: mixin text('Font size:', 'font_size', style.font_size)
+	p
+		mixin text_xs('Font size:', 'font_size', style.font_size) 
+		| px
 	p: mixin select('Color:', 'color', options.colors, style.color)
 	p: mixin select('Font family:', 'font_family', options.fonts, style.font_family)
 	p: mixin select('Font weight:', 'font_weight', options.weights, style.font_weight)
