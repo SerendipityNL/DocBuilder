@@ -1,0 +1,16 @@
+mixin text(label, name, value)
+	div.option-container
+		div.option-definition= label
+		div.option-definition 
+			input(type="text", name='#{name}', value='#{value}', size='5', id="#{name}")
+
+mixin select(label, name, options, selected)
+	div.option-container
+		div.option-definition= label
+		div.option-definition 
+			select(name="#{name}", id="#{name}")
+				each key, value in options
+					if value == selected
+						option(value="#{value}", selected="selected")= key
+					else
+						option(value="#{value}")= key

@@ -1,6 +1,48 @@
-extend layout
-block content
-	h1= pageTitle
-	ul
-		li: a(href='/test1') Angular test 1
-		li: a(href='/test2') Angular test 2
+include mixins/form
+doctype 5
+html(lang='en')
+	head
+		title= pageTitle
+		link(rel="stylesheet", type="text/css", href="/css/stylesheet.css")
+	body
+		div#header 
+			h1.header-title
+				img(src="img/layout/logo.png")
+				| DOCTOPUS
+		div#wrapper
+			div#workfield-container
+				div#workfield
+					div.block
+					div.block-optionpanel
+						div.option-btn.firstchoice.text-icn Text
+						div.option-btn.secondchoice.image-icn Image
+						div.option-btn.thirdchoice.list-icn List
+						div.option-btn.more.more-icn More
+							div.more-menu
+					div.block
+					div.block
+					div.block
+					div.block
+					div.block-selected
+						div.drag-handle
+						div.buis-panel
+							div.buis-btn.b B
+							div.buis-btn.u U
+							div.buis-btn.i I
+					div.block
+
+		div#sidebar-container
+			div#block-definition.text-icn
+				h2 Text Block
+			div#block-definition-bottomline
+			div#option-wrapper
+				div.option-container 
+					div.option-definition Block type
+					div.option-definition Text
+				mixin select('Font:','font', items, '')
+				mixin text('Font-color:','fontcolor','')
+				div.option-container
+		div#trashcan-container
+			div#trashcan
+				div#trashcan-explanation "Double click to activate"
+			div#trashcan-topline					
