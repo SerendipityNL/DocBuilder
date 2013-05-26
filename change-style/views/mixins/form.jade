@@ -1,0 +1,12 @@
+mixin text_xs(label, name, value)
+	label(for="#{name}")= label
+	input(type="text", name='#{name}', value='#{value}', size='4', id="#{name}")
+
+mixin select(label, name, options, selected)
+	label(for="#{name}")= label
+	select(name="#{name}", id="#{name}")
+		each key, value in options
+			if value == selected
+				option(value="#{value}", selected="selected")= key
+			else
+				option(value="#{value}")= key

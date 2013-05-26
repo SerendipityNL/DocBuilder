@@ -1,49 +1,28 @@
 extend ../layout
 
+include ../mixins/form
+
 block head
 	
 block content
 	h2 Edit document
-
 	div#blocks
 		for block in blocks
 			div(class='col-#{block.cols} block-#{block.type}')
-				p.col-content #{block.content}
-
+				if block.type == 'text'
+					p.col-content #{block.content}
+				if block.type == 'list'
+					ul
+					for item in block.content
+						li= item
 		div(style='clear:both')
 
 block sidebar
 	h2 Change styling
 	h3 Paragraph
 	p
-		label Font size:
-		select(name="font-size")
-			option(value="11px") 11px
-			option(value="12px") 12px
-			option(value="13px") 13px
-			option(value="14px") 14px
-			option(value="15px") 15px
-			option(value="16px") 16px
-	p
-		label Color:
-		select(name="color")
-			option(value="#000000") Black
-			option(value="#FF6A00") Orange
-			option(value="#0026FF") Blue
-			option(value="#FF0000") Red
-
-	p
-		label Font family:
-		select(name="font-family")
-			option(value="arial") Arial
-			option(value="verdana") Verdana
-			option(value="consolas") Consolas
-			option(value="comic sans ms") Comic Sans MS
-
-	p
-		label Font weight:
-		select(name="font-weight")
-			option(value="normal") Normal
-			option(value="bold") Bold
-			
-
+		mixin text_xs('Font size:', 'font_size', style.font_size) 
+		| px
+	p: mixin select('Color:', 'color', options.colors, style.color)
+	p: mixin select('Font family:', 'font_family', options.fonts, style.font_family)
+	p: mixin select('Font weight:', 'font_weight', options.weights, style.font_weight)

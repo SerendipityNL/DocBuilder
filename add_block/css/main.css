@@ -1,0 +1,143 @@
+* {
+    margin:                 0;
+    padding:                0;
+}
+
+body {
+    font:                   0.9em 'Arial', 'sans-serif';
+}
+
+h1 {
+    margin:                 0 0 15px;
+}
+
+div#container {
+    margin:                 20px;
+}
+
+div#document {
+    width:              640px;
+    background-color:   #FFF;
+    overflow:           hidden;
+    padding:            20px 0;
+    -moz-box-shadow:    3px 3px 3px #B2B2B2;
+    -webkit-box-shadow: 3px 3px 3px #B2B2B2;
+    box-shadow:         3px 3px 3px #B2B2B2;
+    height:300px;
+}
+
+div#document .col_1,
+div#document .col_2,
+div#document .col_3,
+div#document .col_4 {
+    display:            inline;
+    float:              left;
+    position:           relative;
+    margin:             5px 1%;
+    min-height:         20px;
+    /*text-align:       justify;*/
+}
+
+div.emptyBlock{
+    border:     1px solid #000;
+}
+
+.icon_selector{
+    width:      100%;
+    background: #fff;
+    display:    none;
+    float:      left;
+}
+    .more_icons{
+        display:none;
+    }
+    .close_icon{
+        position:absolute;
+        right:0;
+        top:0;
+        background:url('../img/close_icon.png') no-repeat;
+        width:18px;
+        height:18px;
+        cursor: pointer;
+    }
+
+    .icon{
+        border:     1px solid #efefef;
+        width:      64px;
+        height:     64px;
+        float:      left;
+        display:    block;
+        margin:     2px;
+        cursor:     pointer;
+    }
+    .icon.block_image{
+        background: url('../img/image_icon.png');
+    }
+    .icon.block_text{
+        background: url('../img/text_icon.png');
+    }
+    .icon.block_list{
+        background: url('../img/list_icon.png');
+    }
+    .icon.block_more{
+        background: url('../img/more_icon.png');
+    }
+    .icon.block_undo{
+        background: url('../img/undo_icon.png');
+    }
+    .icon.block_youtube{
+        background: url('../img/youtube_icon.png');
+    }
+    .icon.block_music{
+        background: url('../img/music_icon.png');
+    }
+
+
+.block_text{
+    background:#3c58e8;
+}
+.block_image{
+    background: #ff0000;
+}
+.block_youtube{
+    background: #ff0000;
+}
+.block_music{
+    background:#ee0e00;
+}
+.block_list{
+    background: #ffd200;
+}
+.block_more{
+    background:#efefef;
+}
+
+.plus_icon{
+    display:        block;
+    background:     url('../img/plus_icon.png') center no-repeat;
+    width:          64px;
+    height:         64px;
+    width:          50%;
+    margin:         0 auto;
+    cursor:         pointer;
+}
+
+.col_1 {
+    width:              23%;
+}
+
+.col_2 {
+    width:              48%;
+}
+
+.col_3 {
+    width:              73%;
+}
+
+.col_4 {
+    width:              98%;
+}
+
+.contextmenu {
+    display: none;
+}

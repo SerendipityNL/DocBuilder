@@ -192,11 +192,11 @@ form {
 
 input, textarea, select {
 	border: 1px solid #B3B3B3;
-	background-color: #FFF;
+	background-color: #E5E5E5;
 }
 
 input, textarea {
-	padding: 3px 5px;
+	padding: 4px 5px;
 }
 
 select {
