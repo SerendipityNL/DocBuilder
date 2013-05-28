@@ -17,8 +17,6 @@ $(document).ready(function() {
 	});
 	
 
-
-
 	if(deletemode = true){
 		$('#recycle_bin').droppable({
 	      drop: function( event, ui ) {

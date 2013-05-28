@@ -1,0 +1,150 @@
+* {
+	margin:				0;
+	padding: 			0;
+}
+
+body, textarea, input {
+	font: 				13px 'Helvetica', 'Arial', 'sans-serif';
+	color: 				#404040;
+}
+
+body {	
+	background-color: 	#CCC;
+}
+
+h1 {
+	margin: 			0 10px 10px 10px;
+}
+
+img {
+	max-width: 			100%;
+}
+
+li {
+	margin-left: 		20px;
+}
+
+a:link, a:visited {
+	color: 				#404040;
+}
+
+a:hover, a:active {
+	color:				#FF0000;
+}
+
+textarea {
+	background-color: 	transparent;
+	border:				none;
+	padding: 			0;
+	margin: 			0;
+	width: 				100%;
+	resize: 			none;
+	overflow: 			hidden;
+	display:			block;
+}
+
+textarea:focus {
+	outline: 			none;
+}
+
+p, ul {
+	padding: 			5px;
+}
+
+#toggle_borders {
+	float: 				right;
+	margin-right: 		10px;
+	color: 				#CCC;
+	text-decoration: 	none;
+}
+
+div#document {
+	width: 				640px;
+	margin: 			10px auto 30px auto;
+	background-color: 	#FFF;
+	overflow: 			hidden;
+	padding: 			20px 0;
+	-moz-box-shadow: 	5px 5px 5px #B2B2B2;
+	-webkit-box-shadow: 5px 5px 5px #B2B2B2;
+	box-shadow: 		5px 5px 5px #B2B2B2;
+}
+
+.col_1,
+.col_2,
+.col_3,
+.col_4 {
+	display: 			inline;
+	float: 				left;
+	position: 			relative;
+	margin: 			4px 1% 4px 1%;
+	min-height: 		20px;
+	/*text-align: 		justify;*/
+}
+
+.col_1 {
+	width: 				23%;
+}
+
+.col_2 {
+	width: 				48%;
+}
+
+.col_3 {
+	width: 				73%;
+}
+
+.col_4 {
+	width: 				98%;
+}
+
+
+.col_content {
+	padding: 			1px;
+}
+
+.col_content:hover {
+	border:				1px	solid #808080;
+	padding: 			0;
+}
+
+.col_content:hover .col_actions {
+	display: 			block;
+}
+
+
+.resizeable {
+	border:				1px dashed red;
+	padding: 			0;
+}
+
+ul.col_actions {
+	position: 			absolute;
+	left:				0;
+	top:				0;
+	list-style: 		none;
+	margin: 			-17px 0 0 0;
+	padding: 			0;
+	display: 			none;
+}
+
+ul.col_actions li {
+	display: 			inline-block;
+	margin:				0 5px 0 0;
+	padding:			0;
+	background-color: 	#808080;
+	float: 				left;
+}
+
+ul.col_actions a {
+	display: 			block;
+	text-decoration: 	none;
+	font-size: 			11px;
+	font-weight: 		bold;
+	padding: 			0 5px;
+	line-height: 		18px;
+	color:				#FFF;
+}
+
+a.save {
+	color: 				#B6FF00 !important;
+}

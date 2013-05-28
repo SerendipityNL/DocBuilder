@@ -1,0 +1,158 @@
+* {
+	margin:				0;
+	padding: 			0;
+}
+
+
+
+body, textarea, input {
+	font: 				13px 'Helvetica', 'Arial', 'sans-serif';
+	color: 				#404040;
+}
+
+body {	
+	background-color: 	#CCC;
+}
+
+h1 {
+	margin: 			0 10px 10px 10px;
+}
+
+img {
+	max-width: 			100%;
+}
+
+p, ul {
+	padding: 			5px;
+}
+
+p {
+	padding: 			5px;
+}
+
+li {
+	margin-left: 		20px;
+}
+
+a:link, a:visited {
+	color: 				#404040;
+}
+
+a:hover, a:active {
+	color:				#FF0000;
+}
+
+textarea {
+	background-color: 	transparent;
+	border:				none;
+	padding: 			5px;
+	width: 				100%;
+	height:				200px;
+	outline: 			1px solid #CCC;
+}
+
+#toggle_borders {
+	float: 				right;
+	margin-right: 		10px;
+	color: 				#CCC;
+	text-decoration: 	none;
+}
+
+#sortable_2{width:386px; padding:10px; float:left; background:#efefef; list-style-type: none;}
+
+
+
+.ui-sortable-helper{
+	background:#fff;
+	opacity: 0.5;
+}
+
+#container {
+	width: 				640px;
+	float:left;
+	background-color: 	#FFF;
+	overflow: 			hidden;
+	padding: 			20px 0;
+	-moz-box-shadow: 	5px 5px 5px #B2B2B2;
+	-webkit-box-shadow: 5px 5px 5px #B2B2B2;
+	box-shadow: 		5px 5px 5px #B2B2B2;
+}
+
+.col_1,
+.col_2,
+.col_3,
+.col_4 {
+	display: 			inline;
+	float: 				left;
+	position: 			relative;
+	margin: 			5px 1% 5px 1%;
+	cursor: 			pointer;
+	min-height: 		40px;
+	text-align: 		justify;
+}
+
+.col_1 {
+	width: 				23%;
+}
+
+.col_2 {
+	width: 				48%;
+}
+
+.col_3 {
+	width: 				73%;
+}
+
+.col_4 {
+	width: 				98%;
+}
+
+.resizeable {
+	outline:			1px dashed red;
+}
+
+ul.actions {
+	position: 			absolute;
+	right:				0px;
+	top:				0px;
+	list-style: 		none;
+	margin: 			0;
+	padding: 			0;
+	display: 			none;
+}
+
+ul.actions li {
+	display: 			inline-block;
+	margin:				0;
+	padding:			0;
+	background-color: 	#CCC;
+}
+
+ul.actions a {
+	display: 			block;
+	padding:			5px 10px;
+}
+
+ul.actions a {
+	text-decoration: 	none;
+}
+
+div#container > div:hover ul.actions {
+	display: 			block;
+}
+
+div#container > div:hover {
+	outline:			1px solid #CCC;
+}
+.new_text{
+	background:#39b1de;
+	padding:10px;
+}
+.new_list{
+	background:#f0e312;
+	padding:10px;
+}
+.new_image{
+	background:#f02212;
+	padding:10px;
+}

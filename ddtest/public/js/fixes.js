@@ -17,7 +17,7 @@ function editListener() {
 			
 			methods.settings = $.extend( {
 				  sortable 		: {
-					  selector				: '#sortable1',
+					  selector				: '#workfield',
 					  connectWith			: '#recycle_bin'
 					, items					: ' > div'
 					, delay					: 300
