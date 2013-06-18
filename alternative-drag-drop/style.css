@@ -1,0 +1,23 @@
+div#blocks {
+	width: 640px;
+	margin: 10px auto;
+	overflow: hidden;
+}
+
+div#blocks .col-1,
+div#blocks .col-2,
+div#blocks .col-3,
+div#blocks .col-4,
+div#blocks .col-placeholder {
+	display: inline;
+	float: left;
+	position: relative;
+	margin: 5px 1%;
+	min-height: 75px;
+	background-color: #E6E6E6;
+}
+
+.col-1 { width: 23%; }
+.col-2 { width: 48%; }
+.col-3 { width: 73%; }
+.col-4 { width: 98%; }
