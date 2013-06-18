@@ -1,7 +1,10 @@
+body {
+	font: 12px arial;
+}
+
 div#blocks {
 	width: 640px;
 	margin: 10px auto;
-	overflow: hidden;
 }
 
 div#blocks .col-1,
@@ -13,11 +16,19 @@ div#blocks .col-placeholder {
 	float: left;
 	position: relative;
 	margin: 5px 1%;
-	min-height: 75px;
+	min-height: 100px;
 	background-color: #E6E6E6;
+	cursor: pointer;
+	outline: 1px solid #CCC;
 }
 
 .col-1 { width: 23%; }
 .col-2 { width: 48%; }
 .col-3 { width: 73%; }
 .col-4 { width: 98%; }
+
+div#blocks div.move {
+	background-color: #FFF2B2;
+	z-index: 1000;
+	cursor: move;
+}
