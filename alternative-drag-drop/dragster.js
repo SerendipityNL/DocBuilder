@@ -2,63 +2,102 @@ $.fn.draggable = function() {
 
 	var dragging = false;
 	var container = $('#blocks');
-	var overflow = 25;
+	var overflowX = 100;
+	var overflowY = 10;
 	
+	// When clicking on the element, start the function
 	$(this).on('click', function() {
 		
+		// Create a reference to $(this)
 		var element = $(this);
 
+		// Check if the user is still dragging
 		if (dragging) {
-			element.removeClass('move');
-			$(document).off('mousemove');
+			// Remove the dragging class
+			element.removeClass('dragging');
+
+			// Add the dragged class
+			element.addClass('dragged');
+
+			// Turn of the mousemove event listener
+			$(document).off('mousemove.dragging');
 			dragging = false;
 		}
+		// The isn't dragging, stick the element to the mouse
 		else {
-			element.addClass('move');		
+			// Add the dragging class
+			element.addClass('dragging');		
 
-			var containerTop = container.offset().top;
-			var containerLeft = container.offset().left;
-			var containerHeight = container.height();
-			var containerWidth = container.width();
+			// Container position minus the overflow
+			var containerTop = container.offset().top - overflowY;
+			var containerLeft = container.offset().left - overflowX;
 
-			console.log(containerLeft);
+			// Container dimensions with times two the overflow
+			var containerHeight = container.height() + (overflowY * 2);
+			var containerWidth = container.width() + (overflowX * 2);
 
+			// Element dimensions
 			var elementWidth = element.width();
 			var elementHeight = element.height();
 
-			$(document).on('mousemove', function(e) {
+			// Start the drag function
+			$(document).on('mousemove.dragging', function(e) {
 
+				// Set the var dragging to true
+				dragging = true;
+
+				// Element position
 				var elementTop = e.pageY - (elementHeight / 2);
 				var elementLeft = e.pageX - (elementWidth / 2);
 
-
+				// Keeping the element in the container
 				if (elementLeft < containerLeft) {
 					elementLeft = containerLeft;
 				}
-				else if (elementLeft + elementWidth > containerLeft + containerWidth) {
-					//elementLeft = elementLeft + containerLeft; 368
-					
+				else if ((elementLeft + elementWidth) > (containerLeft + containerWidth)) {
+					elementLeft = containerLeft + (containerWidth - elementWidth);
 				}
-				
-
-				if (elementTop < containerTop) {
+				else if (elementTop < containerTop) {
 					elementTop = containerTop;
 				}
 				else if (elementTop + elementHeight > containerTop + containerHeight) {
-
+					elementTop = containerTop + (containerHeight - elementHeight);
 				}
 
+				// Move the position of the element
 				element.offset({
 					left: elementLeft,
 					top: elementTop
 				});
 			});
-			dragging = true;
 		}		
 	});
 }
 
 
 $(document).ready(function() {
-	$('#blocks > div').draggable();
+	$('.block').draggable();
+
+	
+
+	$('.block').each(function(index, item) {
+		var element = $(item);
+		var id = element.data('id');
+		var elementWidth = element.width();
+		var elementHeight = element.height();
+		var elementTop = element.offset().top;
+		var elementLeft = element.offset().left;
+
+		console.log('element ' + id + ' | width: ' + elementWidth + ', height: ' + elementHeight + ' | left: ' + elementLeft + ', top: ' + elementTop);
+	});
 });
+
+/*
+--------------------------------------------------
+
+container width 640px
+
+
+
+--------------------------------------------------
+*/

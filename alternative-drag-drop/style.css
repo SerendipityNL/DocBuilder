@@ -1,5 +1,6 @@
 body {
 	font: 12px arial;
+	background-color: #FFF;
 }
 
 div#blocks {
@@ -7,11 +8,10 @@ div#blocks {
 	margin: 30px auto;
 }
 
-div#blocks .col-1,
-div#blocks .col-2,
-div#blocks .col-3,
-div#blocks .col-4,
-div#blocks .col-placeholder {
+div.col-1,
+div.col-2,
+div.col-3,
+div.col-4 {
 	display: inline;
 	float: left;
 	position: relative;
@@ -22,13 +22,18 @@ div#blocks .col-placeholder {
 	outline: 1px solid #CCC;
 }
 
-.col-1 { width: 23%; }
-.col-2 { width: 48%; }
-.col-3 { width: 73%; }
-.col-4 { width: 98%; }
+div.col-1 { width: 23%; }
+div.col-2 { width: 48%; }
+div.col-3 { width: 73%; }
+div.col-4 { width: 98%; }
 
-div#blocks div.move {
+div.dragging {
 	background-color: #FFF2B2;
 	z-index: 1000;
 	cursor: move;
+}
+
+div.dragged {
+	background-color: #DEDEDE;
+	z-index: 500;
 }
