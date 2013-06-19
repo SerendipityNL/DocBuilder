@@ -69,27 +69,83 @@ $.fn.draggable = function() {
 					left: elementLeft,
 					top: elementTop
 				});
+				
+				var draggedElementCenter = {
+					height: elementTop + (elementHeight / 2),
+					width: elementLeft + (elementWidth / 2),
+				}
+				
+				var closest = {
+					left: {
+						item: null,
+						distance: 0
+					},						
+					right: {
+						item: null,
+						distance: 0
+					}
+				}
+				
+				var blockDistances = new Array();
+				
+				$('.block').each(function(index, item) {
+					if ($(this) != element){						
+						var block = $(item);
+						var id = block.data('id');
+						var blockSizes = {						
+							width: block.width(),
+							height: block.height(),
+							top: block.offset().top,
+							left: block.offset().left
+						};
+						
+						blockDistances[index] = (draggedElementCenter.width - blockSizes.left);
+					}
+					
+				});
+				
+				$('.closeEnough').removeClass('closeEnough');
+				
+				getClosest(blockDistances, draggedElementCenter);
 			});
 		}		
 	});
 }
 
 
+function getClosest( array , draggedElementCenter ){
+	var minimum = {
+		distance: 0,
+		items: []
+	};
+	
+	$.each(array, function (index, item) {
+		if (index === 0) {
+			minimum.distance = item;
+		}
+		else {
+			if (item > 0 && item < minimum.distance) {
+				minimum.distance = item;
+			}
+		}
+	});
+	
+	$.each(array, function (index, item) {
+		if (item === minimum.distance) {
+			var el = $('.block[data-id='+index+']');
+			console.log('TOffset: ' + el.offset().top + ' < DEC.h: ' + draggedElementCenter.height + ' TOffset' + (el.offset().top + el.height()) + ' > DEC.h' + draggedElementCenter.height );
+			if (el.offset().top < draggedElementCenter.height && (el.offset().top + el.height()) > draggedElementCenter.height){
+				console.log('item');
+				minimum.items.push(index);
+				el.addClass('closeEnough');
+			}
+		}
+	});
+};
+
+
 $(document).ready(function() {
 	$('.block').draggable();
-
-	
-
-	$('.block').each(function(index, item) {
-		var element = $(item);
-		var id = element.data('id');
-		var elementWidth = element.width();
-		var elementHeight = element.height();
-		var elementTop = element.offset().top;
-		var elementLeft = element.offset().left;
-
-		console.log('element ' + id + ' | width: ' + elementWidth + ', height: ' + elementHeight + ' | left: ' + elementLeft + ', top: ' + elementTop);
-	});
 });
 
 /*

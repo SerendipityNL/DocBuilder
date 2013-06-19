@@ -32,6 +32,9 @@ div.dragged {
 	z-index: 500;
 }
 
+div.closeEnough {
+	background: #0FF;
+}
 div.dragging {
 	background-color: #FFF2B2;
 	z-index: 1000;
