@@ -27,6 +27,7 @@ $.fn.draggable = function() {
 		else {
 			// Add the dragging class
 			$element.addClass('dragging');
+			$element.removeClass('hover');
 
 			// Container dimensions and position
 			var container = {
@@ -78,6 +79,25 @@ $.fn.draggable = function() {
 
 $(document).ready(function() {
 	$('.block').draggable();
+
+	$('.block').each(function(index, element) {
+
+		var $element = $(element);
+
+		$element.on('mouseover', function() {
+
+			// if ( ! $(this).hasClass('dragging')) {
+			// 	$(this).addClass('hover');				
+			// }
+			$element.on('mousemove', function(e) {
+				console.log($element.offsetLeft - e.pageX);
+			});
+			
+		});
+		$element.on('mouseout', function() {
+			$(this).removeClass('hover');
+		});
+	});
 });
 
 /*

@@ -28,15 +28,16 @@ div.col-3 { width: 73%; }
 div.col-4 { width: 98%; }
 
 div.dragged {
-	background-color: #DEDEDE;
 	z-index: 500;
 }
 
-div.closeEnough {
-	background: #0FF;
-}
 div.dragging {
 	background-color: #FFF2B2;
+	opacity: 0.75;
 	z-index: 1000;
 	cursor: move;
+}
+
+div.hover {
+	background-color: #CFD7E6;
 }
